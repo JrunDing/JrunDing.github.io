@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>视频数据集 | JrunDing</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="UCF101 (UCF101 Human Actions dataset)​		UCF101 数据集是 UCF50 的扩展，由 13,320 个视频片段组成，分为 101 个类别。这 101 个类别可分为 5 种类型（身体运动、人与人之间的互动、人与物体之间的互动、演奏乐器和运动）。这些视频片段的总长度超过 27 小时。所有视频都是从 YouTube 上收集的，帧频固定为 25 FPS，分辨率为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视频数据集">
+<meta property="og:url" content="http://jrunding.github.io/2024/05/13/%E8%A7%86%E9%A2%91%E6%95%B0%E6%8D%AE%E9%9B%86/index.html">
+<meta property="og:site_name" content="JrunDing">
+<meta property="og:description" content="UCF101 (UCF101 Human Actions dataset)​		UCF101 数据集是 UCF50 的扩展，由 13,320 个视频片段组成，分为 101 个类别。这 101 个类别可分为 5 种类型（身体运动、人与人之间的互动、人与物体之间的互动、演奏乐器和运动）。这些视频片段的总长度超过 27 小时。所有视频都是从 YouTube 上收集的，帧频固定为 25 FPS，分辨率为">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1.ax1x.com/2023/12/10/piRckct.jpg">
+<meta property="article:published_time" content="2024-05-13T04:24:32.000Z">
+<meta property="article:modified_time" content="2024-05-13T06:15:49.838Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1.ax1x.com/2023/12/10/piRckct.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2024/05/13/%E8%A7%86%E9%A2%91%E6%95%B0%E6%8D%AE%E9%9B%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: JrunDing","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '视频数据集',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: undefined,
+  isToc: true,
+  postUpdate: '2024-05-13 14:15:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">193</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://z1.ax1x.com/2023/12/10/piRckct.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="JrunDing"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">视频数据集</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-13T04:24:32.000Z" title="发表于 2024-05-13 12:24:32">2024-05-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-13T06:15:49.838Z" title="更新于 2024-05-13 14:15:49">2024-05-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Vision/">Computer Vision</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="视频数据集"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2024/05/13/%E8%A7%86%E9%A2%91%E6%95%B0%E6%8D%AE%E9%9B%86/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="UCF101-UCF101-Human-Actions-dataset"><a href="#UCF101-UCF101-Human-Actions-dataset" class="headerlink" title="UCF101 (UCF101 Human Actions dataset)"></a>UCF101 (UCF101 Human Actions dataset)</h2><p>​		UCF101 数据集是 UCF50 的扩展，由 13,320 个视频片段组成，分为 101 个类别。这 101 个类别可分为 5 种类型（身体运动、人与人之间的互动、人与物体之间的互动、演奏乐器和运动）。这些视频片段的总长度超过 27 小时。所有视频都是从 YouTube 上收集的，帧频固定为 25 FPS，分辨率为 <strong>320 × 240</strong>。</p>
+<p>​		地址：<a target="_blank" rel="noopener" href="https://www.crcv.ucf.edu/research/data-sets/ucf101/">https://www.crcv.ucf.edu/research/data-sets/ucf101/</a></p>
+<ol>
+<li>数据集名称：UCF-101（2012）</li>
+<li>总视频数：13,320个视频</li>
+<li>总时长：27个小时</li>
+<li>视频来源：YouTube采集</li>
+<li>视频类别：101</li>
+<li>视频类别组 ：Human-Object Interaction（人与物体交互）、Body-Motion Only（单纯的肢体动作）、Human-Human Interaction（人与人交互）、Playing Musical Instruments（演奏乐器）、Sports（体育运动）</li>
+<li>特点：</li>
+</ol>
+<ul>
+<li>每个类别的视频被分为25组，每组可包含4-7个视频，来自同一组的视频具有一些相似的特征，比如背景、人物等</li>
+<li>这些视频是在不受约束的环境中录制并上传至YouTube，包含相机运动、各种照明条件、部分遮挡、低质帧等特点。</li>
+<li>视频码率为 25FPS，分辨率为 320x240，avi格式，DivX编码方式，平均视频片段时长7.21秒。</li>
+<li>视频按照 v_X_gY_cZ.avi的格式命名，其中X表示类别、Y表示组、Y表示视频编号，例如：v_ApplyEyeMakeup_g03 c04.avi 表示 ApplyEyeMakeup 类别下，第03组的第04个视频。</li>
+</ul>
+<h2 id="BVI-DVC"><a href="#BVI-DVC" class="headerlink" title="BVI-DVC"></a>BVI-DVC</h2><p>​		深度学习方法正越来越多地应用于视频压缩算法的优化，与传统方法相比，它能显著提高编码效率。这类方法通常采用卷积神经网络（CNN），而 CNN 是在内容覆盖范围相对有限的数据库上进行训练的。BVI-DVC 是一个用于训练基于 CNN 的编码工具的新的广泛且具有代表性的视频数据库，其中包含<strong>从 270p 到 2160p</strong> 不同空间分辨率的 772 个序列。实验结果表明，与现有的三个（常用的）图像&#x2F;视频训练数据库相比，该数据库在编码增益方面有显著改善。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Alternative title</th>
+<th>A Training Database for Deep Video Compression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Creator(s)</td>
+<td>Fan Zhang, Di Ma, David Bull</td>
+</tr>
+<tr>
+<td align="left">Publication date</td>
+<td>30 Nov 2021</td>
+</tr>
+<tr>
+<td align="left">Language</td>
+<td>eng</td>
+</tr>
+<tr>
+<td align="left">Publisher</td>
+<td>University of Bristol</td>
+</tr>
+<tr>
+<td align="left">Licence</td>
+<td><a target="_blank" rel="noopener" href="https://www.nationalarchives.gov.uk/doc/non-commercial-government-licence/version/2/">Non-Commercial Government Licence for public sector information</a></td>
+</tr>
+<tr>
+<td align="left">DOI</td>
+<td>10.5523&#x2F;bris.3h0hduxrq4awq2ffvhabjzbzi1</td>
+</tr>
+<tr>
+<td align="left">Citation</td>
+<td>Fan Zhang, Di Ma, David Bull (2021): BVI-DVC Part 1. <a target="_blank" rel="noopener" href="https://doi.org/10.5523/bris.3h0hduxrq4awq2ffvhabjzbzi1">https://doi.org/10.5523/bris.3h0hduxrq4awq2ffvhabjzbzi1</a></td>
+</tr>
+<tr>
+<td align="left">Total size</td>
+<td>83.8 GiB</td>
+</tr>
+</tbody></table>
+<h2 id="REDS"><a href="#REDS" class="headerlink" title="REDS"></a>REDS</h2><p>​		REDS(Realistic and Dynamic Scenes) 数据集是在 NTIRE19 挑战赛中提出的数据集，常用于视频去模糊和视频超分辨率任务。该数据集由 240 个训练视频序列， 30 个验证视频序列和 30 个测试视频序列组成，每个视频序列由 100 个分辨率为 <strong>720x1280</strong> 的连续视频帧构成。</p>
+<p>​		REDS 数据集可以从其<a href="https://link.zhihu.com/?target=https://seungjunnah.github.io/Datasets/reds.html">主页</a>下载。对于视频超分辨率任务，应下载 <a href="https://link.zhihu.com/?target=https://drive.google.com/open?id=1YLksKtMhd2mWyVSkvhDaDLWSc1qYNCz-">train_sharp</a>，<a href="https://link.zhihu.com/?target=https://drive.google.com/open?id=1a4PrjqT-hShvY9IyJm3sPF0ZaXyrCozR">train_sharp_bicubic</a>，<a href="https://link.zhihu.com/?target=https://drive.google.com/open?id=1MGeObVQ1-Z29f-myDP7-8c3u0_xECKXq">val_sharp</a> 和 <a href="https://link.zhihu.com/?target=https://drive.google.com/open?id=1sChhtzN9Css10gX7Xsmc2JaC-2Pzco6a">val_sharp_bicubic</a>。</p>
+<p>​		在 REDS 官方数据集中，训练集和验证集是可以公开获取的，而测试集是非公开的。最常见的使用方法是将原始的训练集和验证集合并作为训练集，选取原始训练集中的 4 个视频序列(‘000’， ‘011’， ‘015’ 和 ‘020’) 作为测试集，命名为REDS4。</p>
+<p>​		数据集的文件目录结构应如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">data</span><br><span class="line">├── REDS</span><br><span class="line">│   ├── train_sharp</span><br><span class="line">│   │   ├── 000</span><br><span class="line">│   │   ├── 001</span><br><span class="line">│   │   ├── ...</span><br><span class="line">│   ├── train_sharp_bicubic</span><br><span class="line">│   │   ├── X4</span><br><span class="line">│   │   |   ├── 000</span><br><span class="line">│   │   |   ├── 001</span><br><span class="line">│   │   |   ├── ...</span><br><span class="line">├── REDS4</span><br><span class="line">│   ├── sharp</span><br><span class="line">│   ├── sharp_bicubic</span><br></pre></td></tr></table></figure>
+
+<p>​		<a href="https://link.zhihu.com/?target=https://github.com/open-mmlab/mmediting/tree/dev-1.x">MMEditing</a> 中提供了 REDS 数据集的<a href="https://link.zhihu.com/?target=https://github.com/open-mmlab/mmediting/tree/dev-1.x/tools/dataset_converters/reds">使用教程</a>。仅运行以下命令就可以完成 REDS 数据集的准备：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python tools/dataset_converters/reds/preprocess_reds_dataset.py --root-path ./data/REDS</span><br></pre></td></tr></table></figure>
+
+<p>​		如果想使用 LMDB 以获得更快的 IO 速度，可以通过以下命令来构建 LMDB 文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python tools/dataset_converters/reds/preprocess_reds_dataset.py --root-path ./data/REDS --make-lmdb</span><br></pre></td></tr></table></figure>
+
+<p>​		<a href="https://link.zhihu.com/?target=https://github.com/open-mmlab/mmediting/tree/dev-1.x">MMEditing</a> 中也支持了将 REDS 数据集图像裁剪为子图以加快 IO 速度，可以运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python tools/dataset_converters/reds/crop_sub_images.py --data-root ./data/REDS  -scales 4</span><br></pre></td></tr></table></figure>
+
+<h2 id="Vimeo-90K"><a href="#Vimeo-90K" class="headerlink" title="Vimeo-90K"></a>Vimeo-90K</h2><p>​		Vimeo-90K 是一个大规模、高质量的视频数据集，提出自 <a href="https://link.zhihu.com/?target=http://toflow.csail.mit.edu/">Video Enhancement with Task-Oriented Flow</a>。该数据集可被用作以下 4 个视频处理任务：视频插帧、视频去噪、视频去块和视频超分辨率。该数据集由 Triplet 数据集（用作视频插帧）和 Septuplet 数据集（用作视频去噪、视频去块和视频超分辨率）组成。Septuplet 数据集由 91701 个分辨率为 256x448 的 7 帧 视频序列组成。</p>
+<p>​		Vimeo-90K 数据集可以从其<a href="https://link.zhihu.com/?target=http://toflow.csail.mit.edu/">主页</a>下载。对于视频超分辨率任务，应下载 <a href="https://link.zhihu.com/?target=http://data.csail.mit.edu/tofu/dataset/vimeo_septuplet.zip">Septuplet dataset(82GB)</a>。</p>
+<p>​		数据集的文件目录结构应如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vimeo_septuplet</span><br><span class="line">├── sequences</span><br><span class="line">│   ├── 00001</span><br><span class="line">│   │   ├── 0001</span><br><span class="line">│   │   │   ├── im1.png</span><br><span class="line">│   │   │   ├── im2.png</span><br><span class="line">│   │   │   ├── ...</span><br><span class="line">│   │   ├── 0002</span><br><span class="line">│   │   ├── 0003</span><br><span class="line">│   │   ├── ...</span><br><span class="line">│   ├── 00002</span><br><span class="line">│   ├── ...</span><br><span class="line">├── sep_trainlist.txt</span><br><span class="line">├── sep_testlist.txt</span><br></pre></td></tr></table></figure>
+
+<p>​		原始的 Vimeo-90K 数据集没有提供下采样的视频序列，所以在使用前需要先生成下采样的 LR 视频序列。</p>
+<p>​		<a href="https://link.zhihu.com/?target=https://github.com/open-mmlab/mmediting/tree/dev-1.x">MMEditing</a> 中提供了 Vimeo-90K 数据集的<a href="https://link.zhihu.com/?target=https://github.com/open-mmlab/mmediting/tree/dev-1.x/tools/dataset_converters/vimeo90k">使用教程</a>。仅运行以下命令就可以生成下采样图像：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python tools/dataset_converters/vimeo90k/preprocess_vimeo90k_dataset.py --data-root ./data/vimeo90k</span><br></pre></td></tr></table></figure>
+
+<p>​		如果想使用 LMDB 以获得更快的 IO 速度，可以通过以下命令来构建 LMDB 文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python tools/dataset_converters/vimeo90k/preprocess_vimeo90k_dataset.py --data-root ./data/vimeo90k --train_list ./data/vimeo90k/sep_trainlist.txt --gt-path ./data/vimeo90k/GT --lq-path ./data/Vimeo90k/BIx4  --make-lmdb</span><br></pre></td></tr></table></figure>
+
+<h2 id="Vid4"><a href="#Vid4" class="headerlink" title="Vid4"></a>Vid4</h2><p>​		Vid4 数据集是最流行的视频超分辨率测试集之一。该数据集由 4 个视频序列组成： ‘calendar’ (41 帧，分辨率为 576x720)，’city’ (34 帧，分辨率为 576x704)，’foliage’ (49 帧，分辨率为 480x720) 和 ‘walk’(47 帧，分辨率为 480x720)。</p>
+<p>​		Vid4 数据集可以从<a href="https://link.zhihu.com/?target=https://drive.google.com/file/d/1ZuvNNLgR85TV_whJoHM7uVb-XW1y70DW/view?usp=sharing">这里</a>下载。</p>
+<p>​		<a href="https://link.zhihu.com/?target=https://github.com/open-mmlab/mmediting/tree/dev-1.x">MMEditing</a> 中提供了 Vid4 数据集的<a href="https://link.zhihu.com/?target=https://github.com/open-mmlab/mmediting/tree/dev-1.x/tools/dataset_converters/vid4">使用教程</a>。</p>
+<h2 id="UDM10"><a href="#UDM10" class="headerlink" title="UDM10"></a>UDM10</h2><p>​		UDM10 数据集是常用的视频超分辨率测试集。该数据集由 10 个视频序列组成，每个视频序列包含分辨率为 720x1272 的 32 个连续帧。</p>
+<p>​		UDM10 数据集可以从<a href="https://link.zhihu.com/?target=https://drive.google.com/file/d/1G4V4KZZhhfzUlqHiSBBuWyqLyIOvOs0W/">这里</a>下载。</p>
+<p>​		<a href="https://link.zhihu.com/?target=https://github.com/open-mmlab/mmediting/tree/dev-1.x">MMEditing</a> 中提供了 UDM10 数据集的<a href="https://link.zhihu.com/?target=https://github.com/open-mmlab/mmediting/tree/dev-1.x/tools/dataset_converters/udm10">使用教程</a>。</p>
+<h2 id="SPMCS"><a href="#SPMCS" class="headerlink" title="SPMCS"></a>SPMCS</h2><p>​		SPMCS 数据集由 30 个视频序列组成，每个视频序列包含分辨率为 <strong>540x960</strong> 的 31 个连续帧。每个视频序列包括 x2，x3 和 x4 倍下采样的输入图像和高分辨率的原始图像。</p>
+<p>​		SPMCS 数据集可以从其<a href="https://link.zhihu.com/?target=https://github.com/jiangsutx/SPMC_VideoSR">主页</a>或者从<a href="https://link.zhihu.com/?target=https://opendatalab.com/SPMCS">这里</a>下载。</p>
+<p>​		<a href="https://link.zhihu.com/?target=https://github.com/open-mmlab/mmediting/tree/dev-1.x">MMEditing</a> 中提供了 SPMCS 数据集的<a href="https://link.zhihu.com/?target=https://github.com/open-mmlab/mmediting/tree/dev-1.x/tools/dataset_converters/spmcs">使用教程</a>。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2024/05/13/%E8%A7%86%E9%A2%91%E6%95%B0%E6%8D%AE%E9%9B%86/">http://jrunding.github.io/2024/05/13/%E8%A7%86%E9%A2%91%E6%95%B0%E6%8D%AE%E9%9B%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">JrunDing</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://z1.ax1x.com/2023/12/10/piRckct.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UCF101-UCF101-Human-Actions-dataset"><span class="toc-number">1.</span> <span class="toc-text">UCF101 (UCF101 Human Actions dataset)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BVI-DVC"><span class="toc-number">2.</span> <span class="toc-text">BVI-DVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REDS"><span class="toc-number">3.</span> <span class="toc-text">REDS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vimeo-90K"><span class="toc-number">4.</span> <span class="toc-text">Vimeo-90K</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vid4"><span class="toc-number">5.</span> <span class="toc-text">Vid4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDM10"><span class="toc-number">6.</span> <span class="toc-text">UDM10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPMCS"><span class="toc-number">7.</span> <span class="toc-text">SPMCS</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://z1.ax1x.com/2023/12/10/piRckct.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By JrunDing</div><div class="footer_custom_text">Wish to feel nothing.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2024/05/13/%E8%A7%86%E9%A2%91%E6%95%B0%E6%8D%AE%E9%9B%86/'
+    this.page.identifier = '/2024/05/13/%E8%A7%86%E9%A2%91%E6%95%B0%E6%8D%AE%E9%9B%86/'
+    this.page.title = '视频数据集'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

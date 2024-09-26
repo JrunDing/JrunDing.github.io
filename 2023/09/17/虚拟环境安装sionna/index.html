@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>虚拟环境安装sionna | JrunDing</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="sionna是Nvidia推出的专用于通信领域的SDK，简单介绍windows中如何在虚拟环境中安装sionna  安装步骤-CPU​	以下是CPU版的sionna安装步骤 ​	sionna基于tensorflow，在虚拟环境中使用pip安装sionna时，会自动安装与其适配的最新版本tensorflow，因此不用事先安装tf pip install sionna  ​	安装完成后import">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟环境安装sionna">
+<meta property="og:url" content="http://jrunding.github.io/2023/09/17/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85sionna/index.html">
+<meta property="og:site_name" content="JrunDing">
+<meta property="og:description" content="sionna是Nvidia推出的专用于通信领域的SDK，简单介绍windows中如何在虚拟环境中安装sionna  安装步骤-CPU​	以下是CPU版的sionna安装步骤 ​	sionna基于tensorflow，在虚拟环境中使用pip安装sionna时，会自动安装与其适配的最新版本tensorflow，因此不用事先安装tf pip install sionna  ​	安装完成后import">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2023/03/03/ppkg98x.jpg">
+<meta property="article:published_time" content="2023-09-17T11:44:08.000Z">
+<meta property="article:modified_time" content="2024-05-17T13:13:52.742Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/03/03/ppkg98x.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2023/09/17/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85sionna/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: JrunDing","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '虚拟环境安装sionna',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: undefined,
+  isToc: true,
+  postUpdate: '2024-05-17 21:13:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">193</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkg98x.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="JrunDing"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">虚拟环境安装sionna</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-17T11:44:08.000Z" title="发表于 2023-09-17 19:44:08">2023-09-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-17T13:13:52.742Z" title="更新于 2024-05-17 21:13:52">2024-05-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/">Computer Science</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">954</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="虚拟环境安装sionna"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2023/09/17/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85sionna/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>sionna是Nvidia推出的专用于通信领域的SDK，简单介绍windows中如何在虚拟环境中安装sionna</p>
+</blockquote>
+<h1 id="安装步骤-CPU"><a href="#安装步骤-CPU" class="headerlink" title="安装步骤-CPU"></a>安装步骤-CPU</h1><p>​	以下是CPU版的sionna安装步骤</p>
+<p>​	sionna基于tensorflow，在虚拟环境中使用<code>pip</code>安装sionna时，会自动安装与其适配的最新版本tensorflow，因此不用事先安装tf</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install sionna</span><br></pre></td></tr></table></figure>
+
+<p>​	安装完成后<code>import sionna</code>会报错，无法找到LLVM-C.dll，这是因为sionna中部分内容需要LLVM编译框架，缺少该动态链接库，报错信息如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">AttributeError: jit_init_thread_state(): the LLVM backend is inactive because the LLVM shared library (&quot;LLVM-C.dll&quot;) could not be found! Set the DRJIT_LIBLLVM_PATH environment variable to specify its path.</span><br></pre></td></tr></table></figure>
+
+<p>​	LLVM是什么可以自行了解，简单说它是一个编译框架，以此为基础衍生出很多编译工具</p>
+<p>​	<strong>解决方案：</strong>Windows: run one of the <a target="_blank" rel="noopener" href="https://releases.llvm.org/">official installers</a> (many files can be downloaded from this page, look for ones with the pattern <code>LLVM-&lt;version&gt;-win64.exe</code>). It is important that you let the installer adjust the <code>%PATH%</code> variable so that the file <code>LLVM-C.dll</code> can be found by Dr.Jit.</p>
+<p>​	这是LLVM手册提供的安装LLVM教程，我们进入网页，寻找满足版本要求（大于等于8）的<code>LLVM-&lt;version&gt;-win64.exe</code>文件，下载后以管理员身份运行，在安装过程中勾选添加至环境变量中</p>
+<p>​	安装完成后<code>import sionna</code>仍然会报同样的错，这是因为<strong>虚拟环境并不会去系统环境变量中查找需要的文件</strong>，因此找到LLVM的安装路径，找到<code>LLVM-C.dll</code>文件，复制粘贴至虚拟环境的目录下即可</p>
+<h1 id="安装步骤-GPU"><a href="#安装步骤-GPU" class="headerlink" title="安装步骤-GPU"></a>安装步骤-GPU</h1><p>​		以下是GPU版的sionna安装步骤。上述<code>pip install sionna</code>默认安装<code>tensorflow 2.13-CPU</code>。<code>sionna</code>支持的<code>tensorflow</code>为<code>2.10-2.15</code>。</p>
+<p>​		截止2024年5月17日通过<code>conda</code>安装的<code>tf-GPU</code>版本最高为<code>2.10</code>，更高版本可从<a target="_blank" rel="noopener" href="https://github.com/tensorflow/tensorflow?tab=readme-ov-file">源码</a>编译安装。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n sionna python=3.9</span><br><span class="line">conda activate sionna</span><br><span class="line">pip install tensorflow-gpu==2.10.0  <span class="comment"># 安装tf-2.10-GPU</span></span><br></pre></td></tr></table></figure>
+
+<p>​		安装完后进入<code>python</code>编程环境，<code>import tensorflow as tf</code>报错缺少<code>cuda</code>，<code>exit()</code>退出python</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install cuda  <span class="comment"># 自动寻找符合tf-2.10-GPU的cudatoolkit</span></span><br><span class="line">conda install cudnn</span><br></pre></td></tr></table></figure>
+
+<p>​		此时再进入<code>python</code>测试<code>tf.test.is_gpu_available()</code>显示<code>True</code>，则<code>tf-GPU</code>安装成功</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install sionna</span><br></pre></td></tr></table></figure>
+
+<p>​		安装过程中，安装脚本会自动下载<code>tf-2.13</code>及其依赖库，安装完成后报错，红色报错提示四个依赖库的版本冲突，分别为<code>keras，protobuf，tensorboard</code>和<code>tensorflow-estimator</code>。</p>
+<p>​		依次降低版本，优先满足<code>tensorflow-gpu-2.10</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install keras==2.10.0  <span class="comment"># 安装完成后红色报错数量不会减少，但keras版本变成满足tensorflow-gpu而不满足tensorflow-intel</span></span><br><span class="line">pip install tensorboard==2.10  <span class="comment"># 红色报错同上</span></span><br><span class="line">pip install tensorflow-estimator==2.10.0</span><br><span class="line">pip install tensorflow-intel==2.10.1</span><br></pre></td></tr></table></figure>
+
+<p>​		上述四个版本降完后，仍然报<code>tensorflow 2.13.0</code>需要<code>tensorflow-intel 2.13.0</code>，这是因为<code>sionna</code>默认安装<code>tensorflow2.13</code>，因此降低版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install tensorflow==2.10.1</span><br></pre></td></tr></table></figure>
+
+<p>​		此时不再报错，进行测试</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python</span><br><span class="line">&gt;&gt; import sionna</span><br><span class="line">&gt;&gt; sionna.__version__</span><br><span class="line">&gt;&gt; import tensorflow as tf</span><br><span class="line">&gt;&gt; tf.test.is_gpu_available()</span><br><span class="line">&gt;&gt; True</span><br></pre></td></tr></table></figure>
+
+<p>​		如果返回False，则</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip uninstall tensorflow-gpu==2.10.0</span><br><span class="line">pip install tensorflow-gpu==2.10.0</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>​		如果在使用<code>sionna</code>过程中报错，</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">from google.protobuf.internal import builder as _builder</span><br><span class="line">ImportError: cannot import name <span class="string">&#x27;builder&#x27;</span> from <span class="string">&#x27;google.protobuf.internal&#x27;</span> (D:\......\site-packages\google\protobuf\internal\__init__.py)</span><br></pre></td></tr></table></figure>
+
+<p>​		这是因为<code>protobuf</code>的版本问题，由于<code>tensorflow-gpu</code>需要的是<code>protobuf==3.19.6</code>，但是 <code>protobuf v3.20.0 </code>以来，<code>python</code> 类得到了简化，生成的 <code>python</code> 代码现在引用一个<code>build</code>模块，如果不是最新版本的<code>protobuf</code>是找不到该模块的。</p>
+<p>​		因此可以在安装完<code>sionna</code>后（此时<code>protobuf</code>是最新版），在<code>anaconda</code>环境下找到该文件将它复制下来，在安装完<code>tensorflow-gpu2.10</code>后（<code>protobuf</code>变成了<code>3.19.6</code>版本），在粘贴回去即可。就我而言使用的是<code>anaconda</code>，<code>build.py</code>文件的位置在<code>D:Programs\anaconda3\envs\envname\Lib\site-packages\google\protobuf\internal</code></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2023/09/17/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85sionna/">http://jrunding.github.io/2023/09/17/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85sionna/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">JrunDing</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2023/03/03/ppkg98x.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4-CPU"><span class="toc-number">1.</span> <span class="toc-text">安装步骤-CPU</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4-GPU"><span class="toc-number">2.</span> <span class="toc-text">安装步骤-GPU</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkg98x.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By JrunDing</div><div class="footer_custom_text">Wish to feel nothing.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2023/09/17/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85sionna/'
+    this.page.identifier = '/2023/09/17/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85sionna/'
+    this.page.title = '虚拟环境安装sionna'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
