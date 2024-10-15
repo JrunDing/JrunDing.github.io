@@ -1,0 +1,442 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Python的struct模块 | JrunDing</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="python中的struct主要是用来处理C结构数据的，读入时先转换为Python的字符串类型，然后再转换为Python的结构化类型，比如元组(tuple)啥的~。一般输入的渠道来源于文件或者网络的二进制流。  ​	 struct模块中最重要的三个函数是pack(), unpack(), calcsize() #  按照给定的格式(fmt)，把数据封装成字符串(实际上是类似于c结构体的字节流)p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python的struct模块">
+<meta property="og:url" content="http://jrunding.github.io/2023/04/27/Python%E7%9A%84struct%E6%A8%A1%E5%9D%97/index.html">
+<meta property="og:site_name" content="JrunDing">
+<meta property="og:description" content="python中的struct主要是用来处理C结构数据的，读入时先转换为Python的字符串类型，然后再转换为Python的结构化类型，比如元组(tuple)啥的~。一般输入的渠道来源于文件或者网络的二进制流。  ​	 struct模块中最重要的三个函数是pack(), unpack(), calcsize() #  按照给定的格式(fmt)，把数据封装成字符串(实际上是类似于c结构体的字节流)p">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2023/03/03/ppkgC26.jpg">
+<meta property="article:published_time" content="2023-04-27T09:00:02.000Z">
+<meta property="article:modified_time" content="2023-04-27T09:18:43.817Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/03/03/ppkgC26.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2023/04/27/Python%E7%9A%84struct%E6%A8%A1%E5%9D%97/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: JrunDing","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python的struct模块',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: undefined,
+  isToc: true,
+  postUpdate: '2023-04-27 17:18:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">197</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkgC26.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="JrunDing"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python的struct模块</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-27T09:00:02.000Z" title="发表于 2023-04-27 17:00:02">2023-04-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-27T09:18:43.817Z" title="更新于 2023-04-27 17:18:43">2023-04-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/">Computer Science</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Python的struct模块"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2023/04/27/Python%E7%9A%84struct%E6%A8%A1%E5%9D%97/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>python中的struct主要是用来处理C结构数据的，读入时先转换为Python的字符串类型，然后再转换为Python的结构化类型，比如元组(tuple)啥的~。一般输入的渠道来源于文件或者网络的二进制流。</p>
+</blockquote>
+<p>​	 struct模块中最重要的三个函数是pack(), unpack(), calcsize()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#  按照给定的格式(fmt)，把数据封装成字符串(实际上是类似于c结构体的字节流)</span></span><br><span class="line">pack(fmt, v1, v2, ...)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按照给定的格式(fmt)解析字节流string，返回解析出来的tuple</span></span><br><span class="line">unpack(fmt, string)      </span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算给定的格式(fmt)占用多少字节的内存</span></span><br><span class="line">calcsize(fmt)</span><br></pre></td></tr></table></figure>
+
+<p>​	上述fmt中，支持的格式为：</p>
+<table>
+<thead>
+<tr>
+<th align="left">FORMAT</th>
+<th align="left">C TYPE</th>
+<th align="left">PYTHON TYPE</th>
+<th align="left">STANDARD SIZE</th>
+<th align="left">NOTES</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">x</td>
+<td align="left">pad byte</td>
+<td align="left">no value</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">c</td>
+<td align="left">char</td>
+<td align="left">string of length 1</td>
+<td align="left">1</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">b</td>
+<td align="left">signed char</td>
+<td align="left">integer</td>
+<td align="left">1</td>
+<td align="left">(3)</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">unsigned char</td>
+<td align="left">integer</td>
+<td align="left">1</td>
+<td align="left">(3)</td>
+</tr>
+<tr>
+<td align="left">?</td>
+<td align="left">_Bool</td>
+<td align="left">bool</td>
+<td align="left">1</td>
+<td align="left">(1)</td>
+</tr>
+<tr>
+<td align="left">h</td>
+<td align="left">short</td>
+<td align="left">integer</td>
+<td align="left">2</td>
+<td align="left">(3)</td>
+</tr>
+<tr>
+<td align="left">H</td>
+<td align="left">unsigned short</td>
+<td align="left">integer</td>
+<td align="left">2</td>
+<td align="left">(3)</td>
+</tr>
+<tr>
+<td align="left">i</td>
+<td align="left">int</td>
+<td align="left">integer</td>
+<td align="left">4</td>
+<td align="left">(3)</td>
+</tr>
+<tr>
+<td align="left">I</td>
+<td align="left">unsigned int</td>
+<td align="left">integer</td>
+<td align="left">4</td>
+<td align="left">(3)</td>
+</tr>
+<tr>
+<td align="left">l</td>
+<td align="left">long</td>
+<td align="left">integer</td>
+<td align="left">4</td>
+<td align="left">(3)</td>
+</tr>
+<tr>
+<td align="left">L</td>
+<td align="left">unsigned long</td>
+<td align="left">integer</td>
+<td align="left">4</td>
+<td align="left">(3)</td>
+</tr>
+<tr>
+<td align="left">q</td>
+<td align="left">long long</td>
+<td align="left">integer</td>
+<td align="left">8</td>
+<td align="left">(2), (3)</td>
+</tr>
+<tr>
+<td align="left">Q</td>
+<td align="left">unsigned long long</td>
+<td align="left">integer</td>
+<td align="left">8</td>
+<td align="left">(2), (3)</td>
+</tr>
+<tr>
+<td align="left">f</td>
+<td align="left">float</td>
+<td align="left">float</td>
+<td align="left">4</td>
+<td align="left">(4)</td>
+</tr>
+<tr>
+<td align="left">d</td>
+<td align="left">double</td>
+<td align="left">float</td>
+<td align="left">8</td>
+<td align="left">(4)</td>
+</tr>
+<tr>
+<td align="left">s</td>
+<td align="left">char[]</td>
+<td align="left">string</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">p</td>
+<td align="left">char[]</td>
+<td align="left">string</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">P</td>
+<td align="left">void *</td>
+<td align="left">integer</td>
+<td align="left"></td>
+<td align="left">(5), (3)</td>
+</tr>
+</tbody></table>
+<p>​	注1.q和Q只在机器支持64位操作时有意思</p>
+<p>​	注2.每个格式前可以有一个数字，表示个数</p>
+<p>​	注3.s格式表示一定长度的字符串，4s表示长度为4的字符串，但是p表示的是<code>pascal</code>字符串</p>
+<p>​	注4.P用来转换一个指针，其长度和机器字长相关</p>
+<p>​	注5.最后一个可以用来表示指针类型的，占4个字节</p>
+<p>​	为了同c中的结构体交换数据，还要考虑有的c或c++编译器使用了字节对齐，通常是以4个字节为单位的32位系统，故而struct根据本地机器字节顺序转换.可以用格式中的第一个字符来改变对齐方式.定义如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">CHARACTER</th>
+<th align="left">BYTE ORDER</th>
+<th align="left">SIZE</th>
+<th align="left">ALIGNMENT</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">@</td>
+<td align="left">native</td>
+<td align="left">native</td>
+<td align="left">native</td>
+</tr>
+<tr>
+<td align="left">&#x3D;</td>
+<td align="left">native</td>
+<td align="left">standard</td>
+<td align="left">none</td>
+</tr>
+<tr>
+<td align="left">&lt;</td>
+<td align="left">little-endian</td>
+<td align="left">standard</td>
+<td align="left">none</td>
+</tr>
+<tr>
+<td align="left">&gt;</td>
+<td align="left">big-endian</td>
+<td align="left">standard</td>
+<td align="left">none</td>
+</tr>
+<tr>
+<td align="left">!</td>
+<td align="left">network (&#x3D; big-endian)</td>
+<td align="left">standard</td>
+<td align="left">none</td>
+</tr>
+</tbody></table>
+<p>​	使用方法是放在fmt的第一个位置，就像’@5s6sif’</p>
+<h2 id="1-1-struct-pack-fmt-v1-v2-…"><a href="#1-1-struct-pack-fmt-v1-v2-…" class="headerlink" title="1.1 struct.pack(fmt,v1,v2,…)"></a>1.1 struct.pack(fmt,v1,v2,…)</h2><p>​	将v1,v2等参数的值进行一层包装，包装的方法由<code>fmt</code>指定。被包装的参数必须严格符合<code>fmt</code>。最后<strong>返回一个包装后的字符串</strong>。</p>
+<h2 id="1-2-struct-unpack-fmt-string"><a href="#1-2-struct-unpack-fmt-string" class="headerlink" title="1.2 struct.unpack(fmt,string)"></a>1.2 struct.unpack(fmt,string)</h2><p>​	顾名思义，解包。比如pack打包，然后就可以用unpack解包了。<strong>返回一个由解包数据(string)得到的一个元组(tuple)</strong>, 即使仅有一个数据也会被解包成元组。其中len(string) 必须等于 <code>calcsize(fmt)</code>，这里面涉及到了一个calcsize函数。<code>struct.calcsize(fmt)</code>：这个就是用来计算fmt格式所描述的结构的大小。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line"><span class="comment"># native byteorder</span></span><br><span class="line">buffer = struct.pack(<span class="string">&quot;ihb&quot;</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">repr</span>(buffer))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">b&#x27;\x01\x00\x00\x00\x02\x00\x03&#x27;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(struct.unpack(<span class="string">&quot;ihb&quot;</span>, buffer))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># data from a sequence, network byteorder</span></span><br><span class="line">data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">buffer = struct.pack(<span class="string">&quot;!ihb&quot;</span>, *data)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">repr</span>(buffer))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">b&#x27;\x00\x00\x00\x01\x00\x02\x03&#x27;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(struct.unpack(<span class="string">&quot;!ihb&quot;</span>, buffer))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>​	首先将参数1,2,3打包，打包前1,2,3明显属于python数据类型中的integer,pack后就变成了C结构的二进制串，转成 python的string类型来显示就是’\x01\x00\x00\x00\x02\x00\x03’。由于本机是小端(‘little- endian’), 故而高位放在低地址段。</p>
+<p>​	i 代表C struct中的int类型，故而本机占4位，1则表示为01000000; h 代表C struct中的short类型，占2位，故表示为0200; 同理b 代表C struct中的signed char类型，占1位，故而表示为03。其他结构的转换也类似，有些特别的可以参考官方文档的Manual。</p>
+<p>​	在Format string 的首位，有一个可选字符来决定大端和小端。如果没有附加，默认为@，即使用本机的字符顺序(大端or小端)，对于C结构的大小和内存中的对齐方式也是与本机相一致的(native)，比如有的机器integer为2位而有的机器则为四位;有的机器内存对其位四位对齐，有的则是n位对齐(n未知，我也不知道多少)。</p>
+<p>​	还有一个标准的选项，被描述为：如果使用标准的，则任何类型都无内存对齐。</p>
+<p>​	比如刚才的小程序的后半部分，使用的format string中首位为！，即为大端模式标准对齐方式，故而输出的为’\x00\x00\x00\x01\x00\x02\x03’，其中高位自己就被放在内存的高地址位了。</p>
+<p>​	struct的pack函数把任意数据类型变成bytes：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> struct</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>struct.pack(<span class="string">&#x27;&gt;I&#x27;</span>, <span class="number">10240099</span>)</span><br><span class="line"><span class="string">b&#x27;\x00\x9c@c&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>​	pack的第一个参数是处理指令，’&gt;I’的意思是：&gt;表示字节顺序是big-endian，也就是网络序，I表示4字节无符号整数。后面的参数个数要和处理指令一致。</p>
+<p>​	unpack把bytes变成相应的数据类型：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>struct.unpack(<span class="string">&#x27;&gt;IH&#x27;</span>, <span class="string">b&#x27;\xf0\xf0\xf0\xf0\x80\x80&#x27;</span>)</span><br><span class="line">(<span class="number">4042322160</span>, <span class="number">32896</span>)</span><br></pre></td></tr></table></figure>
+
+<p>​	根据&gt;IH的说明，后面的bytes依次变为I：4字节无符号整数和H：2字节无符号整数。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>​	<a target="_blank" rel="noopener" href="https://blog.csdn.net/weiwangchao_/article/details/80395941">https://blog.csdn.net/weiwangchao_/article/details/80395941</a></p>
+<p>​	<a target="_blank" rel="noopener" href="https://blog.csdn.net/w83761456/article/details/21171085">https://blog.csdn.net/w83761456/article/details/21171085</a></p>
+<p>​	<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1406350">https://cloud.tencent.com/developer/article/1406350</a></p>
+<p>​	<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431955007656a66f831e208e4c189b8a9e9f3f25ba53000">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431955007656a66f831e208e4c189b8a9e9f3f25ba53000</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2023/04/27/Python%E7%9A%84struct%E6%A8%A1%E5%9D%97/">http://jrunding.github.io/2023/04/27/Python%E7%9A%84struct%E6%A8%A1%E5%9D%97/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">JrunDing</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2023/03/03/ppkgC26.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-struct-pack-fmt-v1-v2-%E2%80%A6"><span class="toc-number">1.</span> <span class="toc-text">1.1 struct.pack(fmt,v1,v2,…)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-struct-unpack-fmt-string"><span class="toc-number">2.</span> <span class="toc-text">1.2 struct.unpack(fmt,string)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkgC26.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By JrunDing</div><div class="footer_custom_text">Wish to feel nothing.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2023/04/27/Python%E7%9A%84struct%E6%A8%A1%E5%9D%97/'
+    this.page.identifier = '/2023/04/27/Python%E7%9A%84struct%E6%A8%A1%E5%9D%97/'
+    this.page.title = 'Python的struct模块'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

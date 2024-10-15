@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Python的GIL | JrunDing</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="简介​	熟悉Python的人理应都听过GIL(Global Interpreter Lock，全局解释器锁) ，大概也知道它就是造成Python多线程并发其实是「伪并行」的核心原因，但依旧很多人没有深入其中，所以HackPython尝试以上、下两篇文章来阐释GIL，分别从其表现现象、对应源码以及Python对GIL改进等方面进行讨论  Python多线程的伪并行​	Python中可以使用「thre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python的GIL">
+<meta property="og:url" content="http://jrunding.github.io/2023/05/11/Python%E7%9A%84GIL/index.html">
+<meta property="og:site_name" content="JrunDing">
+<meta property="og:description" content="简介​	熟悉Python的人理应都听过GIL(Global Interpreter Lock，全局解释器锁) ，大概也知道它就是造成Python多线程并发其实是「伪并行」的核心原因，但依旧很多人没有深入其中，所以HackPython尝试以上、下两篇文章来阐释GIL，分别从其表现现象、对应源码以及Python对GIL改进等方面进行讨论  Python多线程的伪并行​	Python中可以使用「thre">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2023/03/03/ppkgC26.jpg">
+<meta property="article:published_time" content="2023-05-11T04:12:46.000Z">
+<meta property="article:modified_time" content="2023-05-11T04:39:21.997Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/03/03/ppkgC26.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2023/05/11/Python%E7%9A%84GIL/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: JrunDing","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python的GIL',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: undefined,
+  isToc: true,
+  postUpdate: '2023-05-11 12:39:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">197</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkgC26.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="JrunDing"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python的GIL</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-11T04:12:46.000Z" title="发表于 2023-05-11 12:12:46">2023-05-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-11T04:39:21.997Z" title="更新于 2023-05-11 12:39:21">2023-05-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/">Computer Science</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Python的GIL"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2023/05/11/Python%E7%9A%84GIL/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>​	熟悉Python的人理应都听过GIL(Global Interpreter Lock，全局解释器锁) ，大概也知道它就是造成Python多线程并发其实是「伪并行」的核心原因，但依旧很多人没有深入其中，所以HackPython尝试以上、下两篇文章来阐释GIL，分别从其表现现象、对应源码以及Python对GIL改进等方面进行讨论 </p>
+<h2 id="Python多线程的伪并行"><a href="#Python多线程的伪并行" class="headerlink" title="Python多线程的伪并行"></a>Python多线程的伪并行</h2><p>​	Python中可以使用「threading」模块来创建并使用多线程，为了直观比较，先试一下一个没有使用多线程的代码 ，如下：</p>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">sum</span> &lt;= n:</span><br><span class="line">        <span class="built_in">sum</span> +=<span class="number">1</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;sum:<span class="subst">&#123;<span class="built_in">sum</span>&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ ==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    start = time.time()</span><br><span class="line">    add(<span class="number">500000000</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;run time: %s&#x27;</span>%<span class="built_in">str</span>(time.time()- start))</span><br></pre></td></tr></table></figure>
+
+<p>​	代码非常简单，就是一个add()方法一直做累加操作，运行结果为 ：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python <span class="number">5.</span>py</span><br><span class="line"><span class="built_in">sum</span>:<span class="number">500000001</span></span><br><span class="line">run time:<span class="number">23.80576515197754</span></span><br></pre></td></tr></table></figure>
+
+<p>​	那我使用多线程效果会不会好一些呢？凭感觉直观而言，应该是会的 ，因为上面的程序只使用了一个线程，那我开两个线程，让其同时工作，其运行时间应该短一半才对 ，但事实时使用多线程后，运行时间依旧没有变动 ，多线程版本的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> threading, time</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="built_in">sum</span> =<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">sum</span> &lt;= n:</span><br><span class="line">        <span class="built_in">sum</span> +=<span class="number">1</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;sum:<span class="subst">&#123;<span class="built_in">sum</span>&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ ==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    start = time.time()</span><br><span class="line">    n =<span class="number">500000000</span></span><br><span class="line">    t1 = threading.Thread(target=add, args=[n//<span class="number">2</span>])</span><br><span class="line">    t2 = threading.Thread(target=add, args=[n//<span class="number">2</span>])</span><br><span class="line">    t1.start()</span><br><span class="line">    t2.start()</span><br><span class="line">    t1.join()</span><br><span class="line">    t2.join()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;run time: %s&#x27;</span>%<span class="built_in">str</span>(time.time()- start))</span><br></pre></td></tr></table></figure>
+
+<p>​	为了让相加的数量相近，这里每个线程只需要执行「n&#x2F;&#x2F;2」次，使用join的目的是得等线程运行完后，再执行后续的逻辑，这里只是为了方便记录运行时间 。运行结果如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python <span class="number">6.</span>py</span><br><span class="line"><span class="built_in">sum</span>:<span class="number">250000001</span></span><br><span class="line"><span class="built_in">sum</span>:<span class="number">250000001</span></span><br><span class="line">run time:<span class="number">23.04693603515625</span></span><br></pre></td></tr></table></figure>
+
+<p>​	发现跟一开始单线程的程序在运行时间上没有什么差异，而造成这种现象的原因就是GIL ，需要注意的是，GIL只存在于通过C语言实现的Python解释器上，即CPython上 ，后人为了绕过GIL的问题利用Java开发了Jpython或使用Python自己开发了自己的解释器PyPy，这些上都不存在GIL全局解释器锁的问题 ，但CPython才是当前最多人使用的主流Python解释器 。</p>
+<p>​	在CPython中，每一个Python线程执行前都需要去获得GIL锁 ，获得该锁的线程才可以执行，没有获得的只能等待 ，当具有GIL锁的线程运行完成后，其他等待的线程就会去争夺GIL锁，这就造成了，在Python中使用多线程，但同一时刻下依旧只有一个线程在运行 ，所以Python多线程其实并不是「并行」的，而是「并发」 。</p>
+<p>​	看到下图，图中是Python中GIL的工作实例，其中有3个线程，线程与线程之间是顺序执行的 ，每个线程开始执行时都会去获得GIL，防止其他线程线程运行 ，每执行完一段时间后，就会释放GIL，让别的线程可以去争夺执行权限，如果自己本身也没有执行完，则本身也会参与这次争夺 。</p>
+<p><img src="https://s1.ax1x.com/2023/05/11/p9r4C6K.png"></p>
+<p>​	可以发现，Python中的线程工作一段时间后，会主动释放GIL，这是为了让其他线程都有机会执行 ，而释放的时机就涉及到了「检查间隔」(check interval)机制 ，在早期版本的Python中，检查机制是100ticks，而Python3后，每15毫米使用一次检查间隔，然后就会释放GIL锁 。</p>
+<p><img src="https://s1.ax1x.com/2023/05/11/p9r4POO.png"></p>
+<p>​	但需要注意的是线程有了GIL后并不意味着使用Python多线程时不需要考虑线程安全 ，「GIL的存在是为了方便使用C语言编写CPython解释器的编写者，而顶层使用Python时依旧要考虑线程安全」 ，在下一篇中会从原始编码层面来解释存在GIL后，依旧会有线程不安全现象的原因。</p>
+<h2 id="多进程实现并行"><a href="#多进程实现并行" class="headerlink" title="多进程实现并行"></a>多进程实现并行</h2><p>​	GIL的存在让Python多线程在运行CPU密集型性程序时显得非常无力，为了绕过GIL的限制，一种简单的方法就是使用多进程 ，这是因为GIL只会存在于线程级别，即一个进程为了确保某一时刻下只有一个线程在运行，才使用GIL ，但多个进程之间并不会出现这种限制，不同的进程会运行在CPU不同的核上，实现真正的「并行」 。</p>
+<p>​	通过进程的方式将上面的任务再执行一遍，看一下运行时长，具体代码如下：	</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing importProcess</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">procname, n</span>):</span><br><span class="line">    <span class="built_in">sum</span> =<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">sum</span> &lt;= n:</span><br><span class="line">        <span class="built_in">sum</span> +=<span class="number">1</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;process name: <span class="subst">&#123;procname&#125;</span>&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;sum: <span class="subst">&#123;<span class="built_in">sum</span>&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ ==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    start = time.time()</span><br><span class="line">    n =<span class="number">500000000</span></span><br><span class="line">    p1 =Process(target=add, args=(<span class="string">&#x27;Proc-1&#x27;</span>,n//<span class="number">2</span>))</span><br><span class="line">    p2 =Process(target=add, args=(<span class="string">&#x27;Proc-2&#x27;</span>,n//<span class="number">2</span>))</span><br><span class="line">    p1.start()</span><br><span class="line">    p2.start()</span><br><span class="line">    p1.join()</span><br><span class="line">    p2.join()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;run time: %s&#x27;</span>%<span class="built_in">str</span>(time.time()- start))</span><br></pre></td></tr></table></figure>
+
+<p>​	Python中多进程可以使用 multiprocessing 这个库，使用方法与使用线程类似 ，代码中启用了两个进程，分别运行 n&#x2F;&#x2F;2 数据量的数据，其结果如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python <span class="number">7.</span>py</span><br><span class="line">process name:Proc-<span class="number">1</span></span><br><span class="line"><span class="built_in">sum</span>:<span class="number">250000001</span></span><br><span class="line">process name:Proc-<span class="number">2</span></span><br><span class="line"><span class="built_in">sum</span>:<span class="number">250000001</span></span><br><span class="line">run time:<span class="number">12.768253087997437</span></span><br></pre></td></tr></table></figure>
+
+<p>​	从结果可以看出，时间确实减少了一半左右，多进程状态下确实是真正的「并行」。</p>
+<h2 id="如何绕过GIL？"><a href="#如何绕过GIL？" class="headerlink" title="如何绕过GIL？"></a>如何绕过GIL？</h2><p>​	有了多进程后，大部分程序都可以通过多进程的方式绕过GIL ，但如果依旧不满足，就需要使用C&#x2F;C++来实现这部分代码，并生成对应的so或dll文件，再通过Python的ctypes将其调用起来 ，Python中很多对计算性能有较高要求的库都采用了这种方式，如Numpy、Pandas等等 。</p>
+<p>​	如果你对程序的性能要求的特别严格，此时更好的方法是选择其他语言 。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2023/05/11/Python%E7%9A%84GIL/">http://jrunding.github.io/2023/05/11/Python%E7%9A%84GIL/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">JrunDing</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2023/03/03/ppkgC26.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BC%AA%E5%B9%B6%E8%A1%8C"><span class="toc-number">2.</span> <span class="toc-text">Python多线程的伪并行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C"><span class="toc-number">3.</span> <span class="toc-text">多进程实现并行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%BB%95%E8%BF%87GIL%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">如何绕过GIL？</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkgC26.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By JrunDing</div><div class="footer_custom_text">Wish to feel nothing.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2023/05/11/Python%E7%9A%84GIL/'
+    this.page.identifier = '/2023/05/11/Python%E7%9A%84GIL/'
+    this.page.title = 'Python的GIL'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
