@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>FFMPEG基础 | JrunDing</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="FFmpeg介绍​		FFmpeg 是一个可以处理音视频的软件，功能非常强大，主要包括，编解码转换，封装格式转换，滤镜特效。同时也支持 各种网络协议，支持 RTMP ，RTSP，HLS 等高层协议的推拉流，也支持更底层一点的TCP&#x2F;UDP 协议推拉流。 ​		在多平台系统方面，FFmpeg 的兼容性也优势显著，FFmpeg 可以在 windows，Linux，Mac，ios，androi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FFMPEG基础">
+<meta property="og:url" content="http://jrunding.github.io/2024/04/15/FFMPEG%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="JrunDing">
+<meta property="og:description" content="FFmpeg介绍​		FFmpeg 是一个可以处理音视频的软件，功能非常强大，主要包括，编解码转换，封装格式转换，滤镜特效。同时也支持 各种网络协议，支持 RTMP ，RTSP，HLS 等高层协议的推拉流，也支持更底层一点的TCP&#x2F;UDP 协议推拉流。 ​		在多平台系统方面，FFmpeg 的兼容性也优势显著，FFmpeg 可以在 windows，Linux，Mac，ios，androi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2023/03/03/ppkgkrD.jpg">
+<meta property="article:published_time" content="2024-04-15T11:28:08.000Z">
+<meta property="article:modified_time" content="2024-04-15T11:52:00.857Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/03/03/ppkgkrD.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2024/04/15/FFMPEG%E5%9F%BA%E7%A1%80/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: JrunDing","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'FFMPEG基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: undefined,
+  isToc: true,
+  postUpdate: '2024-04-15 19:52:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">235</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkgkrD.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="JrunDing"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">FFMPEG基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-15T11:28:08.000Z" title="发表于 2024-04-15 19:28:08">2024-04-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-15T11:52:00.857Z" title="更新于 2024-04-15 19:52:00">2024-04-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Vision/">Computer Vision</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="FFMPEG基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2024/04/15/FFMPEG%E5%9F%BA%E7%A1%80/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="FFmpeg介绍"><a href="#FFmpeg介绍" class="headerlink" title="FFmpeg介绍"></a>FFmpeg介绍</h2><p>​		FFmpeg 是一个可以处理音视频的软件，功能非常强大，主要包括，编解码转换，封装格式转换，滤镜特效。同时也支持 各种网络协议，支持 RTMP ，RTSP，HLS 等高层协议的推拉流，也支持更底层一点的TCP&#x2F;UDP 协议推拉流。</p>
+<p>​		在多平台系统方面，FFmpeg 的兼容性也优势显著，FFmpeg 可以在 windows，Linux，Mac，ios，android 等等操作系统上运行。</p>
+<p>​		因此，可以说 FFmpeg 是音视频领域的瑞士军刀。在多个公司都有使用，例如 Google 的 chrome 里面就使用了 FFmpeg 的库。还有 Youtube，Facebook，以及国内的各种做音视频产品的公司，只要他做音视频，95% 都会用到 FFmpeg。</p>
+<p>​		但是截止 2022 年，FFmpeg 还是只有 命令行，没有GUI 图像界面，所以对使用者有一定的门槛。</p>
+<p>​		FFmpeg 是一个开源项目，起始于2000年，截止 2022 年，已经走过 22 年，在这过程中，FFmpeg 社区经历过一次分裂。2011年的时候，一群 FFmpeg 开发者由于对项目管理者（不是Fabrice Bellard）不满，而另立山头，创建了 Libav 项目。我个人觉得，他们可能是对 <strong>当时</strong> 的FFmpeg 代码混乱不满。Libav 的代码架构更清晰一些。不过那是很多年前的事情了。目前 FFmpeg 的代码架构还是很不错的。</p>
+<p>​		Libav 项目经历了几年的发展，还是没有发展下去，最后 Libav 的成果代码，被合并到 FFmpeg 里面，git 提交记录保留了 Libav 开发者的名字。</p>
+<p>​		FFmpeg 的 用户主要有 3 类。</p>
+<ol>
+<li>社区开发者，直接写 FFmpeg 代码的，截止2022年，一共有100多个 Maintainer（主要开发者）。</li>
+<li>FFmpeg API 库使用者，FFmpeg 提供了很多的动态库给上层开发者调用。这类开发者主要是调 API，偶尔会提交一下代码反馈给 社区。</li>
+<li>FFmpeg 命令行使用者，这类用户通常不会写 C&#x2F;C++，但是具备一点的电脑操作知识，主要在电影，电视台这些行业。这类用户只会使用 FFmpeg 的命令行，比较厉害的会写 shell脚本 跟 batch批处理 来 使用 FFmpeg。</li>
+</ol>
+<h2 id="FFmpeg安装"><a href="#FFmpeg安装" class="headerlink" title="FFmpeg安装"></a>FFmpeg安装</h2><h3 id="Windows10"><a href="#Windows10" class="headerlink" title="Windows10"></a>Windows10</h3><p>​		在 windows 环境，FFmpeg 有两个网址可以下载安装包。</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.gyan.dev/ffmpeg/builds/">gyn FFmpeg build</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/BtbN/FFmpeg-Builds/releases">BtbN FFmpeg-Builds</a></li>
+</ol>
+<p>​		FFmpeg 里面有 3 个软件：</p>
+<ol>
+<li>ffmpeg.exe ，功能强大的 处理音视频文件的软件。</li>
+<li>ffplay.exe，播放器，可以播放音视频文件。</li>
+<li>ffprobe.exe，查看音视频文件的属性，在调试排查问题的时候非常有用。</li>
+</ol>
+<h2 id="FFmpeg封装格式转换"><a href="#FFmpeg封装格式转换" class="headerlink" title="FFmpeg封装格式转换"></a>FFmpeg封装格式转换</h2><p>​		FLV 转 MP4：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i juren.flv juren.mp4</span><br></pre></td></tr></table></figure>
+
+<p>​		FLV 转 TS：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i juren.flv juren.ts</span><br></pre></td></tr></table></figure>
+
+<p>​		MP4 转 FLV：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i juren.mp4 juren.flv		</span><br></pre></td></tr></table></figure>
+
+<p>​		上面的命令是 封装格式之间的转换，但是实际上会进行编解码转换，例如 MP4 转 FLV，他会先解码 MP4 的数据，然后 选择 FLV的默认的编码格式进行重新编码，FLV 封装格式的默认编码是 H.264，juren.mp4 的编码格式也是 H.264，<strong>所以实际上编码格式没变</strong>，但是还是经过了编解码运算，所以上面那条转封装命令会运行很慢。ffmpeg.exe 运行的时候，会有一个日志输出，上图中的 speed 就是处理速度，现在速度是 5 倍，那就是5分钟的视频，处理完成需要1分钟的时间。</p>
+<p>​		为了加快运行速度，我们可以加上 <code>-c copy</code> 参数，让 ffmpeg 不进行编解码运算，如下：</p>
+<p>​		MP4 转 FLV （不进行编解码）：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i juren.mp4 -c copy juren.flv</span><br></pre></td></tr></table></figure>
+
+<p>​		上面的命令，大家可以自行运行一下，在我的电脑里面 1秒钟都不用，所以 编解码的运算量是很大的，不进行 编解码之后，速度提高了60 倍以上。</p>
+<p>​		上面的命令，ffmpeg 都是根据 文件的<strong>后缀名</strong>猜测出封装格式， 素材里面有个 juren-mp4，这个文件是没有后缀名，如果没有 后缀名，ffmpeg 就会 读取一部分的文件内容来判断文件格式。所以 ffmpeg 非常的智能，因为ffmpeg 也是给非开发人员使用的。</p>
+<p>​		对于一些新型的封装格式，ffmpeg 猜测不对，可以指定 封装格式，如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -f flv -i juren.flv -c copy juren.mp4</span><br></pre></td></tr></table></figure>
+
+<h2 id="FFmpeg命令参数类型"><a href="#FFmpeg命令参数类型" class="headerlink" title="FFmpeg命令参数类型"></a>FFmpeg命令参数类型</h2><p>​		在继续讲其他的 ffmpeg 命令行用法之前，需要先讲 一下 ffmpeg 处理命令行参数的一些逻辑。ffmpeg 命令行 其实分为 6 个部分。如下图：</p>
+<p><img src="https://s21.ax1x.com/2024/04/15/pFvbdds.png"></p>
+<ol>
+<li>可执行文件 ，就是 ffmpeg 那个软件。</li>
+<li>输入文件参数，在 <strong>-i</strong> 前面那些参数，全部都作用于<strong>当前</strong>的输入文件。</li>
+<li>输入文件名， <strong>-i</strong> 指定输入文件。</li>
+<li>输出文件参数，输出文件名 前面的那些参数 就是输出文件参数，全部都作用于<strong>当前</strong>的输出文件。</li>
+<li>输出文件名，juren.ts 就是输出文件名，输出文件名前面的一个参数不是 <code>-i</code>，也不是以 <code>-</code> 开始的参数。</li>
+<li>全局参数， -y 跟 -benchmark 这些跟输入输出文件无关的参数就是全局参数。</li>
+</ol>
+<p>​		上面我为什么强调 <strong>当前</strong> ，是因为 ffmpeg 是支持多个输入文件跟多个输出文件的，多个文件可以有各自的<strong>独立参数</strong>。多输入文件在复杂滤镜的场景经常使用。虽然ffmpeg有很多很多的命令参数，但是只要你记住 ffmpeg 的参数类型，就会很容易学会 其他 参数的使用。另外一点，ffmpeg 的命令行参数是没有先后顺序的，我上图是比较正确的写法，先是输入，再是输出，最后是全局参数。</p>
+<h2 id="FFmpeg编码格式转换"><a href="#FFmpeg编码格式转换" class="headerlink" title="FFmpeg编码格式转换"></a>FFmpeg编码格式转换</h2><p>​		我们可以通过 命令 <code>ffmpeg -codecs</code> 查看 FFmpeg 支持的编解码标准。</p>
+<p>​		上面的 D 代表 decodec （解码），E 代表 encodec（编码）。有些标准在 ffmpeg 里面只实现了 解码，没有实现 编码。</p>
+<p>​		现在演示一下 H.264 转 H.265 的 命令行语法，由于 FLV 目前官方不支持 H265，只能通过扩展字段自己加H265，没有标准。所以本文用 MP4 格式来演示，MP4 对 H.265 的支持是有标准定义的。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i juren.mp4 -c:v hevc -c:a copy juren-h265.mp4</span><br></pre></td></tr></table></figure>
+
+<p>​		上面的 <code>-c</code> 是指定编码格式 ，v 跟 a 分别代表 视频 跟 音频，视频以 hevc 编码，音频不变直接 copy 到输出文件即可。H.265 就是 hevc。</p>
+<h2 id="FFplay基本使用"><a href="#FFplay基本使用" class="headerlink" title="FFplay基本使用"></a>FFplay基本使用</h2><p>​		fplay.exe 是一个播放器，可以执行以下命令播放一个 视频。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffplay -x 400 -i juren.mp4</span><br></pre></td></tr></table></figure>
+
+<p>​		上面的命令中 我指定了 窗口宽度 是 400像素，高度会等比例拉伸。</p>
+<h2 id="FFprobe基本使用"><a href="#FFprobe基本使用" class="headerlink" title="FFprobe基本使用"></a>FFprobe基本使用</h2><p>​		ffprobe.exe 是一个分析工具，可以执行以下命令分析一个 音视频文件 的详细信息。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffprobe -hide_banner -i juren.mp4</span><br></pre></td></tr></table></figure>
+
+<p>​		从上图中可以看出来，juren.mp4 文件有 两个流，一个是 音频流，一个是视频流。还有视频宽度，yuv 采样格式。编码相关的信息。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2024/04/15/FFMPEG%E5%9F%BA%E7%A1%80/">http://jrunding.github.io/2024/04/15/FFMPEG%E5%9F%BA%E7%A1%80/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">JrunDing</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2023/03/03/ppkgkrD.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#FFmpeg%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">FFmpeg介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FFmpeg%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">FFmpeg安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows10"><span class="toc-number">2.1.</span> <span class="toc-text">Windows10</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FFmpeg%E5%B0%81%E8%A3%85%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.</span> <span class="toc-text">FFmpeg封装格式转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FFmpeg%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">FFmpeg命令参数类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FFmpeg%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="toc-number">5.</span> <span class="toc-text">FFmpeg编码格式转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FFplay%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-number">6.</span> <span class="toc-text">FFplay基本使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FFprobe%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-number">7.</span> <span class="toc-text">FFprobe基本使用</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkgkrD.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By JrunDing</div><div class="footer_custom_text">Wish to feel nothing.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2024/04/15/FFMPEG%E5%9F%BA%E7%A1%80/'
+    this.page.identifier = '/2024/04/15/FFMPEG%E5%9F%BA%E7%A1%80/'
+    this.page.title = 'FFMPEG基础'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
