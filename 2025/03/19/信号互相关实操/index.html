@@ -1,0 +1,292 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>信号互相关实操 | JrunDing</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="工程中涉及同步，那就要求求解两个信号的互相关  ​		scipy.signal.correlate 是 SciPy 库中的一个函数，用于计算两个一维序列的互相关。互相关是一种衡量两个信号相似性的方法，通过计算一个信号相对于另一个信号的位移来评估它们的相似程度。它在信号处理中常用于模式识别、信号检测和时间延迟估计等任务。 函数语法scipy.signal.correlate(in1, in2, m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信号互相关实操">
+<meta property="og:url" content="http://jrunding.github.io/2025/03/19/%E4%BF%A1%E5%8F%B7%E4%BA%92%E7%9B%B8%E5%85%B3%E5%AE%9E%E6%93%8D/index.html">
+<meta property="og:site_name" content="JrunDing">
+<meta property="og:description" content="工程中涉及同步，那就要求求解两个信号的互相关  ​		scipy.signal.correlate 是 SciPy 库中的一个函数，用于计算两个一维序列的互相关。互相关是一种衡量两个信号相似性的方法，通过计算一个信号相对于另一个信号的位移来评估它们的相似程度。它在信号处理中常用于模式识别、信号检测和时间延迟估计等任务。 函数语法scipy.signal.correlate(in1, in2, m">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1.ax1x.com/2023/12/10/piRckct.jpg">
+<meta property="article:published_time" content="2025-03-19T11:02:06.000Z">
+<meta property="article:modified_time" content="2025-03-19T11:12:16.351Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1.ax1x.com/2023/12/10/piRckct.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2025/03/19/%E4%BF%A1%E5%8F%B7%E4%BA%92%E7%9B%B8%E5%85%B3%E5%AE%9E%E6%93%8D/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: JrunDing","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '信号互相关实操',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: undefined,
+  isToc: true,
+  postUpdate: '2025-03-19 19:12:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">239</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://z1.ax1x.com/2023/12/10/piRckct.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="JrunDing"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">信号互相关实操</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-19T11:02:06.000Z" title="发表于 2025-03-19 19:02:06">2025-03-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-19T11:12:16.351Z" title="更新于 2025-03-19 19:12:16">2025-03-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Communication/">Communication</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">775</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="信号互相关实操"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2025/03/19/%E4%BF%A1%E5%8F%B7%E4%BA%92%E7%9B%B8%E5%85%B3%E5%AE%9E%E6%93%8D/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>工程中涉及同步，那就要求求解两个信号的互相关</p>
+</blockquote>
+<p>​		<code>scipy.signal.correlate</code> 是 SciPy 库中的一个函数，用于计算两个一维序列的<strong>互相关</strong>。互相关是一种衡量两个信号相似性的方法，通过计算一个信号相对于另一个信号的位移来评估它们的相似程度。它在信号处理中常用于模式识别、信号检测和时间延迟估计等任务。</p>
+<h2 id="函数语法"><a href="#函数语法" class="headerlink" title="函数语法"></a>函数语法</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scipy.signal.correlate(in1, in2, mode=<span class="string">&#x27;full&#x27;</span>, method=<span class="string">&#x27;auto&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>in1, in2</strong>: array_like<br>输入的两个一维数组（信号），需要计算它们的互相关。</li>
+<li><strong>mode</strong>: str, 可选<br>决定输出结果的大小：<ul>
+<li><code>&#39;full&#39;</code>：输出完整的互相关结果（默认值），结果长度为 <code>len(in1) + len(in2) - 1</code>。</li>
+<li><code>&#39;valid&#39;</code>：只输出没有零填充的部分，结果长度为 <code>max(len(in1), len(in2)) - min(len(in1), len(in2)) + 1</code>。</li>
+<li><code>&#39;same&#39;</code>：输出与 <code>in1</code> 长度相同的结果，结果居中。</li>
+</ul>
+</li>
+<li><strong>method</strong>: str, 可选<br>指定计算互相关的方法：<ul>
+<li><code>&#39;auto&#39;</code>：根据输入大小自动选择方法（默认值）。</li>
+<li><code>&#39;direct&#39;</code>：直接使用互相关的定义计算。</li>
+<li><code>&#39;fft&#39;</code>：使用快速傅里叶变换（FFT）计算，适用于较长的信号。</li>
+<li><code>&#39;overlap-add&#39;</code>：使用重叠相加法，适用于非常大的输入。</li>
+</ul>
+</li>
+<li>返回值<ul>
+<li><strong>out</strong>: ndarray  返回 <code>in1</code> 和 <code>in2</code> 的离散互相关结果。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy.signal <span class="keyword">import</span> correlate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义两个信号</span></span><br><span class="line">x = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">y = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">0.5</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算互相关</span></span><br><span class="line">corr = correlate(x, y, mode=<span class="string">&#x27;full&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(corr)</span><br></pre></td></tr></table></figure>
+
+<p>​		假设输入信号为：</p>
+<ul>
+<li><code>x = [1, 2, 3]</code></li>
+<li><code>y = [0, 1, 0.5]</code></li>
+</ul>
+<p>​		使用 <code>mode=&#39;full&#39;</code> 时，输出结果为：<code>[0.5 2.  3.5 3.  0. ]</code></p>
+<p>​		这个结果表示：</p>
+<ul>
+<li>第 0 个值（<code>0.5</code>）是 <code>x</code> 和 <code>y</code> 在位移为 -2 时的相关性。</li>
+<li>第 1 个值（<code>2.0</code>）是 <code>x</code> 和 <code>y</code> 在位移为 -1 时的相关性。</li>
+<li>第 2 个值（<code>3.5</code>）是 <code>x</code> 和 <code>y</code> 在位移为 0 时的相关性。</li>
+<li>第 3 个值（<code>3.0</code>）是 <code>x</code> 和 <code>y</code> 在位移为 1 时的相关性。</li>
+<li>第 4 个值（<code>0.0</code>）是 <code>x</code> 和 <code>y</code> 在位移为 2 时的相关性。</li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li><strong>模式选择</strong>：<ul>
+<li><code>&#39;full&#39;</code> 模式适用于需要完整互相关结果的场景。</li>
+<li><code>&#39;valid&#39;</code> 模式适用于只关心有效部分（无零填充）的场景。</li>
+<li><code>&#39;same&#39;</code> 模式适用于输出与输入信号长度相同的场景。</li>
+</ul>
+</li>
+<li><strong>计算方法</strong>：<ul>
+<li>对于较短的信号，<code>&#39;direct&#39;</code> 方法可能更快。</li>
+<li>对于较长的信号，<code>&#39;fft&#39;</code> 方法通常更高效。</li>
+</ul>
+</li>
+</ol>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ol>
+<li><strong>信号检测</strong>：检测一个已知信号是否存在于另一个信号中。</li>
+<li><strong>时间延迟估计</strong>：通过互相关峰值的位置估计两个信号之间的时间延迟。</li>
+<li><strong>模式匹配</strong>：在数据中寻找特定的模式或特征。</li>
+</ol>
+<p>​		通过 <code>scipy.signal.correlate</code>，可以方便地实现这些功能。</p>
+<h2 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h2><p>​		得到互相关序列后，通过<code>np.argmax(np.abs(cross_correlation))</code>得到空口信号中，同步序列的最后一位位置</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2025/03/19/%E4%BF%A1%E5%8F%B7%E4%BA%92%E7%9B%B8%E5%85%B3%E5%AE%9E%E6%93%8D/">http://jrunding.github.io/2025/03/19/%E4%BF%A1%E5%8F%B7%E4%BA%92%E7%9B%B8%E5%85%B3%E5%AE%9E%E6%93%8D/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">JrunDing</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://z1.ax1x.com/2023/12/10/piRckct.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">函数语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">2.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">3.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5"><span class="toc-number">4.</span> <span class="toc-text">同步</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://z1.ax1x.com/2023/12/10/piRckct.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By JrunDing</div><div class="footer_custom_text">Wish to feel nothing.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2025/03/19/%E4%BF%A1%E5%8F%B7%E4%BA%92%E7%9B%B8%E5%85%B3%E5%AE%9E%E6%93%8D/'
+    this.page.identifier = '/2025/03/19/%E4%BF%A1%E5%8F%B7%E4%BA%92%E7%9B%B8%E5%85%B3%E5%AE%9E%E6%93%8D/'
+    this.page.title = '信号互相关实操'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
