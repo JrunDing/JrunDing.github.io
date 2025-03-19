@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>timm | JrunDing</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="1 什么是timm库？​	timm 是 PyTorch Image Models 的缩写 is a collection of SOTA computer vision models, layers, utilities, optimizers, schedulers, data-loaders, augmentations and also training&#x2F;validating sc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="timm">
+<meta property="og:url" content="http://jrunding.github.io/2023/10/07/timm/index.html">
+<meta property="og:site_name" content="JrunDing">
+<meta property="og:description" content="1 什么是timm库？​	timm 是 PyTorch Image Models 的缩写 is a collection of SOTA computer vision models, layers, utilities, optimizers, schedulers, data-loaders, augmentations and also training&#x2F;validating sc">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1.ax1x.com/2023/12/10/piRckct.jpg">
+<meta property="article:published_time" content="2023-10-07T14:41:12.000Z">
+<meta property="article:modified_time" content="2023-10-07T15:20:15.912Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1.ax1x.com/2023/12/10/piRckct.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2023/10/07/timm/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: JrunDing","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'timm',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: undefined,
+  isToc: true,
+  postUpdate: '2023-10-07 23:20:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">238</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://z1.ax1x.com/2023/12/10/piRckct.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="JrunDing"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">timm</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-07T14:41:12.000Z" title="发表于 2023-10-07 22:41:12">2023-10-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-07T15:20:15.912Z" title="更新于 2023-10-07 23:20:15">2023-10-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Vision/">Computer Vision</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="timm"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2023/10/07/timm/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="1-什么是timm库？"><a href="#1-什么是timm库？" class="headerlink" title="1 什么是timm库？"></a>1 什么是timm库？</h1><p>​	timm 是 PyTorch Image Models 的缩写 is a collection of SOTA computer vision models, layers, utilities, optimizers, schedulers, data-loaders, augmentations and also training&#x2F;validating scripts with ability to reproduce ImageNet training results.</p>
+<p>​	timm 库实现了最新的几乎所有的具有影响力的视觉模型，它不仅提供了模型的权重，还提供了一个很棒的分布式训练和评估的代码框架，方便后人开发。timm 库是由 Ross Wightman 开发和维护的</p>
+<p>​	项目地址：<a href="https://link.zhihu.com/?target=https://github.com/huggingface/pytorch-image-models">https://github.com/huggingface/</a></p>
+<h1 id="2-最快上手使用一个timm模型"><a href="#2-最快上手使用一个timm模型" class="headerlink" title="2 最快上手使用一个timm模型"></a>2 最快上手使用一个timm模型</h1><p>​	问：使用timm搭建一个可以使用的CNN或ViT共需要几步？</p>
+<p>​	答：4步</p>
+<p>​	0.安装 timm</p>
+<p>​	1.import timm</p>
+<p>​	2.创建model</p>
+<p>​	3.运行model</p>
+<h2 id="1）安装、导入"><a href="#1）安装、导入" class="headerlink" title="1）安装、导入"></a>1）安装、导入</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda imstall timm</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">or</span></span><br><span class="line">pip install timm</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">or</span></span><br><span class="line">git clone https://github.com/rwightman/pytorch-image-models</span><br><span class="line">cd pytorch-image-models &amp;&amp; pip install -e .</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> timm</span><br></pre></td></tr></table></figure>
+
+<h2 id="2）创建、使用模型"><a href="#2）创建、使用模型" class="headerlink" title="2）创建、使用模型"></a>2）创建、使用模型</h2><p>​	创建模型的最简单方法是使用<code>create_model</code></p>
+<p>​	这是一个可用于在 timm 库中创建任何模型的函数</p>
+<p>​	这个函数各个参数有什么用，内部具体怎么实现的后再讲，先只用它来创建一个CNN用来做分类任务</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model_resnet34 = timm.create_model(<span class="string">&#x27;resnet34&#x27;</span>, pretrained=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>​	<code>resnet34</code>是模型架构的名字</p>
+<p>​	pretrained&#x3D;True则会自动从网上下载训练好的模型权重加载到resnet34上</p>
+<p>​	然后模型就创建好了，可以直接使用了</p>
+<p>​	这里我们使用随机张量表示图像</p>
+<p>​	torch.randn:用来生成随机数字的tensor，这些随机数字满足标准正态分布（0~1）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.randn([<span class="number">1</span>, <span class="number">1</span>, <span class="number">224</span>, <span class="number">224</span>]) <span class="comment">#创建一个tensor 代表 一张3x224x224的图片</span></span><br><span class="line">model_resnet50.<span class="built_in">eval</span>()</span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">	out = model_resnet50(x) <span class="comment">#out就是x所对应的表示类别的一个tensor</span></span><br><span class="line"><span class="built_in">print</span>(out.shape) <span class="comment"># Results: torch.Size([1, 1000])代表1000个类别</span></span><br></pre></td></tr></table></figure>
+
+<p>​	我们可以看到模型已经处理了图像并返回了预期的输出形状</p>
+<h2 id="3）查看模型信息"><a href="#3）查看模型信息" class="headerlink" title="3）查看模型信息"></a>3）查看模型信息</h2><p>​	那么怎么知道timm都可以导入哪些模型来使用呢？</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model_list = timm.list_models() <span class="comment">#返回一个包含所有模型名称的list</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(model_list)) <span class="comment">#964</span></span><br><span class="line">pretrain_model_list = timm.list_models(pretrained = <span class="literal">True</span>)<span class="comment">#筛选出带预训练模型的</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(pretrain_model_list))<span class="comment">#770</span></span><br><span class="line"><span class="comment">##使用通配符字符串来列出可用的不同 ResNet 变体</span></span><br><span class="line">resnet_model_list = timm.list_models(<span class="string">&#x27;*resnet*&#x27;</span>)</span><br><span class="line">pretrain_resnet_model_list = timm.list_models(<span class="string">&#x27;*resnet*&#x27;</span> , pretrained = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="4）调整模型-创建适合自己的模型"><a href="#4）调整模型-创建适合自己的模型" class="headerlink" title="4）调整模型-创建适合自己的模型"></a>4）调整模型-创建适合自己的模型</h2><p>​	直接导入训练好的模型并不是万能的，经常会有维度不匹配的情况 比如说我的resnet34模型在cifar10和imagenet两个数据集上进行训练，分类类别不一样，输入的图片大小不一样，那我应该怎么创建合适的模型呢？</p>
+<p>​	<strong>改变输出类别数目</strong></p>
+<p>​	分类类别数量：num_classes</p>
+<p>​	model的主体提取特征，之后往往会接一个mlp层用作分类</p>
+<p>​	如果设置num_classes，表示重设全连接层，num_classes设置为你需要分类的类别数量即可</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">x = torch.randn([<span class="number">1</span>, <span class="number">3</span>, <span class="number">224</span>, <span class="number">224</span>])</span><br><span class="line">model_resnet34_out10 = timm.create_model(<span class="string">&#x27;resnet34&#x27;</span>, pretrained=<span class="literal">True</span>, num_classes=<span class="number">10</span>)</span><br><span class="line">out = model_resnet34_out10 (x)</span><br><span class="line"><span class="built_in">print</span>(out.shape) <span class="comment"># Results: torch.Size([1, 10])</span></span><br></pre></td></tr></table></figure>
+
+<p>​	<strong>改变输入通道数</strong></p>
+<p>​	输入通道数：in_chans</p>
+<p>​	对图片的大小，可以在输入model之前进行resize处理到统一大小</p>
+<p>​	但是如果输入的图片不是传统rgb图片，通道不是3怎么办</p>
+<p>​	当然，我们可以复制单通道像素来创建3通道图像，从而将其单通道输入图像转换为3通道图像。但是对于timm，他有一套申请的参数加载模式，我们可以直接改变in_chans 来指定输入图像的通道数</p>
+<p>​	通道数改变后，对应的权重参数会进行相应的处理，此处不作详细说明 可参照：<a href="https://link.zhihu.com/?target=https://fastai.github.io/timmdocs/models">https://fastai.github.io/timmdocs/models</a>或直接查看源代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.randn([<span class="number">1</span>, <span class="number">1</span>, <span class="number">224</span>, <span class="number">224</span>])</span><br><span class="line">model_resnet34_in1 = timm.create_model(<span class="string">&#x27;resnet50&#x27;</span>,pretrained=<span class="literal">True</span>, in_chans=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-特性"><a href="#3-特性" class="headerlink" title="3 特性"></a>3 特性</h1><p>​	<strong>用timm有什么好处吗，下面是一些功能特性</strong></p>
+<p>​	所有model都有一个通用的默认配置接口和API</p>
+<p>​	所有模型都支持通过create_model提取中间特征（vit除外）</p>
+<p>​	所有型号都有一个预训练权重加载器，可调整最后一个线性层，也可调整3通道输入为1个通道输入</p>
+<p>​	并且我们还可以直接复用timm的功能模块或者一些训练tricks（Learning rate schedulers&#x2F;Optimizers&#x2F;Augment），简直是百宝箱</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2023/10/07/timm/">http://jrunding.github.io/2023/10/07/timm/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">JrunDing</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://z1.ax1x.com/2023/12/10/piRckct.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFtimm%E5%BA%93%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">1 什么是timm库？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%9C%80%E5%BF%AB%E4%B8%8A%E6%89%8B%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AAtimm%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">2 最快上手使用一个timm模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%89%E5%AE%89%E8%A3%85%E3%80%81%E5%AF%BC%E5%85%A5"><span class="toc-number">2.1.</span> <span class="toc-text">1）安装、导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%89%E5%88%9B%E5%BB%BA%E3%80%81%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">2）创建、使用模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%A8%A1%E5%9E%8B%E4%BF%A1%E6%81%AF"><span class="toc-number">2.3.</span> <span class="toc-text">3）查看模型信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%EF%BC%89%E8%B0%83%E6%95%B4%E6%A8%A1%E5%9E%8B-%E5%88%9B%E5%BB%BA%E9%80%82%E5%90%88%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.4.</span> <span class="toc-text">4）调整模型-创建适合自己的模型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E7%89%B9%E6%80%A7"><span class="toc-number">3.</span> <span class="toc-text">3 特性</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://z1.ax1x.com/2023/12/10/piRckct.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By JrunDing</div><div class="footer_custom_text">Wish to feel nothing.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2023/10/07/timm/'
+    this.page.identifier = '/2023/10/07/timm/'
+    this.page.title = 'timm'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

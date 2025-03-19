@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>天线长度计算方式 | JrunDing</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="天线原理​		天线是任何无线通信系统的必需组成部分。天线的功能就是定向辐射或接收无线电波信号。发射状态下传输线中的高频电磁能 转成为自由空间的电磁波，接收状态下将自由空间中的电磁波转化为传输线中的高频电磁能。无线电波是一种能量传输形式，在传播过程中，电场和磁场在空间是相互垂直的，同时这两者又都垂直于传播方向。  •天线应能将导波能量尽可能多的转变为电磁波能量。•天线应使电磁波尽可能集中于所需的方向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天线长度计算方式">
+<meta property="og:url" content="http://jrunding.github.io/2024/10/18/%E5%A4%A9%E7%BA%BF%E9%95%BF%E5%BA%A6%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F/index.html">
+<meta property="og:site_name" content="JrunDing">
+<meta property="og:description" content="天线原理​		天线是任何无线通信系统的必需组成部分。天线的功能就是定向辐射或接收无线电波信号。发射状态下传输线中的高频电磁能 转成为自由空间的电磁波，接收状态下将自由空间中的电磁波转化为传输线中的高频电磁能。无线电波是一种能量传输形式，在传播过程中，电场和磁场在空间是相互垂直的，同时这两者又都垂直于传播方向。  •天线应能将导波能量尽可能多的转变为电磁波能量。•天线应使电磁波尽可能集中于所需的方向">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2023/03/03/ppkcfbQ.jpg">
+<meta property="article:published_time" content="2024-10-18T14:08:35.000Z">
+<meta property="article:modified_time" content="2024-10-18T16:02:43.923Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/03/03/ppkcfbQ.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2024/10/18/%E5%A4%A9%E7%BA%BF%E9%95%BF%E5%BA%A6%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: JrunDing","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '天线长度计算方式',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: undefined,
+  isToc: true,
+  postUpdate: '2024-10-19 00:02:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">238</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkcfbQ.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="JrunDing"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">天线长度计算方式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-18T14:08:35.000Z" title="发表于 2024-10-18 22:08:35">2024-10-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-18T16:02:43.923Z" title="更新于 2024-10-19 00:02:43">2024-10-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Communication/">Communication</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="天线长度计算方式"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2024/10/18/%E5%A4%A9%E7%BA%BF%E9%95%BF%E5%BA%A6%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="天线原理"><a href="#天线原理" class="headerlink" title="天线原理"></a>天线原理</h2><p>​		天线是任何无线通信系统的必需组成部分。天线的功能就是定向辐射或接收无线电波信号。发射状态下传输线中的高频电磁能 转成为自由空间的电磁波，接收状态下将自由空间中的电磁波转化为传输线中的高频电磁能。无线电波是一种能量传输形式，在传播过程中，电场和磁场在空间是相互垂直的，同时这两者又都垂直于传播方向。</p>
+<blockquote>
+<p>•天线应能将导波能量尽可能多的转变为电磁波能量。<br>•天线应使电磁波尽可能集中于所需的方向上，或对所需方向的来波有最大的接受，即天线具有方向性。<br>•天线应能发射或接收规定极化的电磁波，即天线有适当的极化。<br>•天线应有足够的工作频带。</p>
+</blockquote>
+<p>​		天线把传输线上传播的<strong>导行波</strong>变换成在无界媒介中传播的<strong>电磁波</strong>。无线电通信、广播、电视、雷达、导航、电子对抗、遥感、射电天文等工程系统，凡是利用电磁波来传递信息的，都依靠天线来进行工作。此外，在用电磁波传送能量方面，非信号的能量辐射也需要天线。</p>
+<p>​		无线电波和微波是频率介于 ~20 MHz 和 ~200 GHz 之间的电磁波，可以穿过自由空间。在地球上，它们主要穿过地球大气层，但我们的大气层与自由空间非常接近。麦克斯韦方程描述了电磁波如何由电荷和电流产生以及它们如何在空间中传播。</p>
+<h2 id="天线的作用"><a href="#天线的作用" class="headerlink" title="天线的作用"></a>天线的作用</h2><p>​		电子系统对天线的功能有如下要求：</p>
+<p>​		1：能量转换功能，天线需要高效地将馈线系统传播的导波能量转换为电磁波能量。</p>
+<p>​		2：方向性器件，发射天线能将能量定向地辐射到设定方向，接收天线只接收机设定方向的无线电波。</p>
+<p>​		3：天线是极化器件，应能发射或接收规定极化的电磁波。</p>
+<p>​		4：<strong>天线是馈线系统的负载，需要和馈线系统进行很好的阻抗匹配。</strong></p>
+<p>​		5：天线需要满足电子系统工作频段的要求。</p>
+<p>​		IEEE 将天线定义为发射或接收系统的一部分，旨在辐射或接收电磁波。</p>
+<p>​		<strong>天线最重要的参数可能是其能量如何聚焦。</strong>几乎所有天线都以所需的模式或方向发射和接收无线电波。例如，无线电塔可以覆盖所有方向的人们，或者向外辐射到所有方向。通常，塔的正上方或正下方没有人试图收听广播，因此它不会向上或向下辐射。</p>
+<p>​		雷达的用途与无线电塔不同。雷达通常通过向目标直接发射聚焦较窄的光束来探测特定的、相对较小的物体或目标。辐射模式可能是天线最重要的参数。</p>
+<h2 id="天线的主要参数"><a href="#天线的主要参数" class="headerlink" title="天线的主要参数"></a>天线的主要参数</h2><ul>
+<li>Radiation Patten—辐射方向图。通常指天线的远场辐射特性（ θ，φ）</li>
+<li>Directivity —方向性（θ，φ）。描述天线在某特定方向相对于全向辐射状态的辐射功率强度，通常也指最大值</li>
+<li>Gain—增益。增益与方向性有密切关系，但其同时将天线损耗等因素考虑在内。</li>
+<li>Polarization—极化方式。描述天线工作方式</li>
+<li>Efficiency—效率。天线辐射效率：考虑天线损耗；天线效率：整体考虑，包括天线的导体、介质损耗等</li>
+<li>Effective Isotopically Radiated Power (EIRP) —前向辐射功率。EIRP &#x3D; TX power + antenna gain – cable loss</li>
+<li>Input Impedance and VSWR —输入阻抗、驻波。描述天线匹配状况、工作特性</li>
+</ul>
+<h3 id="天线长度是如何计算的？"><a href="#天线长度是如何计算的？" class="headerlink" title="天线长度是如何计算的？"></a>天线长度是如何计算的？</h3><p>​		半波长和四分之一波长在工程中被广泛应用于天线系统设计。</p>
+<p>​		<em><strong>半波长 Chalf Wwavelength</strong></em></p>
+<p>​		<em>半波长是指电磁波在传播方向上的一半波长距离。具体来说，对于某一频率的电磁波，其波长是传播方向上的两个峰值或谷值之间的距离。半波长通常用于设计天线系统，例如调谐器或天线长度的选取。</em></p>
+<p>​		<em><strong>四分之一波长 Quarter Wavelength</strong></em> </p>
+<p>​		<em>四分之一波长是指电磁波在传播方向上的四分之一波长距离。与半波长类似，四分之一波长也用于设计天线系统**。具体来说，在一些天线设计中将天线长度设置为四分之一波长可以使其在特定频率上进行共振，以获得更好的波导特性。此外，四分之一波长也被用于设计反射器、传输线和阻抗匹配器等元件。</em></p>
+<p>​		波长 λ &#x3D; 光速c&#x2F;频率f</p>
+<p>​		5GHz wifi天线长度计算：波长 λ&#x3D;(3* 100,000,000)&#x2F; 5GHz   波长 λ&#x3D;0.06米   一般使用1&#x2F;4波长的普通导线，即用导线长度约为1.5厘米</p>
+<p>​		2.4GHz witi天线长度计算：波长 λ&#x3D; (3 * 100,000,000) &#x2F; 2.4GHz   波长 λ&#x3D;0.125米   一般使用1&#x2F;4波长的普通导线，即用导线长度约为3.125厘米</p>
+<p>​		天线为什么需要半波长？</p>
+<p>​		我们常用的天线一般都是谐振天线，就是说是驻波形式的，而半波长是能够构成驻波的最小单元。可见，对于正常传输的信号，在半波长的金属结构上，信号进入负半周期的时候、刚好也到了导体的末端、需要反射回来反向传播；“负半周期+反向传播”又变成正信号，刚好可以叠加，从而形成驻波。这样信号可以在这个导体结构中逐渐增强，每周期可以最大量的辐射能量。</p>
+<p>​		天线为什么需要谐振？</p>
+<p>​		天线上振荡电荷每周期能辐射出去的能量比较少（参照辐射场和近场的大小比例），只有更多的电荷对参与辐射、才能保证每个周期辐射出去的能量绝对值足够大。在天线中，源每个周期可以提供的能量是固定的，当源每个周期可以提供的能量、全部被天线辐射出去之后（包括天线自身损耗），谐振就维持在给定的幅度不变了。在天线工作的过程中，源本身的振幅是很小的，而天线上振荡电流的幅度是很大的，振幅的大小取决于天线的Q值。对于Q值很高的窄带天线，天线中的振荡幅度很惊人；这就是天线为啥需要谐振的原因。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2024/10/18/%E5%A4%A9%E7%BA%BF%E9%95%BF%E5%BA%A6%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F/">http://jrunding.github.io/2024/10/18/%E5%A4%A9%E7%BA%BF%E9%95%BF%E5%BA%A6%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">JrunDing</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2023/03/03/ppkcfbQ.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A9%E7%BA%BF%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">天线原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A9%E7%BA%BF%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">天线的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A9%E7%BA%BF%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">天线的主要参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A9%E7%BA%BF%E9%95%BF%E5%BA%A6%E6%98%AF%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E7%9A%84%EF%BC%9F"><span class="toc-number">3.1.</span> <span class="toc-text">天线长度是如何计算的？</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkcfbQ.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By JrunDing</div><div class="footer_custom_text">Wish to feel nothing.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2024/10/18/%E5%A4%A9%E7%BA%BF%E9%95%BF%E5%BA%A6%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F/'
+    this.page.identifier = '/2024/10/18/%E5%A4%A9%E7%BA%BF%E9%95%BF%E5%BA%A6%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F/'
+    this.page.title = '天线长度计算方式'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

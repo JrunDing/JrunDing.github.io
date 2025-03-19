@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>.gitignore写法 | JrunDing</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="语法.gitignore语法： 以”#”号开头表示注释；以斜杠“&#x2F;”开头表示目录；以星号“*”通配多个字符；以问号“?”通配单个字符以方括号“[]”包含单个字符的匹配列表；以叹号“!”表示不忽略(跟踪)匹配到的文件或目录；  ​	git 对于 .ignore 配置文件是按行从上到下进行规则匹配的，意味着如果前面的规则匹配的范围更大，则后面的规则将不会生效； ​	注：&#x2F;在文件夹名前，表示根">
+<meta property="og:type" content="article">
+<meta property="og:title" content=".gitignore写法">
+<meta property="og:url" content="http://jrunding.github.io/2023/04/26/gitignore%E5%86%99%E6%B3%95/index.html">
+<meta property="og:site_name" content="JrunDing">
+<meta property="og:description" content="语法.gitignore语法： 以”#”号开头表示注释；以斜杠“&#x2F;”开头表示目录；以星号“*”通配多个字符；以问号“?”通配单个字符以方括号“[]”包含单个字符的匹配列表；以叹号“!”表示不忽略(跟踪)匹配到的文件或目录；  ​	git 对于 .ignore 配置文件是按行从上到下进行规则匹配的，意味着如果前面的规则匹配的范围更大，则后面的规则将不会生效； ​	注：&#x2F;在文件夹名前，表示根">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2023/03/03/ppkg98x.jpg">
+<meta property="article:published_time" content="2023-04-26T09:55:36.000Z">
+<meta property="article:modified_time" content="2023-08-28T12:57:04.825Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/03/03/ppkg98x.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2023/04/26/gitignore%E5%86%99%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: JrunDing","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '.gitignore写法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: undefined,
+  isToc: true,
+  postUpdate: '2023-08-28 20:57:04'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">238</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkg98x.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="JrunDing"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">.gitignore写法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-26T09:55:36.000Z" title="发表于 2023-04-26 17:55:36">2023-04-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-28T12:57:04.825Z" title="更新于 2023-08-28 20:57:04">2023-08-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/">Computer Science</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">398</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=".gitignore写法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2023/04/26/gitignore%E5%86%99%E6%B3%95/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>.gitignore语法：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以”<span class="comment">#”号开头表示注释；</span></span><br><span class="line">以斜杠“/”开头表示目录；</span><br><span class="line">以星号“*”通配多个字符；</span><br><span class="line">以问号“?”通配单个字符</span><br><span class="line">以方括号“[]”包含单个字符的匹配列表；</span><br><span class="line">以叹号“!”表示不忽略(跟踪)匹配到的文件或目录；</span><br></pre></td></tr></table></figure>
+
+<p>​	git 对于 .ignore 配置文件是按行从上到下进行规则匹配的，意味着如果前面的规则匹配的范围更大，则后面的规则将不会生效；</p>
+<p>​	注：&#x2F;在文件夹名前，表示根目录下的某个文件夹，&#x2F;test&#x2F;表示忽略根目录下的&#x2F;test&#x2F;目录的全部内容，而test&#x2F;表示忽略文件夹test下的全部内容，不管是根目录下的&#x2F;test&#x2F;，还是某个子目录下的test文件夹，比如：&#x2F;child&#x2F;test，都会被忽略</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>​	下面演示下gitignore规则的常用用法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">*.txt  ，*.xls  表示过滤某种类型的文件</span><br><span class="line">target/ ：表示过滤这个文件夹下的所有文件</span><br><span class="line">/test/a.txt ，/test/b.xls  表示指定过滤某个文件下具体文件</span><br><span class="line">!*.java , !/<span class="built_in">dir</span>/test/     !开头表示不过滤</span><br><span class="line">*.[ab]    支持通配符：过滤所有以.a或者.b为扩展名的文件</span><br><span class="line">/test  仅仅忽略项目根目录下的 test 文件，不包括 child/test等非根目录的test目录</span><br></pre></td></tr></table></figure>
+
+<h2 id="注"><a href="#注" class="headerlink" title="注"></a>注</h2><p>​	对于之前已经add过的本地仓库，gitignore无法生效，我的建议是首先断开本地和远程仓库的关联，然后手动删除.git文件夹，重新初始化仓库</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2023/04/26/gitignore%E5%86%99%E6%B3%95/">http://jrunding.github.io/2023/04/26/gitignore%E5%86%99%E6%B3%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">JrunDing</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2023/03/03/ppkg98x.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8"><span class="toc-number">3.</span> <span class="toc-text">注</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkg98x.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By JrunDing</div><div class="footer_custom_text">Wish to feel nothing.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2023/04/26/gitignore%E5%86%99%E6%B3%95/'
+    this.page.identifier = '/2023/04/26/gitignore%E5%86%99%E6%B3%95/'
+    this.page.title = '.gitignore写法'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

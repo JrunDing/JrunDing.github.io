@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>视频转码的实时转码和离线转码区别 | JrunDing</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="​		由于视频的编码格式，封装协议非常多，在视频播放的过程中，会有很多编码不兼容的问题。这种情况下就需要对视频进行转码。 ​		视频转码分为离线转码和实时转码，它们的工作方式和具体的业务要求是完全不同的，其应用的场景也是完全不一样的。所以我们在项目中，如果需要对视频进行转码，需要搞清楚具体的视频转码是要应用在哪种场景下，需要解决什么问题。 离线转码​		离线转码的应用非常广泛，我们日常在视频网站追">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视频转码的实时转码和离线转码区别">
+<meta property="og:url" content="http://jrunding.github.io/2024/08/30/%E8%A7%86%E9%A2%91%E8%BD%AC%E7%A0%81%E7%9A%84%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81%E5%92%8C%E7%A6%BB%E7%BA%BF%E8%BD%AC%E7%A0%81%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:site_name" content="JrunDing">
+<meta property="og:description" content="​		由于视频的编码格式，封装协议非常多，在视频播放的过程中，会有很多编码不兼容的问题。这种情况下就需要对视频进行转码。 ​		视频转码分为离线转码和实时转码，它们的工作方式和具体的业务要求是完全不同的，其应用的场景也是完全不一样的。所以我们在项目中，如果需要对视频进行转码，需要搞清楚具体的视频转码是要应用在哪种场景下，需要解决什么问题。 离线转码​		离线转码的应用非常广泛，我们日常在视频网站追">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2023/03/03/ppkg98x.jpg">
+<meta property="article:published_time" content="2024-08-30T12:43:08.000Z">
+<meta property="article:modified_time" content="2024-08-30T13:31:35.905Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/03/03/ppkg98x.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2024/08/30/%E8%A7%86%E9%A2%91%E8%BD%AC%E7%A0%81%E7%9A%84%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81%E5%92%8C%E7%A6%BB%E7%BA%BF%E8%BD%AC%E7%A0%81%E5%8C%BA%E5%88%AB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: JrunDing","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '视频转码的实时转码和离线转码区别',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: undefined,
+  isToc: true,
+  postUpdate: '2024-08-30 21:31:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">238</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkg98x.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="JrunDing"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">视频转码的实时转码和离线转码区别</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-30T12:43:08.000Z" title="发表于 2024-08-30 20:43:08">2024-08-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-30T13:31:35.905Z" title="更新于 2024-08-30 21:31:35">2024-08-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/">Computer Science</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">955</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="视频转码的实时转码和离线转码区别"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2024/08/30/%E8%A7%86%E9%A2%91%E8%BD%AC%E7%A0%81%E7%9A%84%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81%E5%92%8C%E7%A6%BB%E7%BA%BF%E8%BD%AC%E7%A0%81%E5%8C%BA%E5%88%AB/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>​		由于视频的编码格式，封装协议非常多，在视频播放的过程中，会有很多编码不兼容的问题。这种情况下就需要对视频进行转码。</p>
+<p>​		视频转码分为<strong>离线转码和实时转码</strong>，它们的工作方式和具体的业务要求是完全不同的，其应用的场景也是完全不一样的。所以我们在项目中，如果需要对视频进行转码，需要搞清楚具体的视频转码是要应用在哪种场景下，需要解决什么问题。</p>
+<h2 id="离线转码"><a href="#离线转码" class="headerlink" title="离线转码"></a>离线转码</h2><p>​		离线转码的应用非常广泛，我们日常在视频网站追剧，都需要对视频进行转码。还有我们都有这样的经历，从网上下载了一个视频文件，结果无法播放，这都需要对视频进行转码后，让原来的视频适合现有的播放器。	</p>
+<p>​		离线转码一般针对视频文件，也就是说我们有一个视频文件比如，MP4，MKV，AVI，FLV，MOV，WEBM，WMV使用不同的封装协议，不同的分辨率和编码格式。如果遇到不兼容的问题，就需要对这些文件进行转码。</p>
+<p>​		这种转码对实时性要求不高，比如我们上传到视频直播平台一个视频文件，其未来适应观看用户的不同分辨率设备，不同格式播放器，会提前将文件转码为几个不同的文件，方便用户播放时快速的适配，这种转码无需很高的实时性，什么时候转换完成，什么时候对外发布即可。</p>
+<h2 id="实时转码"><a href="#实时转码" class="headerlink" title="实时转码"></a>实时转码</h2><p>​		实时转码的要求要比离线转码的要求高的多，视针对实时视频进行转码，什么是实时视频呢？比如我们去调看监控摄像头的视频，查看无人机的视频，召开视频会议的视频，观看视频直播的视频。</p>
+<p>​		这些视频都是实时视频，如果太大的延迟会影响的观看体验，特别是需要双向视频通信互动的场景，视频的延迟大了就会无法沟通交流。</p>
+<p>​		但是这类的视频也会遇到编码不兼容的问题。比如我们拉一个H.265的视频监控到视频会议系统，但是视频会议只支持H.264 。这种情况下就需要实时的将视频编码格式进行转换。这种转换是不能在中断的情况下处理的，必须保持视频的流畅情况下完成转码。</p>
+<p>​		也可以说在用户无感的情况下就完成了转码，这对系统的软硬件处理能力要求较高。同时可能会涉及到多种的视频协议之间的转换，起处理复杂度要高于离线转码。</p>
+<p>​		<strong>目前实时视频转码主要是用GPU完成，比如我们现在很流行的视频直播，都会对视频进行实时转码，以方便适配更多的播放设备。</strong>但是GPU的使用比较复杂，特别是对上层多种协议的兼容性，需要深厚的技术实力才可以很好的驾驭。</p>
+<p>​		在一些项目中，需要视频实时转码的场景，可以使用思载科技视频转码服务器来解决转码问题。单台服务器支持16路 1080P视频实时转码。支持H.264,H.265视频互转。支持RTP，RTSP，RTMP，FLV，HLS, SIP，WebRTC，GB&#x2F;T28181等多种视频流媒体协议。全部界面配置就可以完成视频转码配置，无需修改代码，无需复杂命令实现。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2024/08/30/%E8%A7%86%E9%A2%91%E8%BD%AC%E7%A0%81%E7%9A%84%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81%E5%92%8C%E7%A6%BB%E7%BA%BF%E8%BD%AC%E7%A0%81%E5%8C%BA%E5%88%AB/">http://jrunding.github.io/2024/08/30/%E8%A7%86%E9%A2%91%E8%BD%AC%E7%A0%81%E7%9A%84%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81%E5%92%8C%E7%A6%BB%E7%BA%BF%E8%BD%AC%E7%A0%81%E5%8C%BA%E5%88%AB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">JrunDing</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2023/03/03/ppkg98x.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E7%BA%BF%E8%BD%AC%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">离线转码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">实时转码</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkg98x.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By JrunDing</div><div class="footer_custom_text">Wish to feel nothing.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2024/08/30/%E8%A7%86%E9%A2%91%E8%BD%AC%E7%A0%81%E7%9A%84%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81%E5%92%8C%E7%A6%BB%E7%BA%BF%E8%BD%AC%E7%A0%81%E5%8C%BA%E5%88%AB/'
+    this.page.identifier = '/2024/08/30/%E8%A7%86%E9%A2%91%E8%BD%AC%E7%A0%81%E7%9A%84%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81%E5%92%8C%E7%A6%BB%E7%BA%BF%E8%BD%AC%E7%A0%81%E5%8C%BA%E5%88%AB/'
+    this.page.title = '视频转码的实时转码和离线转码区别'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

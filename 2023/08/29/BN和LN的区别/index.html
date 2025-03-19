@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>BN和LN的区别 | JrunDing</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="什么是Normalization​	Normalization：规范化或标准化，就是把输入数据X，在输送给神经元之前先对其进行平移和伸缩变换，将X的分布规范化成在固定区间范围的标准分布 ​	变化框架：  ​	参数介绍：μ：平移参数 ，δ：缩放参数 ，b ：再平移参数， g 再缩放参数，得到的数据符合均值为 b 、方差为g^2 的分布 深度学习中为什么要用Normalization？​	Normal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BN和LN的区别">
+<meta property="og:url" content="http://jrunding.github.io/2023/08/29/BN%E5%92%8CLN%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:site_name" content="JrunDing">
+<meta property="og:description" content="什么是Normalization​	Normalization：规范化或标准化，就是把输入数据X，在输送给神经元之前先对其进行平移和伸缩变换，将X的分布规范化成在固定区间范围的标准分布 ​	变化框架：  ​	参数介绍：μ：平移参数 ，δ：缩放参数 ，b ：再平移参数， g 再缩放参数，得到的数据符合均值为 b 、方差为g^2 的分布 深度学习中为什么要用Normalization？​	Normal">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2023/03/03/ppkgkrD.jpg">
+<meta property="article:published_time" content="2023-08-29T14:09:15.000Z">
+<meta property="article:modified_time" content="2023-08-29T14:24:05.198Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/03/03/ppkgkrD.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2023/08/29/BN%E5%92%8CLN%E7%9A%84%E5%8C%BA%E5%88%AB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: JrunDing","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BN和LN的区别',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: undefined,
+  isToc: true,
+  postUpdate: '2023-08-29 22:24:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">238</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkgkrD.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="JrunDing"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> Talk</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">BN和LN的区别</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-29T14:09:15.000Z" title="发表于 2023-08-29 22:09:15">2023-08-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-29T14:24:05.198Z" title="更新于 2023-08-29 22:24:05">2023-08-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Deep-Learning/">Deep Learning</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="BN和LN的区别"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2023/08/29/BN%E5%92%8CLN%E7%9A%84%E5%8C%BA%E5%88%AB/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="什么是Normalization"><a href="#什么是Normalization" class="headerlink" title="什么是Normalization"></a>什么是Normalization</h1><p>​	Normalization：规范化或标准化，就是把输入数据X，在输送给神经元之前先对其进行平移和伸缩变换，将X的分布规范化成在固定区间范围的标准分布</p>
+<p>​	<strong>变化框架：</strong></p>
+<p><img src="https://s1.ax1x.com/2023/08/29/pPdtaSP.jpg"></p>
+<p>​	参数介绍：μ：平移参数 ，δ：缩放参数 ，b ：再平移参数， g 再缩放参数，得到的数据符合均值为 b 、方差为g^2 的分布</p>
+<h1 id="深度学习中为什么要用Normalization？"><a href="#深度学习中为什么要用Normalization？" class="headerlink" title="深度学习中为什么要用Normalization？"></a>深度学习中为什么要用Normalization？</h1><p>​	Normalization 的作用很明显，把数据拉回标准正态分布，因为神经网络的Block大部分都是矩阵运算，一个向量经过矩阵运算后值会越来越大，为了网络的稳定性，我们需要及时把值拉回正态分布</p>
+<p>​	Normalization根据标准化操作的维度不同可以分为<strong>batch Normalization</strong>和<strong>Layer Normalization</strong>，不管在哪个维度上做noramlization，本质都是为了让数据在这个维度上归一化，因为在训练过程中，上一层传递下去的值千奇百怪，什么样子的分布都有。BatchNorm就是通过对batch size这个维度（针对每个特征）归一化来让分布稳定下来。LayerNorm则是通过对每个样本这个维度归一化来让每个样本的分布稳定</p>
+<h1 id="BN-vs-LN"><a href="#BN-vs-LN" class="headerlink" title="BN vs LN"></a>BN vs LN</h1><p>​	BatchNorm是对一个batch-size样本内的每个特征做归一化，LayerNorm是对每个样本的所有特征做归一化</p>
+<p>​	<strong>BN抹杀了不同特征之间的大小关系，但是保留了不同样本间的大小关系；LN抹杀了不同样本间的大小关系，但是保留了一个样本内不同特征之间的大小关系</strong>（理解：BN对batch数据的同一特征进行标准化，变换之后，纵向来看，不同样本的同一特征仍然保留了之前的大小关系，但是横向对比样本内部的各个特征之间的大小关系不一定和变换之前一样了，因此抹杀或破坏了不同特征之间的大小关系，保留了不同样本之间的大小关系；LN对单一样本进行标准化，样本内的特征处理后原来数值大的还是相对较大，原来数值小的还是相对较小，不同特征之间的大小关系还是保留了下来，但是不同样本在各自标准化处理之后，两个样本对应位置的特征之间的大小关系将不再确定，可能和处理之前就不一样了，所以破坏了不同样本间的大小关系）</p>
+<p>​	<strong>举例</strong></p>
+<p>​	假设我们有 3行 10列 的数据，即我们的batchsize &#x3D; 10，每一列数据有三个特征，假设这三个特征是【身高、体重、年龄】。那么BN是针对每一行（特征）进行缩放，例如算出【身高】的均值与方差，再对身高这一行的10个数据进行缩放。体重和年龄同理。这是一种“行缩放”。而layer方向相反，它针对的是每一列进行缩放。即只看一笔数据，算出这笔所有特征的均值与方差再缩放。这是一种“列缩放”</p>
+<p>​	细心的你已经看出来，layer normalization 对所有的特征进行缩放，这显得很没道理。我们算出一列这【身高、体重、年龄】三个特征的均值方差并对其进行缩放，事实上会因为特征的量纲不同而产生很大的影响。但是BN则没有这个影响，因为BN是对一行进行缩放，一行的量纲单位都是相同的</p>
+<p>​	那么我们为什么还要使用LN呢？因为NLP领域中，LN更为合适</p>
+<p>​	如果我们将一批文本组成一个batch，那么BN的操作方向是，对每句话的<strong>第一个</strong>词进行操作。但语言文本的复杂性是很高的，任何一个词都有可能放在初始位置，且词序可能并不影响我们对句子的理解。而BN是<strong>针对每个位置</strong>进行缩放，这<strong>不符合NLP的规律</strong></p>
+<p>​	而LN则是针对一句话进行缩放的，且<strong>LN一般用在第三维度</strong>，如[batchsize, seq_len, dims]中的dims，一般为词向量的维度，或者是RNN的输出维度等等，这一维度各个特征的量纲应该相同。因此也不会遇到上面因为特征的量纲不同而导致的缩放问题</p>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p><img src="https://s1.ax1x.com/2023/08/29/pPdtcYn.jpg"></p>
+<p>​	在BN和LN都能使用的场景中，BN的效果一般优于LN，原因是基于不同数据，同一特征得到的归一化特征更不容易损失信息。但是有些场景是不能使用BN的，例如batch size较小或者序列问题中可以使用LN。这也就解答了<strong>RNN 或Transformer等NLP领域为什么用Layer Normalization？</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2023/08/29/BN%E5%92%8CLN%E7%9A%84%E5%8C%BA%E5%88%AB/">http://jrunding.github.io/2023/08/29/BN%E5%92%8CLN%E7%9A%84%E5%8C%BA%E5%88%AB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">JrunDing</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2023/03/03/ppkgkrD.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFNormalization"><span class="toc-number">1.</span> <span class="toc-text">什么是Normalization</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8Normalization%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">深度学习中为什么要用Normalization？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BN-vs-LN"><span class="toc-number">3.</span> <span class="toc-text">BN vs LN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">4.</span> <span class="toc-text">使用场景</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s1.ax1x.com/2023/03/03/ppkgkrD.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By JrunDing</div><div class="footer_custom_text">Wish to feel nothing.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2023/08/29/BN%E5%92%8CLN%E7%9A%84%E5%8C%BA%E5%88%AB/'
+    this.page.identifier = '/2023/08/29/BN%E5%92%8CLN%E7%9A%84%E5%8C%BA%E5%88%AB/'
+    this.page.title = 'BN和LN的区别'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
