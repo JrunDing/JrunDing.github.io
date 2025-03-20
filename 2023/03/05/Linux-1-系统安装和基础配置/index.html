@@ -17,7 +17,7 @@
   localSearch: undefined,
   translate: undefined,
   noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
   copy: {
     success: '复制成功',
     error: '复制错误',
@@ -55,7 +55,7 @@
   title: 'Linux 1 - 系统安装和基础配置',
   isPost: true,
   isHome: false,
-  isHighlightShrink: undefined,
+  isHighlightShrink: false,
   isToc: true,
   postUpdate: '2023-03-05 19:49:54'
 }</script><noscript><style type="text/css">
@@ -169,21 +169,21 @@
 <p>​	5.根据向导重启计算机，F2进入BIOS确认从Ubuntu启动，然后进入系统</p>
 <h2 id="二、一些系统配置"><a href="#二、一些系统配置" class="headerlink" title="二、一些系统配置"></a>二、一些系统配置</h2><p>​	1.换源</p>
 <p>​	国内有很多Ubuntu的镜像源，包括阿里的、网易的，还有很多教育网的源，比如：清华源、中科大源。以清华源为例修改Ubuntu 20.04里面默认的源。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> /etc/apt/sources.list /etc/apt/sources.list1 <span class="comment"># 备份</span></span><br><span class="line">sudo gedit /etc/apt/sources.list </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> /etc/apt/sources.list /etc/apt/sources.list1 <span class="comment"># 备份</span></span><br><span class="line">sudo gedit /etc/apt/sources.list </span><br></pre></td></tr></table></figure>
 
 <p>​	清华mirrors官网<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/%E6%9F%A5%E6%89%BE%E5%AF%B9%E5%BA%94%E7%9A%84%E6%BA%90%EF%BC%8C%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%EF%BC%8C%E6%B3%A8%E9%87%8A%E5%8E%9F%E6%9D%A5%E7%9A%84%E6%BA%90%E5%8D%B3%E5%8F%AF">https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/查找对应的源，复制粘贴，注释原来的源即可</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update <span class="comment"># 更新配置</span></span><br><span class="line">sudo apt upgrade <span class="comment"># 升级软件  因为软件比较多，这一步比较慢，耐心等待</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update <span class="comment"># 更新配置</span></span><br><span class="line">sudo apt upgrade <span class="comment"># 升级软件  因为软件比较多，这一步比较慢，耐心等待</span></span><br></pre></td></tr></table></figure>
 
 <p>​	2.系统时间同步设置</p>
 <p>​	Ubuntu和windows采用的时间机制不一样，windows采用localtime机制，它将BIOS中的时间当作本地时间，所以windows显示的时间是从BIOS中读取，和BIOS一致，BIOS时间是存储在电脑主板中的绝对时间，断电后可保存。ubuntu采用UTC的时间机制，它将BIOS的时间认为是GMT即格林尼治时间，本地时间会在格林尼治时间基础上加上当前所处的时区数，比如中国是东八区，所以ubuntu显示的是BIOS时间再加上8小时，这样ubuntu显示的时间比windows快8小时。而且这两个系统若同步网上时间，都会将BIOS时间改成该时间，因此若想ubuntu和windows时间一致，必须修改ubuntu的时间机制</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install ntpdate <span class="comment"># 安装ntpdate时间同步工具</span></span><br><span class="line">sudo ntpdate time.windows.com <span class="comment"># 通过互联网同步正确时间</span></span><br><span class="line">sudo hwclock --localtime --systohc <span class="comment"># 时间机制改为localtime</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ntpdate <span class="comment"># 安装ntpdate时间同步工具</span></span><br><span class="line">sudo ntpdate time.windows.com <span class="comment"># 通过互联网同步正确时间</span></span><br><span class="line">sudo hwclock --localtime --systohc <span class="comment"># 时间机制改为localtime</span></span><br></pre></td></tr></table></figure>
 
 <p>​	3.将windows设置为默认启动的系统</p>
 <p>​	如果windows仍然是常用的系统，那么可以设置一下默认启动系统，这样不需要每次启动手动选择启动windows</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gedit /etc/default/grub</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/default/grub</span><br></pre></td></tr></table></figure>
 
 <p>​	将<code>GRUB DEFAULT=0</code>的“0”改为windows的启动选项(每次开机时，windows manager所处的位置)即可，我的是3</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-grub <span class="comment"># 更新设置</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-grub <span class="comment"># 更新设置</span></span><br></pre></td></tr></table></figure>
 
 <p>​	4.将U盘恢复</p>
 <p>​	插入U盘，打开DiskGenius，选择U盘，弹出的窗口选项都默认，然后选择该空间分区——&gt;建立新分区，文件系统选为NTFS，其他都默认，然后工具栏中的保存更改即可</p>

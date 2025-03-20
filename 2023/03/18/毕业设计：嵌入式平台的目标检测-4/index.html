@@ -17,7 +17,7 @@
   localSearch: undefined,
   translate: undefined,
   noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
   copy: {
     success: '复制成功',
     error: '复制错误',
@@ -55,7 +55,7 @@
   title: '毕业设计：嵌入式平台的目标检测-4',
   isPost: true,
   isHome: false,
-  isHighlightShrink: undefined,
+  isHighlightShrink: false,
   isToc: true,
   postUpdate: '2023-03-18 16:16:52'
 }</script><noscript><style type="text/css">
@@ -179,7 +179,7 @@
 </ul>
 <p>​	补充：get_map.py文件用于评估模型的性能，得到该模型的map值</p>
 <p>​	requirements.txt：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">requirements：</span><br><span class="line">scipy==1.2.1</span><br><span class="line">numpy==1.17.0</span><br><span class="line">matplotlib==3.1.2</span><br><span class="line">opencv_python==4.1.2.30</span><br><span class="line">torch==1.2.0</span><br><span class="line">torchvision==0.4.0</span><br><span class="line">tqdm==4.60.0</span><br><span class="line">Pillow==8.2.0</span><br><span class="line">h5py==2.10.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">requirements：</span><br><span class="line">scipy==1.2.1</span><br><span class="line">numpy==1.17.0</span><br><span class="line">matplotlib==3.1.2</span><br><span class="line">opencv_python==4.1.2.30</span><br><span class="line">torch==1.2.0</span><br><span class="line">torchvision==0.4.0</span><br><span class="line">tqdm==4.60.0</span><br><span class="line">Pillow==8.2.0</span><br><span class="line">h5py==2.10.0</span><br></pre></td></tr></table></figure>
 
 <h1 id="下一步打算"><a href="#下一步打算" class="headerlink" title="下一步打算"></a>下一步打算</h1><p>​	使用PySide2写图形化界面。</p>
 <p>​	从pytorch——&gt;onnx——&gt;tensorrt路线实现加速推理。</p>
