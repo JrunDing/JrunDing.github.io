@@ -1,0 +1,327 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>SDR实现模拟传输 | JrunDing</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="​		用 SDR（软件无线电）实现的“模拟调制”，在传输介质和信号处理的核心环节上，本质上确实是数字通信系统在模拟传统的模拟通信行为。可以从以下几个层面来拆解： 信号存在的形式不同 传统模拟通信： 信号在整个链路中（从麦克风到天线）始终是连续时间、连续幅度的电压或电流波形。 调制是通过物理元件（如变容二极管、乘法器）直接改变连续波形的参数。 数学本质：处理的是连续函数 m(t)m(t) 和 c(t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SDR实现模拟传输">
+<meta property="og:url" content="http://jrunding.github.io/2026/03/06/SDR%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E4%BC%A0%E8%BE%93/index.html">
+<meta property="og:site_name" content="JrunDing">
+<meta property="og:description" content="​		用 SDR（软件无线电）实现的“模拟调制”，在传输介质和信号处理的核心环节上，本质上确实是数字通信系统在模拟传统的模拟通信行为。可以从以下几个层面来拆解： 信号存在的形式不同 传统模拟通信： 信号在整个链路中（从麦克风到天线）始终是连续时间、连续幅度的电压或电流波形。 调制是通过物理元件（如变容二极管、乘法器）直接改变连续波形的参数。 数学本质：处理的是连续函数 m(t)m(t) 和 c(t">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg">
+<meta property="article:published_time" content="2026-03-06T02:45:46.000Z">
+<meta property="article:modified_time" content="2026-03-06T02:51:40.682Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2026/03/06/SDR%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E4%BC%A0%E8%BE%93/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: JrunDing","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SDR实现模拟传输',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-03-06 10:51:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">248</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/biography/"><span> Biography</span></a></div><div class="menus_item"><a class="site-page" href="/category/"><span> Category</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="JrunDing"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/biography/"><span> Biography</span></a></div><div class="menus_item"><a class="site-page" href="/category/"><span> Category</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">SDR实现模拟传输</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-06T02:45:46.000Z" title="发表于 2026-03-06 10:45:46">2026-03-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-06T02:51:40.682Z" title="更新于 2026-03-06 10:51:40">2026-03-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Communication/">Communication</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SDR实现模拟传输"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2026/03/06/SDR%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E4%BC%A0%E8%BE%93/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div><article class="post-content" id="article-container"><p>​		用 SDR（软件无线电）实现的“模拟调制”，在<strong>传输介质和信号处理的核心环节</strong>上，本质上确实是<strong>数字通信系统</strong>在<strong>模拟</strong>传统的模拟通信行为。可以从以下几个层面来拆解：</p>
+<h3 id="信号存在的形式不同"><a href="#信号存在的形式不同" class="headerlink" title="信号存在的形式不同"></a>信号存在的形式不同</h3><ul>
+<li><strong>传统模拟通信</strong>：<ul>
+<li>信号在整个链路中（从麦克风到天线）始终是<strong>连续时间、连续幅度</strong>的电压或电流波形。</li>
+<li>调制是通过物理元件（如变容二极管、乘法器）直接改变连续波形的参数。</li>
+<li><strong>数学本质</strong>：处理的是连续函数 m(t)<em>m</em>(<em>t</em>) 和 c(t)<em>c</em>(<em>t</em>) 。</li>
+</ul>
+</li>
+<li><strong>SDR 实现的模拟调制</strong>：<ul>
+<li>信号在 CPU&#x2F;FPGA&#x2F;DSP 内部是以<strong>离散时间、离散幅度</strong>的数字序列（0和1）存在的。</li>
+<li>所谓的“调幅”或“调频”，其实是算法在计算一串数字样本值。例如，AM 算法只是在做数组乘法：<code>Sample[i] = (DC + Audio[i]) * Carrier[i]</code>。</li>
+<li><strong>数学本质</strong>：处理的是离散序列 m[n]<em>m</em>[<em>n</em>] 和 c[n]<em>c</em>[<em>n</em>] 。</li>
+<li><strong>结论</strong>：在这个阶段，它完全是**数字信号处理 (DSP)**，属于数字通信的范畴。</li>
+</ul>
+</li>
+</ul>
+<h3 id="“模拟”是如何产生的"><a href="#“模拟”是如何产生的" class="headerlink" title="“模拟”是如何产生的"></a>“模拟”是如何产生的</h3><p>​		SDR 之所以能发射出“模拟信号”，关键在于最后一步：**数模转换器 (DAC)**。</p>
+<ul>
+<li>SDR 芯片计算出代表波形的数字样本后，通过高速 DAC 将这些离散点转换成连续的阶梯状电压。</li>
+<li>随后经过<strong>重构滤波器（低通滤波器）</strong>，平滑掉阶梯状的毛刺，还原成光滑的正弦波（即模拟波形）。</li>
+<li><strong>此时</strong>，这个信号才真正变成了物理世界中的<strong>模拟信号</strong>，其特性（幅度随声音变化、频率随声音变化）与传统模拟电台发射的信号在<strong>物理层面上是完全一致的</strong>。</li>
+</ul>
+<h3 id="接收端的逆向过程"><a href="#接收端的逆向过程" class="headerlink" title="接收端的逆向过程"></a>接收端的逆向过程</h3><p>​		接收端也是同理：</p>
+<ul>
+<li>天线收到的连续模拟波，先经过 ADC（模数转换器）变成数字样本。</li>
+<li>软件算法对这些数字样本进行“解调”（本质是数字运算，如希尔伯特变换、鉴频算法等）。</li>
+<li>最后算出的数字音频再通过 DAC 变成声音。</li>
+</ul>
+<h3 id="为什么说它是“数字通信模拟模拟通信”"><a href="#为什么说它是“数字通信模拟模拟通信”" class="headerlink" title="为什么说它是“数字通信模拟模拟通信”"></a>为什么说它是“数字通信模拟模拟通信”</h3><p>​		这里有两个视角的辩证关系：</p>
+<ul>
+<li><strong>从实现手段看（How）：它是纯数字的。</strong><ul>
+<li>没有电容充放电，没有非线性二极管的特性曲线。</li>
+<li>依靠的是采样定理、快速傅里叶变换 (FFT)、数字滤波器和数值计算。</li>
+<li>如果采样率不够或量化精度不足，会出现混叠或量化噪声，这是典型的数字通信问题。</li>
+</ul>
+</li>
+<li><strong>从信息论和波形特征看（What）：它重现了模拟通信。</strong><ul>
+<li>它发射的波形频谱、带宽占用、抗噪特性（如 FM 的门限效应），与传统模拟电路产生的波形<strong>在物理上无法区分</strong>（假设 DAC 精度足够高）。</li>
+<li>它传输的信息仍然是连续变化的模拟量，而不是像真正的数字通信（如 QPSK, 16-QAM）那样传输离散的符号（Symbol）和比特流。</li>
+<li>传统的数字通信（如 4G&#x2F;5G&#x2F;WiFi）会在调制前进行<strong>信源编码</strong>（把声音变成 0101 比特流）和<strong>信道编码</strong>（加纠错码）。而 SDR 做 AM&#x2F;FM 时，<strong>跳过了信源编码和信道编码</strong>，直接把模拟波形的样本映射到了载波上。</li>
+</ul>
+</li>
+</ul>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>​		<strong>SDR 实现的模拟调制，本质上是利用数字通信系统的硬件架构（ADC&#x2F;DAC + 处理器），通过数字信号处理算法，精确地“模仿”并生成了传统模拟通信的波形。</strong></p>
+<ul>
+<li>它<strong>不是</strong>真正的“数字通信”（因为它不传输比特流，不进行信源&#x2F;信道编码，不具备数字通信的纠错和加密特性）。</li>
+<li>它也<strong>不是</strong>传统的“模拟通信”（因为它的生成和处理过程完全是离散的数字运算）。</li>
+</ul>
+<p>​		所以，最精准的定义是：<strong>基于软件定义的、数字化的模拟波形生成技术</strong>。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2026/03/06/SDR%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E4%BC%A0%E8%BE%93/">http://jrunding.github.io/2026/03/06/SDR%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E4%BC%A0%E8%BE%93/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">JrunDing</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E5%AD%98%E5%9C%A8%E7%9A%84%E5%BD%A2%E5%BC%8F%E4%B8%8D%E5%90%8C"><span class="toc-number">1.</span> <span class="toc-text">信号存在的形式不同</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E6%A8%A1%E6%8B%9F%E2%80%9D%E6%98%AF%E5%A6%82%E4%BD%95%E4%BA%A7%E7%94%9F%E7%9A%84"><span class="toc-number">2.</span> <span class="toc-text">“模拟”是如何产生的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E6%94%B6%E7%AB%AF%E7%9A%84%E9%80%86%E5%90%91%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">接收端的逆向过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4%E5%AE%83%E6%98%AF%E2%80%9C%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1%E6%A8%A1%E6%8B%9F%E6%A8%A1%E6%8B%9F%E9%80%9A%E4%BF%A1%E2%80%9D"><span class="toc-number">4.</span> <span class="toc-text">为什么说它是“数字通信模拟模拟通信”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">5.</span> <span class="toc-text">结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By JrunDing</div><div class="footer_custom_text">Thanks.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2026/03/06/SDR%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E4%BC%A0%E8%BE%93/'
+    this.page.identifier = '/2026/03/06/SDR%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E4%BC%A0%E8%BE%93/'
+    this.page.title = 'SDR实现模拟传输'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
