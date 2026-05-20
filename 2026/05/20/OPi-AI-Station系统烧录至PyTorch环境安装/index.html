@@ -1,0 +1,304 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>OPi AI Station系统烧录至PyTorch环境安装 | null</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="系统烧录​		香橙派官方提供了用户手册，有三个系统安装的位置，分别是PXE、eMMC和NVMe，由于最后一种采用SSD，因此这里推荐，同时也是当前的使用方式。 ​		首先从网上购买2280规格NVMe SSD，M.2接口，PCIe3.0x4。购买硬盘盒，将SSD放入硬盘盒连接电脑。下载用于烧录Linux 镜像的软件balenaEtcher，下载地址https:&#x2F;&#x2F;www.balena.io&#x2F;etc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OPi AI Station系统烧录至PyTorch环境安装">
+<meta property="og:url" content="http://jrunding.github.io/2026/05/20/OPi-AI-Station%E7%B3%BB%E7%BB%9F%E7%83%A7%E5%BD%95%E8%87%B3PyTorch%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="系统烧录​		香橙派官方提供了用户手册，有三个系统安装的位置，分别是PXE、eMMC和NVMe，由于最后一种采用SSD，因此这里推荐，同时也是当前的使用方式。 ​		首先从网上购买2280规格NVMe SSD，M.2接口，PCIe3.0x4。购买硬盘盒，将SSD放入硬盘盒连接电脑。下载用于烧录Linux 镜像的软件balenaEtcher，下载地址https:&#x2F;&#x2F;www.balena.io&#x2F;etc">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg">
+<meta property="article:published_time" content="2026-05-20T09:16:09.000Z">
+<meta property="article:modified_time" content="2026-05-20T09:19:13.487Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2026/05/20/OPi-AI-Station%E7%B3%BB%E7%BB%9F%E7%83%A7%E5%BD%95%E8%87%B3PyTorch%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: null","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OPi AI Station系统烧录至PyTorch环境安装',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-05-20 17:19:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">256</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/biography/"><span> Biography</span></a></div><div class="menus_item"><a class="site-page" href="/category/"><span> Category</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/biography/"><span> Biography</span></a></div><div class="menus_item"><a class="site-page" href="/category/"><span> Category</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">OPi AI Station系统烧录至PyTorch环境安装</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-20T09:16:09.000Z" title="发表于 2026-05-20 17:16:09">2026-05-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-20T09:19:13.487Z" title="更新于 2026-05-20 17:19:13">2026-05-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Hardware/">Hardware</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="OPi AI Station系统烧录至PyTorch环境安装"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2026/05/20/OPi-AI-Station%E7%B3%BB%E7%BB%9F%E7%83%A7%E5%BD%95%E8%87%B3PyTorch%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="系统烧录"><a href="#系统烧录" class="headerlink" title="系统烧录"></a>系统烧录</h2><p>​		香橙派官方提供了用户手册，有三个系统安装的位置，分别是PXE、eMMC和NVMe，由于最后一种采用SSD，因此这里推荐，同时也是当前的使用方式。</p>
+<p>​		首先从网上购买2280规格NVMe SSD，M.2接口，PCIe3.0x4。购买硬盘盒，将SSD放入硬盘盒连接电脑。下载用于烧录Linux 镜像的软件balenaEtcher，下载地址<a target="_blank" rel="noopener" href="https://www.balena.io/etcher/%EF%BC%8C%E4%B8%8B%E8%BD%BDPortable">https://www.balena.io/etcher/，下载Portable</a> 版本无需安装。使用balenaEtcher 烧录Linux 镜像，a. 首先选择要烧录的Linux 镜像文件的路径。b. 然后选择NVMe 硬盘的盘符。c. 最后点击Flash 就会开始烧录Linux 镜像到NVMe 硬盘中。成功烧录后退出balenaEtcher。把NVMe SSD 插入开发板的M.2 接口中，固定好。此时插入电源就可以启动SSD 中的Linux 系统了。注意，启动系统前请确保拨码开关拨到了SSD启动位置。</p>
+<p>​		开发板启动：将烧录好镜像的eMMC 模块或者SSD 插入开发板对应的插槽中。然后将拨码开关拨到正确的位置。如果想显示Linux 系统的桌面，可以将开发板的HDMI 接口连接到HDMI 显示器。开发板有USB 接口，可以接上USB 鼠标和键盘，来控制开发板。开发板有两个千兆以太网口，可以插入网线用来上网。然后需要连接一个12V 10A-120W 的DC 电源适配器。然后打开电源适配器的开关，如果一切正常，等待一段时间后，HDMI 显示器就能看到Linux 系统的登录界面了。当看到登录界面时，就可以使用下面的账号和密码来登录Linux 系统了。</p>
+<table>
+<thead>
+<tr>
+<th align="center">账号</th>
+<th align="center">密码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">root</td>
+<td align="center">orangepi</td>
+</tr>
+<tr>
+<td align="center">HwHiAiUser</td>
+<td align="center">orangepi</td>
+</tr>
+</tbody></table>
+<p>​		安装好系统后，需要进行一些简单的配置，假如我们使用128G的SSD安装系统，烧录完之后默认只会使用16G的空间，其余空间未分配，因此需要将主分区扩容，进入安装好的openeuler系统，<code>sudo dnf install gnome-disk-utlity</code>安装disk管理图形化工具，然后点击主分区进行resize，将后面的分区扩容至主分区。如果遇到问题，上网查询，这主要是由于主分区和待扩容部分的分区表冲突导致的，执行几行命令即可。</p>
+<p>​		此外还有一些配置，比如linux的<code>ctrl+alt+t</code>调出terminal、输入法等配置可按照习惯配置。</p>
+<h2 id="二、深度学习环境配置"><a href="#二、深度学习环境配置" class="headerlink" title="二、深度学习环境配置"></a>二、深度学习环境配置</h2><h3 id="1-NPU驱动"><a href="#1-NPU驱动" class="headerlink" title="1.NPU驱动"></a>1.NPU驱动</h3><p>​		香橙派AI Station只能使用香橙派提供的NPU驱动包，请务必从香橙派的资料下载页面下载对应的NPU驱动包。不要从昇腾社区或其他地方下载NPU驱动包。</p>
+<p>​		首先在OPi AI Station 资料下载页面的固件和驱动中下载NPU 驱动包。驱动包版本可能有变化，这个是正常的，请重点确保下载的包是以Ascend-hdk-310p-npu-driver 开头的<code>Ascend-hdk-310p-npu-driver_7.6.t7.0.b053_linux-aarch64_opiaistation_260105.run</code>。然后将NPU 驱动包使用SSH 或者U 盘上传到开发板中。然后使用下面的命令开始安装NPU 驱动包，请记得将NPU 驱动包的名字替换为实际的名字，不要照抄。<code>chmod +x Ascend-hdk-310p-npu-driver_7.6.t7.0.b053_linux-aarch64_opiaistation_260105.run</code>和<code>./Ascend-hdk-310p-npu-driver_7.6.t7.0.b053_linux-aarch64_opiaistation_260105.run --full</code>。NPU 驱动包安装完成后请重启下系统。</p>
+<h3 id="2-CANN软件包"><a href="#2-CANN软件包" class="headerlink" title="2.CANN软件包"></a>2.CANN软件包</h3><p>​		在现有开发板环境下，需要安装8.5.0 及之后版本的CANN，之前版本的存在一些问题，会导致有些功能无法正常使用。CANN从8.5.0 版本开始文件路径等均发生了比较大的改变。如果想要运行非本手册中的案例，需要注意CANN软件的路径问题。</p>
+<p>​		首先查看当前环境中CANN 软件包的版本，这里我们查询到的就是8.5.0 版本，当然，如果报错，那就说明至少没有在默认路径下安装CANN：<code>ls -lh /usr/local/Ascend/cann</code>。访问昇腾社区的下载页面<a target="_blank" rel="noopener" href="https://www.hiascend.com/developer/download/community/result?module=pt+cann%EF%BC%8C%E9%80%89%E6%8B%A9%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9A%84CANN">https://www.hiascend.com/developer/download/community/result?module=pt+cann，选择你需要的CANN</a> 版本，例如8.5.0 社区版本。一般情况下，我们需要下载的是两个包，Ascend-cann-toolkit_8.5.0_linux-aarch64.run和Ascend-cann-310p-ops_8.5.0_linux-aarch64.run。下载完成后，将其上传到开发板，然后执行下面的命令安装，记得将文件名替换成你实际下载的文件名。等其运行完成就行，一般需要半小时左右。<code>chmod +x Ascend-cann*</code>、<code>./Ascend-cann-toolkit_8.5.0_linux-aarch64.run -q --install --install-for-all</code>和<code>./Ascend-cann-310p-ops_8.5.0_linux-aarch64.run -q --install</code>。测试int8 算力的命令如下所示，正常应为176TOPS，<code>echo Y | ascend-dmi -f -d 0 --et 60 -t int8</code>。</p>
+<h3 id="3-miniforge和Pytorch"><a href="#3-miniforge和Pytorch" class="headerlink" title="3.miniforge和Pytorch"></a>3.miniforge和Pytorch</h3><p>​		参考网上教程通过wget下载并安装miniforge虚拟环境，通过<code>conda create -n ai_ran python=3.9</code>创建环境，激活环境，进入华为昇腾官网<a target="_blank" rel="noopener" href="https://www.hiascend.com/developer/download%EF%BC%8C%E7%AC%AC%E4%BA%8C%E6%AD%A5%E9%AA%A4%E4%B8%AD%E5%AE%89%E8%A3%85%E7%9A%84%E6%98%AF%E7%B3%BB%E7%BB%9F%E7%9A%84CANN%E5%8C%85%EF%BC%8C%E4%BD%86%E7%94%B1%E4%BA%8E%E4%B8%8D%E5%90%8C%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC%E9%9C%80%E8%A6%81%E4%B8%8D%E5%90%8C%E7%9A%84CANN%EF%BC%8C%E5%9B%A0%E6%AD%A4%E7%8E%B0%E5%9C%A8%E5%9C%A8%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%AE%89%E8%A3%85%E3%80%82%E8%BF%9B%E5%85%A5CANN%EF%BC%8C%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC8.5.0%E3%80%81%E6%8E%A8%E7%90%86%E7%B3%BB%E5%88%97%E4%BA%A7%E5%93%81%E3%80%81AArch64%E3%80%81openEuler%E3%80%81%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85conda%EF%BC%8C%E6%8C%89%E7%85%A7%E5%AE%98%E7%BD%91%E6%8F%90%E4%BE%9B%E7%9A%84%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%AE%89%E8%A3%85toolkit%E3%80%81ops%E5%B9%B6%E9%AA%8C%E8%AF%81%E3%80%82%E5%9C%A8%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%B8%80%E4%BA%9B%E6%8A%A5%E9%94%99%EF%BC%8C%E6%9C%89%E5%85%B3%E7%BC%BA%E5%A4%B1%E9%83%A8%E5%88%86%E8%BD%AF%E4%BB%B6%E5%8C%85%EF%BC%8C%E5%8F%AA%E9%9C%80%E8%A6%81conda%E5%AE%89%E8%A3%85%E5%8D%B3%E5%8F%AF%E3%80%82%E8%BF%9B%E5%85%A5PyTorch%EF%BC%8C%E5%8D%8E%E4%B8%BA%E7%9A%84%E6%98%87%E8%85%BE%E7%B3%BB%E5%88%97%E8%8A%AF%E7%89%87%E4%B8%8D%E6%98%AF%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81PyTorch%EF%BC%8C%E5%9B%A0%E6%AD%A4%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%EF%BC%8CAscend">https://www.hiascend.com/developer/download，第二步骤中安装的是系统的CANN包，但由于不同的软件版本需要不同的CANN，因此现在在虚拟环境中安装。进入CANN，选择版本8.5.0、推理系列产品、AArch64、openEuler、在线安装conda，按照官网提供的命令，安装toolkit、ops并验证。在安装过程中，会出现一些报错，有关缺失部分软件包，只需要conda安装即可。进入PyTorch，华为的昇腾系列芯片不是原生支持PyTorch，因此需要安装插件，Ascend</a> Extension for PyTorch（即torch_npu插件）是基于昇腾的深度学习适配框架，使昇腾NPU可以支持PyTorch框架，为PyTorch框架的使用者提供昇腾AI处理器的超强算力。安装Ascend Extension for PyTorch前，需配套在环境中安装好CANN。选择版本7.3.0，CANN版本8.5.0，PyTorch版本2.6.0，Python版本3.9，CPU架构AArch64，操作系统openEuler，离线安装。根据指令安装PyTorch、torch_npu插件，安装过程中报错都是有关缺乏某些python包，conda安装即可。在安装后验证过程中，除了报一些缺乏python包的错误，这种直接conda安装即可，还会报缺乏某些标准C++库，这是因为在华为的昇腾上使用PyTorch时，执行逻辑是将PyTorch通过torch_npu，运行转换为CANN算子，最后放在昇腾上运行，在PyTorch转CANN算子过程中，需要进行编译。因此需要通过<code>sudo dnf install gcc-c++ -y</code>安装g++，通过<code>g++ --version</code>查看版本，如果能读取说明已经自动添加到环境变量中。最后再进行PyTorch的测试，如果通过则表示环境安装成功。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2026/05/20/OPi-AI-Station%E7%B3%BB%E7%BB%9F%E7%83%A7%E5%BD%95%E8%87%B3PyTorch%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/">http://jrunding.github.io/2026/05/20/OPi-AI-Station%E7%B3%BB%E7%BB%9F%E7%83%A7%E5%BD%95%E8%87%B3PyTorch%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">null</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%83%A7%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">系统烧录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">二、深度学习环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-NPU%E9%A9%B1%E5%8A%A8"><span class="toc-number">2.1.</span> <span class="toc-text">1.NPU驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-CANN%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="toc-number">2.2.</span> <span class="toc-text">2.CANN软件包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-miniforge%E5%92%8CPytorch"><span class="toc-number">2.3.</span> <span class="toc-text">3.miniforge和Pytorch</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By JrunDing</div><div class="footer_custom_text">Thanks.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2026/05/20/OPi-AI-Station%E7%B3%BB%E7%BB%9F%E7%83%A7%E5%BD%95%E8%87%B3PyTorch%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/'
+    this.page.identifier = '/2026/05/20/OPi-AI-Station%E7%B3%BB%E7%BB%9F%E7%83%A7%E5%BD%95%E8%87%B3PyTorch%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/'
+    this.page.title = 'OPi AI Station系统烧录至PyTorch环境安装'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
