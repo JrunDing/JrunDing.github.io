@@ -1,0 +1,298 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Linux使用tar.gz的原因 | null</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="tar.gz是”打包”加”压缩”的组合，tar负责把多个文件打包成一个文件，gz(gzip)负责压缩。这种”两步走”的设计，在Unix&#x2F;Linux的哲学里叫做”do one thing and do it well”。 一个工具只做一件事，但把这件事做到极致。 这就是Linux和Windows在设计思路上的根本区别。Windows喜欢”大而全”，一个软件恨不得把所有功能都塞进去。Linu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux使用tar.gz的原因">
+<meta property="og:url" content="http://jrunding.github.io/2026/08/18/Linux%E4%BD%BF%E7%94%A8tar-gz%E7%9A%84%E5%8E%9F%E5%9B%A0/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="tar.gz是”打包”加”压缩”的组合，tar负责把多个文件打包成一个文件，gz(gzip)负责压缩。这种”两步走”的设计，在Unix&#x2F;Linux的哲学里叫做”do one thing and do it well”。 一个工具只做一件事，但把这件事做到极致。 这就是Linux和Windows在设计思路上的根本区别。Windows喜欢”大而全”，一个软件恨不得把所有功能都塞进去。Linu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg">
+<meta property="article:published_time" content="2026-08-17T23:46:48.000Z">
+<meta property="article:modified_time" content="2026-08-17T23:54:13.256Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2026/08/18/Linux%E4%BD%BF%E7%94%A8tar-gz%E7%9A%84%E5%8E%9F%E5%9B%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: null","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux使用tar.gz的原因',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2026-08-18 07:54:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">257</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/biography/"><span> Biography</span></a></div><div class="menus_item"><a class="site-page" href="/category/"><span> Category</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/biography/"><span> Biography</span></a></div><div class="menus_item"><a class="site-page" href="/category/"><span> Category</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Linux使用tar.gz的原因</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-17T23:46:48.000Z" title="发表于 2026-08-18 07:46:48">2026-08-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-17T23:54:13.256Z" title="更新于 2026-08-18 07:54:13">2026-08-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/">Computer Science</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux使用tar.gz的原因"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2026/08/18/Linux%E4%BD%BF%E7%94%A8tar-gz%E7%9A%84%E5%8E%9F%E5%9B%A0/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div><article class="post-content" id="article-container"><p>tar.gz是”打包”加”压缩”的组合，tar负责把多个文件打包成一个文件，gz(gzip)负责压缩。这种”两步走”的设计，在Unix&#x2F;Linux的哲学里叫做”do one thing and do it well”。</p>
+<p>一个工具只做一件事，但把这件事做到极致。</p>
+<p>这就是Linux和Windows在设计思路上的根本区别。Windows喜欢”大而全”，一个软件恨不得把所有功能都塞进去。Linux喜欢”小而美”，每个工具专注自己的领域，需要复杂功能时就把多个工具组合起来。tar.gz就是这种哲学的典型体现。</p>
+<p>那为什么不用ZIP呢?</p>
+<p>ZIP在Windows上确实很流行，双击就能解压，方便得很。但在Linux上，ZIP有几个致命的问题。第一，它不保留Unix文件系统的权限信息。你在Linux上用ZIP打包一个文件，解压后文件的所有者、权限、时间戳这些信息可能就丢了。这在服务器环境下是不能接受的。</p>
+<p>记得刚做嵌入式Linux那会儿，有次从Windows上传了个ZIP包，部署到开发板上。解压后发现所有脚本的执行权限都没了，还得手动<code>chmod +x</code>一个个加回来。</p>
+<p>第二个问题是兼容性。Linux系统默认都带tar和gzip，不需要安装任何额外软件。但ZIP呢?虽然现在大部分发行版也预装了unzip，但在一些精简的嵌入式系统或者服务器上，你不一定能找到它。而且ZIP的压缩率也不如gzip，更别提后来的bzip2和xz了。</p>
+<p>那7Z呢?压缩率确实高，但问题更大。</p>
+<p>7Z是个相对较新的格式，Linux上要用它得先装<code>p7zip</code>这个包。而且7Z的压缩和解压速度都比较慢，对于服务器上动辄几个GB的日志文件或者代码仓库来说，时间成本太高了。更重要的是，7Z在Linux生态里没有形成习惯——大家都用tar.gz，你突然发个7Z包过来，别人还得专门去装工具，这不是给人添麻烦吗?</p>
+<p>这就涉及到一个更深层的问题:生态和习惯。</p>
+<p>在Linux世界里，tar.gz已经是事实标准了。你去GitHub上下载源码，基本都是tar.gz或者tar.xz。你去下载软件包，也是tar.gz。所有的文档、教程、脚本都是围绕tar命令写的。这种”约定俗成”的力量是非常强大的——不是说其他格式不好，而是大家都在用这个，你也跟着用，沟通成本最低。</p>
+<p>而且tar命令的灵活性是ZIP和7Z比不了的。</p>
+<p>你可以用<code>tar -czf</code>打包并用gzip压缩，也可以用<code>tar -cjf</code>换成bzip2压缩，或者<code>tar -cJf</code>用xz压缩。你还可以在打包的时候排除某些文件、只打包某些目录、甚至通过管道直接传输到远程服务器。这种组合能力，是那些”一体化”工具做不到的。</p>
+<p>当然，tar.gz也不是完美的。</p>
+<p>它的压缩率确实不如7Z，解压的时候也得记住那些参数——<code>-xzf</code>、<code>-xjf</code>、<code>-xJf</code>，新手经常搞混。但这些问题在Linux老用户眼里根本不是问题，因为用习惯了，手指头都有肌肉记忆了。</p>
+<p>而且现在很多发行版已经做了优化，<code>tar -xf</code>可以自动识别压缩格式，你不用管它是gz还是bz2还是xz，直接解压就行。这种”向后兼容”的设计，也是Linux社区一直在努力的方向。</p>
+<p>说到底，为什么Linux要用tar.gz而不是ZIP或7Z?</p>
+<p>因为它符合Unix哲学、保留文件系统信息、兼容性好、生态成熟、灵活性强。这些优势加在一起，就形成了一个”路径依赖”——大家都在用，所以你也得用，然后越来越多的人用，最后就成了标准。</p>
+<p>这不是技术问题，是生态问题。</p>
+<p>就像你问”为什么Windows要用EXE而不是ELF?”一样，不是哪个格式更先进，而是整个生态都围绕它建立起来了。你要是在Linux上推广ZIP，就得说服所有的开发者、所有的项目、所有的文档都改用ZIP。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2026/08/18/Linux%E4%BD%BF%E7%94%A8tar-gz%E7%9A%84%E5%8E%9F%E5%9B%A0/">http://jrunding.github.io/2026/08/18/Linux%E4%BD%BF%E7%94%A8tar-gz%E7%9A%84%E5%8E%9F%E5%9B%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">null</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">JrunDing</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">257</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/JrunDing"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/JrunDing" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=zPT1_fn-_v31_oy9veKvo6E" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://space.bilibili.com/476325736?spm_id_from=333.1007.0.0" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="https://www.youtube.com/channel/UCsGZiK4uLNsZ3nVrZCXH6Nw" target="_blank" title="Youtube"><i class="fa-brands fa-youtube"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/18/Linux%E4%BD%BF%E7%94%A8tar-gz%E7%9A%84%E5%8E%9F%E5%9B%A0/" title="Linux使用tar.gz的原因">Linux使用tar.gz的原因</a><time datetime="2026-08-17T23:46:48.000Z" title="发表于 2026-08-18 07:46:48">2026-08-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/20/OPi-AI-Station%E7%B3%BB%E7%BB%9F%E7%83%A7%E5%BD%95%E8%87%B3PyTorch%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" title="OPi AI Station系统烧录至PyTorch环境安装">OPi AI Station系统烧录至PyTorch环境安装</a><time datetime="2026-05-20T09:16:09.000Z" title="发表于 2026-05-20 17:16:09">2026-05-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/28/OFDM%E7%9A%84FFT%E7%AA%97%E5%8F%A3%E4%BD%8D%E7%BD%AE/" title="OFDM的FFT窗口位置">OFDM的FFT窗口位置</a><time datetime="2026-04-28T04:43:30.000Z" title="发表于 2026-04-28 12:43:30">2026-04-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By JrunDing</div><div class="footer_custom_text">Thanks.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2026/08/18/Linux%E4%BD%BF%E7%94%A8tar-gz%E7%9A%84%E5%8E%9F%E5%9B%A0/'
+    this.page.identifier = '/2026/08/18/Linux%E4%BD%BF%E7%94%A8tar-gz%E7%9A%84%E5%8E%9F%E5%9B%A0/'
+    this.page.title = 'Linux使用tar.gz的原因'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
