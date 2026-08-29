@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>通信系统传同一符号的影响 | null</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="​		在正常传输时，接收机处于稳态，而当发送大量相同符号时，接收机内部的核心算法（如载波恢复、定时恢复、自适应均衡）失去了激励，导致跑飞。 ​		在该情况下，算法失效后残留的误差信号被当成了噪声，导致测得信噪比骤降。因为偏差是固定的或缓慢变化的，它没有跨越判决边界，所以 BER 变化不大。具体原因可以从以下三个核心环节来剖析： 1. 自适应均衡器 正常情况：自适应均衡器（如 LMS、RLS、CMA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通信系统传同一符号的影响">
+<meta property="og:url" content="http://jrunding.github.io/2026/08/29/%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E4%BC%A0%E5%90%8C%E4%B8%80%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%BD%B1%E5%93%8D/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="​		在正常传输时，接收机处于稳态，而当发送大量相同符号时，接收机内部的核心算法（如载波恢复、定时恢复、自适应均衡）失去了激励，导致跑飞。 ​		在该情况下，算法失效后残留的误差信号被当成了噪声，导致测得信噪比骤降。因为偏差是固定的或缓慢变化的，它没有跨越判决边界，所以 BER 变化不大。具体原因可以从以下三个核心环节来剖析： 1. 自适应均衡器 正常情况：自适应均衡器（如 LMS、RLS、CMA">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg">
+<meta property="article:published_time" content="2026-08-29T06:25:40.000Z">
+<meta property="article:modified_time" content="2026-08-29T07:29:26.096Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2026/08/29/%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E4%BC%A0%E5%90%8C%E4%B8%80%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%BD%B1%E5%93%8D/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: null","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '通信系统传同一符号的影响',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-08-29 15:29:26'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">258</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/biography/"><span> Biography</span></a></div><div class="menus_item"><a class="site-page" href="/category/"><span> Category</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/biography/"><span> Biography</span></a></div><div class="menus_item"><a class="site-page" href="/category/"><span> Category</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">通信系统传同一符号的影响</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-29T06:25:40.000Z" title="发表于 2026-08-29 14:25:40">2026-08-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-29T07:29:26.096Z" title="更新于 2026-08-29 15:29:26">2026-08-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Communication/">Communication</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">769</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="通信系统传同一符号的影响"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2026/08/29/%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E4%BC%A0%E5%90%8C%E4%B8%80%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%BD%B1%E5%93%8D/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div><article class="post-content" id="article-container"><p>​		在正常传输时，接收机处于稳态，而当发送大量相同符号时，接收机内部的核心算法（如载波恢复、定时恢复、自适应均衡）失去了激励，导致跑飞。</p>
+<p>​		在该情况下，<strong>算法失效后残留的误差信号被当成了噪声</strong>，导致测得信噪比骤降。因为偏差是固定的或缓慢变化的，它没有跨越判决边界，所以 BER 变化不大。具体原因可以从以下三个核心环节来剖析：</p>
+<h3 id="1-自适应均衡器"><a href="#1-自适应均衡器" class="headerlink" title="1. 自适应均衡器"></a>1. 自适应均衡器</h3><ul>
+<li>正常情况：自适应均衡器（如 LMS、RLS、CMA）依赖符号之间的跳变来更新抽头系数，从而抵消信道的多径效应（ISI）。</li>
+<li>发送相同符号时：输入信号变成了恒定值。此时，均衡器的输入自相关矩阵变成了奇异矩阵，算法失去了更新的方向。</li>
+<li>后果：均衡器的系数可能会迅速发散，或者卡在错误的值上。当它把错误的系数应用到信号上时，不仅没有消除多径干扰，反而把信道噪声和 ISI 放大了几十倍。这多出来的误差能量，在计算 SNR 时就被当成了噪声，导致 SNR 暴跌。</li>
+</ul>
+<h3 id="2-载波同步环失锁"><a href="#2-载波同步环失锁" class="headerlink" title="2. 载波同步环失锁"></a>2. 载波同步环失锁</h3><ul>
+<li>正常情况：Costas 环等载波恢复算法，需要依靠星座点的相位旋转&#x2F;跳变来产生误差电压，从而纠正频偏和相偏。</li>
+<li>发送相同符号时：星座点静止不动，误差电压趋近于 0。</li>
+<li>后果：如果信道本身存在微小的频偏（比如多普勒频移或本振漂移），环路此时无法纠正这个频偏。接收端的本地载波和发送端载波的频率差会导致相位持续旋转。星座图会从一个清晰的点变成一个圆环或散乱的云。这种相位旋转带来的巨大误差，同样会被算作噪声，导致 SNR 严重下降。</li>
+</ul>
+<h3 id="3-定时同步丢失"><a href="#3-定时同步丢失" class="headerlink" title="3. 定时同步丢失"></a>3. 定时同步丢失</h3><ul>
+<li>正常情况：Gardner 等定时误差检测算法，需要利用相邻符号的幅值&#x2F;相位跳变来判断当前的采样点是否偏离了最佳时刻。</li>
+<li>发送相同符号时：没有跳变，定时误差信号输出为 0。</li>
+<li>后果：如果此时存在时钟频偏，采样点会慢慢偏离最佳时刻（从眼图的“眼睛”中心滑向边缘）。采样时刻一旦偏移，信号幅度下降，ISI 急剧增加，SNR 自然随之暴跌。</li>
+</ul>
+<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><p>​		在实际通信系统中，<strong>绝对不要</strong>在数据段连续发送相同的符号。请务必：</p>
+<ol>
+<li>在数据前后加上扰码，打乱数据。</li>
+<li>在数据流中周期性插入导频或已知的跳变符号，防止失锁。</li>
+<li>如果是为了测试极限性能，请确保在发送相同符号前，接收机已经处于完美的锁定状态，并且信道完全没有频偏和时变特性。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2026/08/29/%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E4%BC%A0%E5%90%8C%E4%B8%80%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%BD%B1%E5%93%8D/">http://jrunding.github.io/2026/08/29/%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E4%BC%A0%E5%90%8C%E4%B8%80%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%BD%B1%E5%93%8D/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">null</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%87%AA%E9%80%82%E5%BA%94%E5%9D%87%E8%A1%A1%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">1. 自适应均衡器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%BD%BD%E6%B3%A2%E5%90%8C%E6%AD%A5%E7%8E%AF%E5%A4%B1%E9%94%81"><span class="toc-number">2.</span> <span class="toc-text">2. 载波同步环失锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%9A%E6%97%B6%E5%90%8C%E6%AD%A5%E4%B8%A2%E5%A4%B1"><span class="toc-number">3.</span> <span class="toc-text">3. 定时同步丢失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E8%AE%AE"><span class="toc-number">4.</span> <span class="toc-text">建议</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By JrunDing</div><div class="footer_custom_text">Thanks.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2026/08/29/%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E4%BC%A0%E5%90%8C%E4%B8%80%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%BD%B1%E5%93%8D/'
+    this.page.identifier = '/2026/08/29/%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E4%BC%A0%E5%90%8C%E4%B8%80%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%BD%B1%E5%93%8D/'
+    this.page.title = '通信系统传同一符号的影响'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
