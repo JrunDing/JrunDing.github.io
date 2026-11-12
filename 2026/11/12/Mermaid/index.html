@@ -1,0 +1,952 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Mermaid | null</title><meta name="author" content="JrunDing"><meta name="copyright" content="JrunDing"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="适用读者：希望在 Markdown、GitHub、VS Code、技术文档和科研笔记中快速绘图的初学者。学习目标：理解 Mermaid 的工作方式，掌握常用语法，能独立绘制并导出流程图、时序图、状态图、类图和甘特图。使用方式：在支持 Mermaid 的 Markdown 阅读器中打开此文件，下面标注为 mermaid 的代码块会显示为图形。若只显示代码，参见第 12 节。   目录 Mermai">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mermaid">
+<meta property="og:url" content="http://jrunding.github.io/2026/11/12/Mermaid/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="适用读者：希望在 Markdown、GitHub、VS Code、技术文档和科研笔记中快速绘图的初学者。学习目标：理解 Mermaid 的工作方式，掌握常用语法，能独立绘制并导出流程图、时序图、状态图、类图和甘特图。使用方式：在支持 Mermaid 的 Markdown 阅读器中打开此文件，下面标注为 mermaid 的代码块会显示为图形。若只显示代码，参见第 12 节。   目录 Mermai">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg">
+<meta property="article:published_time" content="2026-11-12T11:15:52.000Z">
+<meta property="article:modified_time" content="2026-11-12T11:17:25.497Z">
+<meta property="article:author" content="JrunDing">
+<meta property="article:tag" content="Communication, Automation, ML, DL, NLP, CV, Movie, photography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="shortcut icon" href="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg"><link rel="canonical" href="http://jrunding.github.io/2026/11/12/Mermaid/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: JrunDing","link":"链接: ","source":"来源: null","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Mermaid',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-11-12 19:17:25'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">259</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/biography/"><span> Biography</span></a></div><div class="menus_item"><a class="site-page" href="/category/"><span> Category</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/biography/"><span> Biography</span></a></div><div class="menus_item"><a class="site-page" href="/category/"><span> Category</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><span> Movie</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Mermaid</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-11-12T11:15:52.000Z" title="发表于 2026-11-12 19:15:52">2026-11-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-11-12T11:17:25.497Z" title="更新于 2026-11-12 19:17:25">2026-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/">Computer Science</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>22分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Mermaid"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><span class="disqus-comment-count"><a href="http://jrunding.github.io/2026/11/12/Mermaid/#disqus_thread"><i class="fa-solid fa-spinner fa-spin"></i></a></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>适用读者：希望在 Markdown、GitHub、VS Code、技术文档和科研笔记中快速绘图的初学者。<br>学习目标：理解 Mermaid 的工作方式，掌握常用语法，能独立绘制并导出流程图、时序图、状态图、类图和甘特图。<br>使用方式：在支持 Mermaid 的 Markdown 阅读器中打开此文件，下面标注为 <code>mermaid</code> 的代码块会显示为图形。若只显示代码，参见第 12 节。</p>
+</blockquote>
+<hr>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><a href="#1-mermaid-%E6%98%AF%E4%BB%80%E4%B9%88">Mermaid 是什么</a></li>
+<li><a href="#2-%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E7%AC%AC%E4%B8%80%E5%BC%A0%E6%B5%81%E7%A8%8B%E5%9B%BE">快速上手：第一张流程图</a></li>
+<li><a href="#3-%E6%B5%81%E7%A8%8B%E5%9B%BE%E5%9F%BA%E7%A1%80%E6%96%B9%E5%90%91%E8%8A%82%E7%82%B9%E4%B8%8E%E8%BF%9E%E7%BA%BF">流程图基础：方向、节点与连线</a></li>
+<li><a href="#4-%E6%B5%81%E7%A8%8B%E5%9B%BE%E8%BF%9B%E9%98%B6%E5%88%86%E7%BB%84%E5%B8%83%E5%B1%80%E4%B8%8E%E9%85%8D%E8%89%B2">流程图进阶：分组、布局与配色</a></li>
+<li><a href="#5-%E6%97%B6%E5%BA%8F%E5%9B%BE%E8%A1%A8%E8%BE%BE%E6%B6%88%E6%81%AF%E4%BA%A4%E4%BA%92">时序图：表达消息交互</a></li>
+<li><a href="#6-%E7%8A%B6%E6%80%81%E5%9B%BE%E8%A1%A8%E8%BE%BE%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2">状态图：表达状态转换</a></li>
+<li><a href="#7-%E7%B1%BB%E5%9B%BE%E8%A1%A8%E8%BE%BE%E8%BD%AF%E4%BB%B6%E7%BB%93%E6%9E%84">类图：表达软件结构</a></li>
+<li><a href="#8-er-%E5%9B%BE%E8%A1%A8%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%B3%E7%B3%BB">ER 图：表达数据库关系</a></li>
+<li><a href="#9-%E7%94%98%E7%89%B9%E5%9B%BE%E8%A1%A8%E8%BE%BE%E9%A1%B9%E7%9B%AE%E8%BF%9B%E5%BA%A6">甘特图：表达项目进度</a></li>
+<li><a href="#10-%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%9B%BE%E9%A5%BC%E5%9B%BE%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E5%92%8C%E6%97%B6%E9%97%B4%E7%BA%BF">其他常用图：饼图、思维导图和时间线</a></li>
+<li><a href="#11-%E5%AE%8C%E6%95%B4%E6%A1%88%E4%BE%8B%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E5%A4%84%E7%90%86%E9%93%BE">完整案例：无线通信系统处理链</a></li>
+<li><a href="#12-%E5%9C%A8-markdown-%E4%B8%AD%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%AF%BC%E5%87%BA%E5%9B%BE%E8%A1%A8">在 Markdown 中显示与导出图表</a></li>
+<li><a href="#13-%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%8F%8A%E6%8E%92%E6%9F%A5">常见错误及排查</a></li>
+<li><a href="#14-%E9%80%9F%E6%9F%A5%E8%A1%A8%E7%BB%83%E4%B9%A0%E4%B8%8E%E5%AE%98%E6%96%B9%E8%B5%84%E6%96%99">速查表、练习与官方资料</a></li>
+</ol>
+<hr>
+<h2 id="1-Mermaid-是什么"><a href="#1-Mermaid-是什么" class="headerlink" title="1. Mermaid 是什么"></a>1. Mermaid 是什么</h2><p>Mermaid 是一种<strong>文本驱动的图表描述语言</strong>：你编写图表结构，Mermaid 根据代码自动生成图形。它很适合版本管理，因为改动可以像普通文本一样在 Git 中比较。</p>
+<p>一个 Mermaid 图表通常分为三层：</p>
+<ol>
+<li><strong>声明图类型</strong>：例如 <code>flowchart</code>、<code>sequenceDiagram</code>、<code>stateDiagram-v2</code>。</li>
+<li><strong>定义参与元素</strong>：例如节点、对象、状态、任务。</li>
+<li><strong>定义关系和样式</strong>：例如箭头、消息、转换条件、颜色。</li>
+</ol>
+<p>在 Markdown 里，Mermaid 代码通常放在下面这样的<strong>围栏代码块</strong>中：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```mermaid</span></span><br><span class="line"><span class="code">flowchart LR</span></span><br><span class="line"><span class="code">    A[开始] --&gt; B[处理]</span></span><br><span class="line"><span class="code">    B --&gt; C[结束]</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>重要：<code>mermaid</code> 是代码块的语言标识；如果写成普通的 <code>text</code> 代码块，大多数 Markdown 阅读器不会把它当成 Mermaid 图表。</p>
+</blockquote>
+<h3 id="Mermaid-适合哪些场景？"><a href="#Mermaid-适合哪些场景？" class="headerlink" title="Mermaid 适合哪些场景？"></a>Mermaid 适合哪些场景？</h3><table>
+<thead>
+<tr>
+<th>任务</th>
+<th>推荐图表类型</th>
+<th>主要用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>展示算法模块关系</td>
+<td><code>flowchart</code></td>
+<td>处理流程、模块连接、判断分支</td>
+</tr>
+<tr>
+<td>解释软件或通信交互</td>
+<td><code>sequenceDiagram</code></td>
+<td>时间顺序、请求与响应</td>
+</tr>
+<tr>
+<td>展示设备或协议状态</td>
+<td><code>stateDiagram-v2</code></td>
+<td>状态与触发条件</td>
+</tr>
+<tr>
+<td>展示代码中的对象关系</td>
+<td><code>classDiagram</code></td>
+<td>类、属性、方法及继承</td>
+</tr>
+<tr>
+<td>展示数据库结构</td>
+<td><code>erDiagram</code></td>
+<td>表、字段、实体关系</td>
+</tr>
+<tr>
+<td>制定科研或开发计划</td>
+<td><code>gantt</code></td>
+<td>任务、工期、依赖</td>
+</tr>
+<tr>
+<td>展示概念分类</td>
+<td><code>mindmap</code></td>
+<td>主题与层级</td>
+</tr>
+<tr>
+<td>展示事件历程</td>
+<td><code>timeline</code></td>
+<td>关键事件与阶段</td>
+</tr>
+</tbody></table>
+<p><strong>使用建议</strong>：Mermaid 的优势是快速、可维护、可复用；对于要求精确摆放、复杂跨层布线或出版级精细设计的图，Visio、draw.io 或矢量设计工具可能更合适。</p>
+<hr>
+<h2 id="2-快速上手：第一张流程图"><a href="#2-快速上手：第一张流程图" class="headerlink" title="2. 快速上手：第一张流程图"></a>2. 快速上手：第一张流程图</h2><p>先阅读这一段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    A[采集数据] --&gt; B[预处理]</span><br><span class="line">    B --&gt; C&#123;数据是否有效？&#125;</span><br><span class="line">    C --&gt;|是| D[运行算法]</span><br><span class="line">    C --&gt;|否| E[重新采集]</span><br><span class="line">    E --&gt; A</span><br><span class="line">    D --&gt; F[输出结果]</span><br></pre></td></tr></table></figure>
+
+<p>逐行解释：</p>
+<ul>
+<li><code>flowchart LR</code>：创建<strong>从左到右</strong>的流程图。</li>
+<li><code>A[采集数据]</code>：定义 ID 为 <code>A</code>、显示文字为“采集数据”的矩形节点。</li>
+<li><code>A --&gt; B</code>：建立从 A 指向 B 的箭头。</li>
+<li><code>C&#123;数据是否有效？&#125;</code>：花括号表示判断&#x2F;决策节点。</li>
+<li><code>--&gt;|是|</code>：为箭头添加“是”标签。</li>
+<li><code>E --&gt; A</code>：让流程返回前面的步骤，形成循环。</li>
+</ul>
+<p><strong>重要区别：节点 ID 不等于显示文字。</strong> 在 <code>A[采集数据]</code> 中，后续连线使用的是 <code>A</code>，而不是“采集数据”。尽量用简短、无空格的英文或数字字母组合做 ID；显示文字可以使用中文。</p>
+<hr>
+<h2 id="3-流程图基础：方向、节点与连线"><a href="#3-流程图基础：方向、节点与连线" class="headerlink" title="3. 流程图基础：方向、节点与连线"></a>3. 流程图基础：方向、节点与连线</h2><h3 id="3-1-图的方向"><a href="#3-1-图的方向" class="headerlink" title="3.1 图的方向"></a>3.1 图的方向</h3><table>
+<thead>
+<tr>
+<th>声明</th>
+<th>方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>flowchart TB</code> &#x2F; <code>flowchart TD</code></td>
+<td>从上到下</td>
+</tr>
+<tr>
+<td><code>flowchart BT</code></td>
+<td>从下到上</td>
+</tr>
+<tr>
+<td><code>flowchart LR</code></td>
+<td>从左到右</td>
+</tr>
+<tr>
+<td><code>flowchart RL</code></td>
+<td>从右到左</td>
+</tr>
+</tbody></table>
+<p>方向选取技巧：<strong>算法的处理步骤较多时使用 TB；模块间的信号流较长时使用 LR。</strong></p>
+<h3 id="3-2-常用节点形状"><a href="#3-2-常用节点形状" class="headerlink" title="3.2 常用节点形状"></a>3.2 常用节点形状</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    A[矩形：一般步骤]</span><br><span class="line">    B(圆角矩形：开始结束)</span><br><span class="line">    C&#123;菱形：条件判断&#125;</span><br><span class="line">    D([胶囊形：终点])</span><br><span class="line">    E[(圆柱形：数据库)]</span><br><span class="line">    F((圆形：状态或连接点))</span><br></pre></td></tr></table></figure>
+
+<p>语法速查：</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>形状</th>
+<th>典型含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>A[处理]</code></td>
+<td>矩形</td>
+<td>普通处理步骤</td>
+</tr>
+<tr>
+<td><code>A(开始)</code></td>
+<td>圆角矩形</td>
+<td>开始、结束</td>
+</tr>
+<tr>
+<td><code>A&#123;条件?&#125;</code></td>
+<td>菱形</td>
+<td>判断、分支</td>
+</tr>
+<tr>
+<td><code>A([完成])</code></td>
+<td>胶囊形</td>
+<td>终止节点</td>
+</tr>
+<tr>
+<td><code>A[(数据)]</code></td>
+<td>圆柱形</td>
+<td>数据库、存储</td>
+</tr>
+<tr>
+<td><code>A((节点))</code></td>
+<td>圆形</td>
+<td>状态或连接点</td>
+</tr>
+<tr>
+<td><code>A[[子程序]]</code></td>
+<td>双边框矩形</td>
+<td>子程序、预定义处理</td>
+</tr>
+</tbody></table>
+<h3 id="3-3-常用连线"><a href="#3-3-常用连线" class="headerlink" title="3.3 常用连线"></a>3.3 常用连线</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    A --&gt; B</span><br><span class="line">    B --- C</span><br><span class="line">    C -.-&gt; D</span><br><span class="line">    D ==&gt; E</span><br><span class="line">    E --&gt;|带文字的箭头| F</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>A --&gt; B</code></td>
+<td>实线单向箭头</td>
+</tr>
+<tr>
+<td><code>A --- B</code></td>
+<td>实线、无箭头</td>
+</tr>
+<tr>
+<td><code>A -.-&gt; B</code></td>
+<td>虚线箭头</td>
+</tr>
+<tr>
+<td><code>A ==&gt; B</code></td>
+<td>加粗箭头</td>
+</tr>
+<tr>
+<td><code>A &lt;--&gt; B</code></td>
+<td>双向箭头</td>
+</tr>
+<tr>
+<td>&#96;A –&gt;</td>
+<td>条件</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>图中连接线一般表示逻辑关系，不必然表示物理数据线；在正式科研图中，应在图注说明连线含义。</p>
+</blockquote>
+<h3 id="3-4-多分支与多入口"><a href="#3-4-多分支与多入口" class="headerlink" title="3.4 多分支与多入口"></a>3.4 多分支与多入口</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">flowchart TB</span><br><span class="line">    A[接收任务] --&gt; B&#123;任务类型&#125;</span><br><span class="line">    B --&gt;|分类| C[分类模型]</span><br><span class="line">    B --&gt;|检测| D[检测模型]</span><br><span class="line">    B --&gt;|重建| E[重建模型]</span><br><span class="line">    C --&gt; F[任务输出]</span><br><span class="line">    D --&gt; F</span><br><span class="line">    E --&gt; F</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-显示文本包含特殊字符"><a href="#3-5-显示文本包含特殊字符" class="headerlink" title="3.5 显示文本包含特殊字符"></a>3.5 显示文本包含特殊字符</h3><p>当节点文字含有括号、冒号或复杂符号时，推荐将文字用双引号包起来：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    A[&quot;输入：IQ 样本 (I/Q)&quot;] --&gt; B[&quot;FFT (N = 1024)&quot;]</span><br><span class="line">    B --&gt; C[&quot;输出：符号估计&quot;]</span><br></pre></td></tr></table></figure>
+
+<p>建议养成 <code>A[&quot;节点文字&quot;]</code> 的习惯，可以减少很多语法歧义。</p>
+<h3 id="3-6-注释"><a href="#3-6-注释" class="headerlink" title="3.6 注释"></a>3.6 注释</h3><p>Mermaid 使用 <code>%%</code> 表示注释：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    %% 下面展示最简单的信号处理链</span><br><span class="line">    A[输入] --&gt; B[处理]</span><br><span class="line">    B --&gt; C[输出]</span><br></pre></td></tr></table></figure>
+
+<p>注释适合记录设计理由，但不会显示在图里。</p>
+<hr>
+<h2 id="4-流程图进阶：分组、布局与配色"><a href="#4-流程图进阶：分组、布局与配色" class="headerlink" title="4. 流程图进阶：分组、布局与配色"></a>4. 流程图进阶：分组、布局与配色</h2><h3 id="4-1-使用-subgraph-给模块分组"><a href="#4-1-使用-subgraph-给模块分组" class="headerlink" title="4.1 使用 subgraph 给模块分组"></a>4.1 使用 subgraph 给模块分组</h3><p><code>subgraph ... end</code> 能将多个节点包进同一个区域，特别适合系统架构图。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    subgraph TX[&quot;发送端&quot;]</span><br><span class="line">        A[&quot;数据输入&quot;] --&gt; B[&quot;信源编码&quot;]</span><br><span class="line">        B --&gt; C[&quot;信道映射&quot;]</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    subgraph CHANNEL[&quot;无线信道&quot;]</span><br><span class="line">        D[&quot;传输与噪声&quot;]</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    subgraph RX[&quot;接收端&quot;]</span><br><span class="line">        E[&quot;信号检测&quot;] --&gt; F[&quot;信源解码&quot;]</span><br><span class="line">        F --&gt; G[&quot;任务输出&quot;]</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    C --&gt; D --&gt; E</span><br></pre></td></tr></table></figure>
+
+<p>要点：</p>
+<ul>
+<li><code>TX</code> 是子图 ID；<code>[&quot;发送端&quot;]</code> 是子图标题。</li>
+<li>子图中的连线照常写，模块之间也可以连线。</li>
+<li>可以在子图内部写 <code>direction TB</code> 调整方向，不过最终布局可能受到外部连线和布局算法的影响，<strong>不能保证像 Visio 那样精确定位</strong>。</li>
+</ul>
+<h3 id="4-2-一套简洁的工程论文风格"><a href="#4-2-一套简洁的工程论文风格" class="headerlink" title="4.2 一套简洁的工程论文风格"></a>4.2 一套简洁的工程论文风格</h3><p>建议用白色或浅灰底色、深灰边框，<strong>只对关键模块使用强调色</strong>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    A[&quot;输入&quot;]:::normal --&gt; B[&quot;编码器&quot;]:::key</span><br><span class="line">    B --&gt; C[&quot;信道&quot;]:::normal</span><br><span class="line">    C --&gt; D[&quot;解码器&quot;]:::key</span><br><span class="line">    D --&gt; E[&quot;输出&quot;]:::normal</span><br><span class="line"></span><br><span class="line">    classDef normal fill:#FFFFFF,stroke:#555555,color:#222222,stroke-width:1.2px;</span><br><span class="line">    classDef key fill:#EAF2F8,stroke:#36668D,color:#17324D,stroke-width:1.6px;</span><br></pre></td></tr></table></figure>
+
+<p>这里：</p>
+<ul>
+<li><code>classDef normal ...</code> 定义名为 <code>normal</code> 的样式。</li>
+<li><code>:::normal</code> 将样式直接应用到节点。</li>
+<li><code>fill</code> 是填充颜色，<code>stroke</code> 是边框颜色，<code>color</code> 是字体颜色。</li>
+<li>也可以使用 <code>class A,B normal;</code> 为多个节点分配类。</li>
+</ul>
+<h3 id="4-3-单独调整某个节点"><a href="#4-3-单独调整某个节点" class="headerlink" title="4.3 单独调整某个节点"></a>4.3 单独调整某个节点</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    A[开始] --&gt; B[关键处理] --&gt; C[结束]</span><br><span class="line">    style B fill:#FFF5DF,stroke:#B67B12,color:#333333,stroke-width:2px</span><br></pre></td></tr></table></figure>
+
+<p><code>style</code> 适合少数节点，<code>classDef</code> 适合大量复用。</p>
+<h3 id="4-4-为单张图设置主题"><a href="#4-4-为单张图设置主题" class="headerlink" title="4.4 为单张图设置主题"></a>4.4 为单张图设置主题</h3><p>一些支持 Mermaid 配置前置区的渲染器允许在图中写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">config:</span><br><span class="line">  theme: neutral</span><br><span class="line">---</span><br><span class="line">flowchart LR</span><br><span class="line">    A[输入] --&gt; B[处理] --&gt; C[输出]</span><br></pre></td></tr></table></figure>
+
+<p>常见主题包括 <code>default</code>、<code>dark</code>、<code>forest</code>、<code>neutral</code>、<code>base</code>。图表主题、具体默认外观和布局可能随 Mermaid 版本变化；若跨平台使用，优先选择通用样式，并在目标平台预览。</p>
+<h3 id="4-5-排版经验"><a href="#4-5-排版经验" class="headerlink" title="4.5 排版经验"></a>4.5 排版经验</h3><ol>
+<li>每张图先明确一个核心问题，不要在同一张图里塞入所有细节。</li>
+<li>主链路尽量沿一个方向展开，减少折返线和交叉线。</li>
+<li>同类模块采用相同形状和样式。</li>
+<li>重要连接可以添加简短的标签，如“数据”“控制”“反馈”。</li>
+<li>Mermaid 是自动布局，节点的确切坐标不可像 PPT 那样随意指定。</li>
+</ol>
+<hr>
+<h2 id="5-时序图：表达消息交互"><a href="#5-时序图：表达消息交互" class="headerlink" title="5. 时序图：表达消息交互"></a>5. 时序图：表达消息交互</h2><p>时序图描述<strong>谁在什么时候向谁发送了什么信息</strong>，特别适合通信协议、客户端与服务器交互、SDR 控制与反馈过程。</p>
+<h3 id="5-1-基本语法"><a href="#5-1-基本语法" class="headerlink" title="5.1 基本语法"></a>5.1 基本语法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">    participant UE as 用户设备</span><br><span class="line">    participant BS as 基站</span><br><span class="line">    participant SERVER as 边缘服务器</span><br><span class="line"></span><br><span class="line">    UE-&gt;&gt;BS: 上传业务请求</span><br><span class="line">    BS-&gt;&gt;SERVER: 转发任务</span><br><span class="line">    SERVER--&gt;&gt;BS: 返回推理结果</span><br><span class="line">    BS--&gt;&gt;UE: 下发结果</span><br></pre></td></tr></table></figure>
+
+<p>要点：</p>
+<ul>
+<li><code>participant UE as 用户设备</code>：定义参与者 ID 和显示名称。</li>
+<li><code>UE-&gt;&gt;BS</code>：实线消息箭头。</li>
+<li><code>SERVER--&gt;&gt;BS</code>：虚线响应箭头。</li>
+<li>参与者从左到右排列，交互按从上到下的顺序发生。</li>
+</ul>
+<h3 id="5-2-常用消息符号"><a href="#5-2-常用消息符号" class="headerlink" title="5.2 常用消息符号"></a>5.2 常用消息符号</h3><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>A-&gt;&gt;B: 消息</code></td>
+<td>实线消息箭头</td>
+</tr>
+<tr>
+<td><code>A--&gt;&gt;B: 响应</code></td>
+<td>虚线消息箭头</td>
+</tr>
+<tr>
+<td><code>A-&gt;B: 消息</code></td>
+<td>实线无箭头端点的连线</td>
+</tr>
+<tr>
+<td><code>A--&gt;&gt;A: 自处理</code></td>
+<td>参与者对自己的消息</td>
+</tr>
+<tr>
+<td><code>Note right of A: 说明</code></td>
+<td>A 右侧的注释</td>
+</tr>
+<tr>
+<td><code>Note over A,B: 说明</code></td>
+<td>跨越 A 和 B 的注释</td>
+</tr>
+</tbody></table>
+<h3 id="5-3-判断、循环和自动编号"><a href="#5-3-判断、循环和自动编号" class="headerlink" title="5.3 判断、循环和自动编号"></a>5.3 判断、循环和自动编号</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">    autonumber</span><br><span class="line">    participant TX as 发送端</span><br><span class="line">    participant RX as 接收端</span><br><span class="line"></span><br><span class="line">    TX-&gt;&gt;RX: 发送数据帧</span><br><span class="line">    RX-&gt;&gt;RX: 检查 CRC</span><br><span class="line"></span><br><span class="line">    alt 校验成功</span><br><span class="line">        RX--&gt;&gt;TX: ACK</span><br><span class="line">    else 校验失败</span><br><span class="line">        RX--&gt;&gt;TX: NACK</span><br><span class="line">        loop 允许重传</span><br><span class="line">            TX-&gt;&gt;RX: 重传数据帧</span><br><span class="line">        end</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>autonumber</code>：自动为消息编号。</li>
+<li><code>alt ... else ... end</code>：互斥分支。</li>
+<li><code>loop ... end</code>：循环过程。</li>
+<li><code>opt ... end</code>：可选执行块。</li>
+</ul>
+<h3 id="5-4-显示执行过程"><a href="#5-4-显示执行过程" class="headerlink" title="5.4 显示执行过程"></a>5.4 显示执行过程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">    participant APP as 应用</span><br><span class="line">    participant MODEL as 推理服务</span><br><span class="line"></span><br><span class="line">    APP-&gt;&gt;MODEL: 提交输入数据</span><br><span class="line">    activate MODEL</span><br><span class="line">    MODEL-&gt;&gt;MODEL: 模型推理</span><br><span class="line">    MODEL--&gt;&gt;APP: 返回预测结果</span><br><span class="line">    deactivate MODEL</span><br></pre></td></tr></table></figure>
+
+<p><code>activate</code> &#x2F; <code>deactivate</code> 在参与者生命线上绘制执行条，可突出处理时段。时序图展示的是<strong>交互顺序</strong>，并不自动保证时间间隔按真实比例显示。</p>
+<hr>
+<h2 id="6-状态图：表达状态转换"><a href="#6-状态图：表达状态转换" class="headerlink" title="6. 状态图：表达状态转换"></a>6. 状态图：表达状态转换</h2><p>状态图适合描述通信设备、协议连接、任务调度器等有限状态机。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">stateDiagram-v2</span><br><span class="line">    [*] --&gt; Idle</span><br><span class="line">    Idle --&gt; Sync: 检测到同步信号</span><br><span class="line">    Sync --&gt; Receiving: 同步成功</span><br><span class="line">    Sync --&gt; Idle: 同步超时</span><br><span class="line">    Receiving --&gt; Decoding: 帧接收完成</span><br><span class="line">    Decoding --&gt; Idle: 处理完成</span><br><span class="line">    Decoding --&gt; Error: 解码失败</span><br><span class="line">    Error --&gt; Idle: 复位</span><br></pre></td></tr></table></figure>
+
+<p>理解：</p>
+<ul>
+<li><code>stateDiagram-v2</code>：声明状态图。</li>
+<li><code>[*]</code>：特殊的初始或终止标记；箭头方向决定角色。</li>
+<li><code>Idle --&gt; Sync: ...</code>：触发某条件后从一个状态转换到另一个状态。</li>
+</ul>
+<h3 id="包含终止状态的例子"><a href="#包含终止状态的例子" class="headerlink" title="包含终止状态的例子"></a>包含终止状态的例子</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">stateDiagram-v2</span><br><span class="line">    [*] --&gt; Ready</span><br><span class="line">    Ready --&gt; Running: 启动</span><br><span class="line">    Running --&gt; Finished: 成功</span><br><span class="line">    Running --&gt; Failed: 出错</span><br><span class="line">    Finished --&gt; [*]</span><br><span class="line">    Failed --&gt; [*]</span><br></pre></td></tr></table></figure>
+
+<p>状态图强调的是“<strong>当前处于什么状态、在什么条件下转移</strong>”，不同于流程图强调“步骤怎么执行”。</p>
+<hr>
+<h2 id="7-类图：表达软件结构"><a href="#7-类图：表达软件结构" class="headerlink" title="7. 类图：表达软件结构"></a>7. 类图：表达软件结构</h2><p>类图属于 UML 图的一种，适合描述 Python、C++、Java 等项目中对象和类的结构。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">    class Channel &#123;</span><br><span class="line">        +float snr</span><br><span class="line">        +transmit(symbols)</span><br><span class="line">    &#125;</span><br><span class="line">    class AWGNChannel &#123;</span><br><span class="line">        +addNoise(symbols)</span><br><span class="line">    &#125;</span><br><span class="line">    class RayleighChannel &#123;</span><br><span class="line">        +applyFading(symbols)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Channel &lt;|-- AWGNChannel</span><br><span class="line">    Channel &lt;|-- RayleighChannel</span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ul>
+<li><code>class Channel &#123; ... &#125;</code>：定义类及其成员。</li>
+<li><code>+</code>：公有；<code>-</code>：私有；<code>#</code>：受保护。</li>
+<li>带括号的成员通常表示方法，例如 <code>transmit(symbols)</code>。</li>
+<li><code>Channel &lt;|-- AWGNChannel</code>：<code>AWGNChannel</code> 继承 <code>Channel</code>。</li>
+</ul>
+<p>常见关系：</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#96;Parent &lt;</td>
+<td>– Child&#96;</td>
+</tr>
+<tr>
+<td><code>A *-- B</code></td>
+<td>组合（强拥有关系）</td>
+</tr>
+<tr>
+<td><code>A o-- B</code></td>
+<td>聚合（弱拥有关系）</td>
+</tr>
+<tr>
+<td><code>A --&gt; B</code></td>
+<td>关联</td>
+</tr>
+<tr>
+<td><code>A ..&gt; B</code></td>
+<td>依赖</td>
+</tr>
+<tr>
+<td>&#96;A ..</td>
+<td>&gt; Interface&#96;</td>
+</tr>
+</tbody></table>
+<p>Mermaid 类图通常用来表达结构，不用于完整取代 UML 建模工具。</p>
+<hr>
+<h2 id="8-ER-图：表达数据库关系"><a href="#8-ER-图：表达数据库关系" class="headerlink" title="8. ER 图：表达数据库关系"></a>8. ER 图：表达数据库关系</h2><p>ER（Entity–Relationship）图用来描述数据库中的实体、属性和实体间关系。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">erDiagram</span><br><span class="line">    USER ||--o&#123; EXPERIMENT : creates</span><br><span class="line">    EXPERIMENT ||--o&#123; RESULT : contains</span><br><span class="line">    USER &#123;</span><br><span class="line">        int user_id PK</span><br><span class="line">        string name</span><br><span class="line">    &#125;</span><br><span class="line">    EXPERIMENT &#123;</span><br><span class="line">        int experiment_id PK</span><br><span class="line">        int user_id FK</span><br><span class="line">        string model_name</span><br><span class="line">    &#125;</span><br><span class="line">    RESULT &#123;</span><br><span class="line">        int result_id PK</span><br><span class="line">        int experiment_id FK</span><br><span class="line">        float accuracy</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>常见符号理解：</p>
+<ul>
+<li><code>||</code>：恰好一个。</li>
+<li><code>o|</code>：零个或一个。</li>
+<li><code>|&#123;</code>：一个或多个。</li>
+<li><code>o&#123;</code>：零个或多个。</li>
+<li><code>PK</code> &#x2F; <code>FK</code>：主键 &#x2F; 外键标记。</li>
+</ul>
+<p>例如 <code>USER ||--o&#123; EXPERIMENT</code> 表示：一个用户可以创建零个或多个实验，每个实验对应恰好一个用户。</p>
+<hr>
+<h2 id="9-甘特图：表达项目进度"><a href="#9-甘特图：表达项目进度" class="headerlink" title="9. 甘特图：表达项目进度"></a>9. 甘特图：表达项目进度</h2><p>甘特图（Gantt）常用于论文实验计划、原型系统开发计划、软件项目管理。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">gantt</span><br><span class="line">    title 通信系统原型开发计划</span><br><span class="line">    dateFormat YYYY-MM-DD</span><br><span class="line">    axisFormat %m/%d</span><br><span class="line"></span><br><span class="line">    section 系统设计</span><br><span class="line">    确定技术架构          :a1, 2026-11-16, 5d</span><br><span class="line">    设计处理流程          :a2, after a1, 6d</span><br><span class="line"></span><br><span class="line">    section 开发验证</span><br><span class="line">    实现发送模块          :b1, after a2, 8d</span><br><span class="line">    实现接收模块          :b2, after a2, 8d</span><br><span class="line">    端到端联调            :crit, b3, after b1, 5d</span><br><span class="line"></span><br><span class="line">    section 总结</span><br><span class="line">    整理实验结果          :c1, after b3, 4d</span><br></pre></td></tr></table></figure>
+
+<p>主要语法：</p>
+<ul>
+<li><code>title</code>：标题。</li>
+<li><code>dateFormat YYYY-MM-DD</code>：输入日期格式。</li>
+<li><code>axisFormat %m/%d</code>：坐标轴显示格式。</li>
+<li><code>section</code>：任务分组。</li>
+<li><code>:a1, 2026-11-16, 5d</code>：任务 ID、开始时间、持续时间。</li>
+<li><code>after a1</code>：等前一个任务结束后开始。</li>
+<li><code>crit</code>：标注关键任务。</li>
+</ul>
+<blockquote>
+<p>注意：示例中“端到端联调”仅依赖 <code>b1</code>，为了表示必须等待发送端与接收端都完成，实际项目应更谨慎设置依赖。Mermaid 甘特图更适合可视化计划，并非完整的项目调度引擎。</p>
+</blockquote>
+<hr>
+<h2 id="10-其他常用图：饼图、思维导图和时间线"><a href="#10-其他常用图：饼图、思维导图和时间线" class="headerlink" title="10. 其他常用图：饼图、思维导图和时间线"></a>10. 其他常用图：饼图、思维导图和时间线</h2><h3 id="10-1-饼图-pie"><a href="#10-1-饼图-pie" class="headerlink" title="10.1 饼图 pie"></a>10.1 饼图 <code>pie</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pie showData</span><br><span class="line">    title 仿真计算时间构成（示意）</span><br><span class="line">    &quot;信道处理&quot; : 25</span><br><span class="line">    &quot;模型推理&quot; : 55</span><br><span class="line">    &quot;数据搬运&quot; : 20</span><br></pre></td></tr></table></figure>
+
+<p><code>pie showData</code> 可以显示数据标签。<strong>示例数值仅用于演示，不代表实际测量结果</strong>。</p>
+<h3 id="10-2-思维导图-mindmap"><a href="#10-2-思维导图-mindmap" class="headerlink" title="10.2 思维导图 mindmap"></a>10.2 思维导图 <code>mindmap</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mindmap</span><br><span class="line">  root((Mermaid))</span><br><span class="line">    流程描述</span><br><span class="line">      流程图</span><br><span class="line">      状态图</span><br><span class="line">    软件设计</span><br><span class="line">      时序图</span><br><span class="line">      类图</span><br><span class="line">    项目管理</span><br><span class="line">      甘特图</span><br><span class="line">      时间线</span><br></pre></td></tr></table></figure>
+
+<p>思维导图主要靠<strong>缩进</strong>表达父子层级。不同阅读器的 Mermaid 版本可能对思维导图的支持有所差异。</p>
+<h3 id="10-3-时间线-timeline"><a href="#10-3-时间线-timeline" class="headerlink" title="10.3 时间线 timeline"></a>10.3 时间线 <code>timeline</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">timeline</span><br><span class="line">    title 项目阶段（示意）</span><br><span class="line">    第一阶段 : 需求分析 : 系统建模</span><br><span class="line">    第二阶段 : 算法实现 : 仿真验证</span><br><span class="line">    第三阶段 : 硬件集成 : 实验评估</span><br></pre></td></tr></table></figure>
+
+<p>时间线适合展示事件顺序，不需要像甘特图那样精确描述任务持续时间。</p>
+<hr>
+<h2 id="11-完整案例：无线通信系统处理链"><a href="#11-完整案例：无线通信系统处理链" class="headerlink" title="11. 完整案例：无线通信系统处理链"></a>11. 完整案例：无线通信系统处理链</h2><p>下面以一个简化的<strong>语义通信 + OFDM 收发处理链</strong>为例。这个图综合了子图、模块连接、样式分类和反馈链路。它是结构示意，不代表所有硬件原型必须采用同样的信号处理顺序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    subgraph TX[&quot;发送端&quot;]</span><br><span class="line">        direction TB</span><br><span class="line">        A[&quot;任务输入&quot;] --&gt; B[&quot;语义编码&quot;]</span><br><span class="line">        B --&gt; C[&quot;信道符号映射&quot;]</span><br><span class="line">        C --&gt; D[&quot;OFDM 调制&quot;]</span><br><span class="line">        D --&gt; E[&quot;DAC / RF 发射&quot;]</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    subgraph CH[&quot;无线信道&quot;]</span><br><span class="line">        H[&quot;多径衰落 + 噪声&quot;]</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    subgraph RX[&quot;接收端&quot;]</span><br><span class="line">        direction TB</span><br><span class="line">        F[&quot;ADC / RF 接收&quot;] --&gt; G[&quot;同步与 OFDM 解调&quot;]</span><br><span class="line">        G --&gt; I[&quot;信道估计与检测&quot;]</span><br><span class="line">        I --&gt; J[&quot;语义解码&quot;]</span><br><span class="line">        J --&gt; K[&quot;任务输出&quot;]</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    E --&gt;|&quot;无线波形&quot;| H</span><br><span class="line">    H --&gt; F</span><br><span class="line">    I -.-&gt;|&quot;可选信道状态反馈&quot;| C</span><br><span class="line"></span><br><span class="line">    classDef semantic fill:#EAF2F8,stroke:#36668D,color:#17324D,stroke-width:1.5px;</span><br><span class="line">    classDef physical fill:#FFFFFF,stroke:#666666,color:#222222,stroke-width:1.2px;</span><br><span class="line">    classDef channel fill:#F3F3F3,stroke:#555555,color:#222222,stroke-width:1.3px;</span><br><span class="line"></span><br><span class="line">    class B,J semantic;</span><br><span class="line">    class A,C,D,E,F,G,I,K physical;</span><br><span class="line">    class H channel;</span><br></pre></td></tr></table></figure>
+
+<p>这张图可用来练习以下操作：</p>
+<ol>
+<li>将 <code>flowchart LR</code> 改成 <code>flowchart TB</code>，观察整体布局变化。</li>
+<li>为发送端添加“量化”节点，并明确放置位置。</li>
+<li>将接收端的“同步与 OFDM 解调”拆成两个节点。</li>
+<li>去掉反馈线，形成纯单向链路。</li>
+<li>为“信道估计与检测”添加可选算法分支，例如 LS、LMMSE 或神经网络。</li>
+</ol>
+<p>科研使用建议：如果图要进入 IEEE 论文，建议先用 Mermaid 快速形成结构草图，再根据排版要求检查字号、线宽、可读性，必要时导出 SVG 并进行矢量编辑。</p>
+<hr>
+<h2 id="12-在-Markdown-中显示与导出图表"><a href="#12-在-Markdown-中显示与导出图表" class="headerlink" title="12. 在 Markdown 中显示与导出图表"></a>12. 在 Markdown 中显示与导出图表</h2><p>本节尤其重要：<strong>Markdown 文件中写有 Mermaid 代码，并不意味着所有 Markdown 阅读器、PDF 导出工具都能自动渲染。</strong></p>
+<h3 id="12-1-在线直接练习：Mermaid-Live-Editor"><a href="#12-1-在线直接练习：Mermaid-Live-Editor" class="headerlink" title="12.1 在线直接练习：Mermaid Live Editor"></a>12.1 在线直接练习：Mermaid Live Editor</h3><p>打开 <a target="_blank" rel="noopener" href="https://mermaid.live/">Mermaid Live Editor</a>，粘贴下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    A[输入] --&gt; B[处理] --&gt; C[输出]</span><br></pre></td></tr></table></figure>
+
+<p>它适合实时修改语法、查看渲染效果，并导出图形。支持的格式和具体导出选项取决于在线编辑器版本。</p>
+<h3 id="12-2-在-GitHub-查看"><a href="#12-2-在-GitHub-查看" class="headerlink" title="12.2 在 GitHub 查看"></a>12.2 在 GitHub 查看</h3><p>GitHub 的 Markdown 渲染支持 Mermaid 代码块。把包含 <code>```mermaid</code> 代码块的 <code>.md</code> 文件推送到仓库，在 GitHub 的文件预览中通常可以直接看到图表。</p>
+<p>需要注意：GitHub 的渲染引擎版本由平台决定；某些新特性不一定同步支持。</p>
+<h3 id="12-3-在-VS-Code-中查看"><a href="#12-3-在-VS-Code-中查看" class="headerlink" title="12.3 在 VS Code 中查看"></a>12.3 在 VS Code 中查看</h3><p>可选工作流程：</p>
+<ol>
+<li>使用 VS Code 打开 <code>.md</code> 文件。</li>
+<li>根据需要安装支持 Mermaid 的 Markdown 预览扩展，例如 <strong>Markdown Preview Mermaid Support</strong>；不同 VS Code 版本与预览扩展的支持情况可能不同。</li>
+<li>打开 Markdown 预览：<code>Ctrl + Shift + V</code>。</li>
+<li>如果图仍然显示为代码，检查预览扩展是否已启用，以及当前 Mermaid 语法是否兼容。</li>
+</ol>
+<blockquote>
+<p>容易混淆的一点：<strong>语法高亮</strong>不等于<strong>图表渲染</strong>。只负责把 Mermaid 代码染色的扩展，不一定能在 Markdown 预览区生成图形。</p>
+</blockquote>
+<h3 id="12-4-使用-Mermaid-CLI-导出-SVG-x2F-PNG-x2F-PDF"><a href="#12-4-使用-Mermaid-CLI-导出-SVG-x2F-PNG-x2F-PDF" class="headerlink" title="12.4 使用 Mermaid CLI 导出 SVG &#x2F; PNG &#x2F; PDF"></a>12.4 使用 Mermaid CLI 导出 SVG &#x2F; PNG &#x2F; PDF</h3><p>如果已安装 Node.js 和 npm，可以安装 Mermaid 官方命令行工具：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @mermaid-js/mermaid-cli</span><br></pre></td></tr></table></figure>
+
+<p>新建文件 <code>demo.mmd</code>（不是 Markdown 文件，内容直接从图类型声明开始）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    A[输入] --&gt; B[处理] --&gt; C[输出]</span><br></pre></td></tr></table></figure>
+
+<p>在终端运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输出矢量图，适合论文和技术文档</span></span><br><span class="line">mmdc -i demo.mmd -o demo.svg -b white</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出位图</span></span><br><span class="line">mmdc -i demo.mmd -o demo.png -b white</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 PDF 图形文件</span></span><br><span class="line">mmdc -i demo.mmd -o demo.pdf -b white</span><br></pre></td></tr></table></figure>
+
+<p>如果还不想全局安装，可以尝试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx -p @mermaid-js/mermaid-cli mmdc -i demo.mmd -o demo.svg -b white</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：上面的 <code>demo.pdf</code> 是由<strong>单张 Mermaid 图</strong>导出的 PDF，<strong>不是整份 Markdown 学习笔记的 PDF</strong>。</p>
+<h3 id="12-5-将整份-Markdown-的-Mermaid-图转换成-SVG-引用"><a href="#12-5-将整份-Markdown-的-Mermaid-图转换成-SVG-引用" class="headerlink" title="12.5 将整份 Markdown 的 Mermaid 图转换成 SVG 引用"></a>12.5 将整份 Markdown 的 Mermaid 图转换成 SVG 引用</h3><p>当 Markdown 本身包含多个 Mermaid 代码块时，可使用 Mermaid CLI 的 Markdown 转换功能：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mmdc -i input.md -o output.md</span><br></pre></td></tr></table></figure>
+
+<p>这会将源 Markdown 中的 Mermaid 图表转换成外部 SVG 图文件引用，并生成新的 Markdown 文件（具体生成文件名以运行结果为准）。随后：</p>
+<ol>
+<li><strong>保留</strong>新 Markdown 文件和它引用的 SVG 文件在合适的相对路径中。</li>
+<li>用支持 SVG 图片的 Markdown 渲染工具打开新文件。</li>
+<li>确保预览中每张图都能显示，再使用该工具的<strong>打印 &#x2F; 导出 PDF</strong>功能。</li>
+<li>检查 PDF 中的中文、字体、图片清晰度、分页和页面留白。</li>
+</ol>
+<p>这种做法通常比直接把含 <code>mermaid</code> 代码块的 Markdown 交给一个<strong>不支持 Mermaid 的 PDF 转换器</strong>更可靠。</p>
+<h3 id="12-6-另一条可靠路线：图先生成，再引用"><a href="#12-6-另一条可靠路线：图先生成，再引用" class="headerlink" title="12.6 另一条可靠路线：图先生成，再引用"></a>12.6 另一条可靠路线：图先生成，再引用</h3><p>如果只需要少量图，可以独立导出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">project/</span><br><span class="line">├─ notes.md</span><br><span class="line">└─ images/</span><br><span class="line">   └─ process.svg</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>notes.md</code> 中使用普通 Markdown 图片语法：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">处理流程</span>](<span class="link">images/process.svg</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这样就不依赖下游 Markdown&#x2F;PDF 工具是否能识别 Mermaid 语法，但仍然需要导出器支持 SVG。若不支持 SVG，可改用 PNG。</p>
+<h3 id="12-7-为什么-Mermaid-在-Markdown-里正常、导出-PDF-后却消失？"><a href="#12-7-为什么-Mermaid-在-Markdown-里正常、导出-PDF-后却消失？" class="headerlink" title="12.7 为什么 Mermaid 在 Markdown 里正常、导出 PDF 后却消失？"></a>12.7 为什么 Mermaid 在 Markdown 里正常、导出 PDF 后却消失？</h3><p>通常不是 Mermaid 代码写错，而是<strong>渲染链不一致</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flowchart TB</span><br><span class="line">    A[&quot;Markdown 预览支持 Mermaid&quot;] --&gt; B[&quot;预览时生成 SVG&quot;]</span><br><span class="line">    C[&quot;另一种 PDF 导出工具&quot;] --&gt; D&#123;&quot;是否支持 Mermaid?&quot;&#125;</span><br><span class="line">    D --&gt;|是| E[&quot;生成并嵌入图形&quot;]</span><br><span class="line">    D --&gt;|否| F[&quot;图丢失 / 仅显示代码&quot;]</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决思路</strong>：要么使用确实支持 Mermaid 的 PDF 导出流程，要么先将 Mermaid 渲染为 SVG&#x2F;PNG，再把外部图片嵌入 Markdown。只把 <code>.md</code> 文件换一个扩展名，不能解决这个问题。</p>
+<hr>
+<h2 id="13-常见错误及排查"><a href="#13-常见错误及排查" class="headerlink" title="13. 常见错误及排查"></a>13. 常见错误及排查</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>常见原因</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>图不显示，只显示代码</td>
+<td>Markdown 阅读器不支持 Mermaid</td>
+<td>使用 Live Editor 或带 Mermaid 支持的预览器</td>
+</tr>
+<tr>
+<td>提示语法解析错误</td>
+<td>括号、特殊字符或关键字冲突</td>
+<td>使用 <code>A[&quot;带引号的文本&quot;]</code>；逐行删除定位问题</td>
+</tr>
+<tr>
+<td>某些节点没有显示</td>
+<td>ID 拼写错误或未连接</td>
+<td>检查节点 ID、大小写和连接线</td>
+</tr>
+<tr>
+<td>方向没有完全按预期排列</td>
+<td>自动布局算法决定具体位置</td>
+<td>减少交叉连接、拆分子图；必要时改用绘图软件</td>
+</tr>
+<tr>
+<td>颜色或字体与预期不一致</td>
+<td>Mermaid 主题、版本或外部样式差异</td>
+<td>尽量用 <code>classDef</code>；目标平台重新检查</td>
+</tr>
+<tr>
+<td>中文出现乱码或方框</td>
+<td>渲染环境缺少相应字体</td>
+<td>调整环境字体或换用兼容字体的导出方式</td>
+</tr>
+<tr>
+<td>PDF 中没有图</td>
+<td>导出工具没有执行 Mermaid 渲染</td>
+<td>先导出 SVG&#x2F;PNG，再引用图片</td>
+</tr>
+<tr>
+<td>SVG 在某些 PDF 工具中不显示</td>
+<td>导出器 SVG 兼容问题</td>
+<td>转成 PNG，或换用支持 SVG 的导出器</td>
+</tr>
+<tr>
+<td>新图类型不能渲染</td>
+<td>Mermaid 版本过旧</td>
+<td>检查当前渲染器版本，或先用更通用的图类型</td>
+</tr>
+</tbody></table>
+<p><strong>容易踩的坑：</strong></p>
+<ul>
+<li>流程图中尽量不要直接使用全小写的 <code>end</code> 作为节点标识或关键字形式的标签，因为它可能与 <code>subgraph ... end</code> 的结束关键字冲突。</li>
+<li>Mermaid 的语法大小写敏感，例如 <code>sequenceDiagram</code>、<code>stateDiagram-v2</code>、<code>classDiagram</code> 不应随意改写。</li>
+<li>不要把 Mermaid 代码块里的 Markdown 图片语法 <code>![图片](路径)</code> 当作 Mermaid 语法。</li>
+<li>代码是否能在某个编辑器显示，最终以<strong>实际使用的 Mermaid 渲染器</strong>为准。</li>
+</ul>
+<h3 id="推荐的排错顺序"><a href="#推荐的排错顺序" class="headerlink" title="推荐的排错顺序"></a>推荐的排错顺序</h3><ol>
+<li>将单张有问题的图复制到 <a target="_blank" rel="noopener" href="https://mermaid.live/">Mermaid Live Editor</a>。</li>
+<li>如果 Live Editor 也报错，先检查语法；把图缩减为两个节点和一条线。</li>
+<li>如果 Live Editor 正常、Markdown 里异常，检查预览器及版本。</li>
+<li>如果预览正常、PDF 异常，优先检查 PDF 工具是否真正渲染了 Mermaid。</li>
+</ol>
+<hr>
+<h2 id="14-速查表、练习与官方资料"><a href="#14-速查表、练习与官方资料" class="headerlink" title="14. 速查表、练习与官方资料"></a>14. 速查表、练习与官方资料</h2><h3 id="14-1-图表类型速查"><a href="#14-1-图表类型速查" class="headerlink" title="14.1 图表类型速查"></a>14.1 图表类型速查</h3><table>
+<thead>
+<tr>
+<th>图类型</th>
+<th>声明语句</th>
+<th>学习优先级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>流程图</td>
+<td><code>flowchart LR</code></td>
+<td>★★★★★</td>
+</tr>
+<tr>
+<td>时序图</td>
+<td><code>sequenceDiagram</code></td>
+<td>★★★★★</td>
+</tr>
+<tr>
+<td>状态图</td>
+<td><code>stateDiagram-v2</code></td>
+<td>★★★★☆</td>
+</tr>
+<tr>
+<td>甘特图</td>
+<td><code>gantt</code></td>
+<td>★★★★☆</td>
+</tr>
+<tr>
+<td>类图</td>
+<td><code>classDiagram</code></td>
+<td>★★★☆☆</td>
+</tr>
+<tr>
+<td>ER 图</td>
+<td><code>erDiagram</code></td>
+<td>★★★☆☆</td>
+</tr>
+<tr>
+<td>饼图</td>
+<td><code>pie</code></td>
+<td>★★★☆☆</td>
+</tr>
+<tr>
+<td>思维导图</td>
+<td><code>mindmap</code></td>
+<td>★★★☆☆</td>
+</tr>
+<tr>
+<td>时间线</td>
+<td><code>timeline</code></td>
+<td>★★☆☆☆</td>
+</tr>
+</tbody></table>
+<h3 id="14-2-流程图语法速查"><a href="#14-2-流程图语法速查" class="headerlink" title="14.2 流程图语法速查"></a>14.2 流程图语法速查</h3><table>
+<thead>
+<tr>
+<th>需求</th>
+<th>写法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>创建左右方向流程图</td>
+<td><code>flowchart LR</code></td>
+</tr>
+<tr>
+<td>矩形节点</td>
+<td><code>A[&quot;文本&quot;]</code></td>
+</tr>
+<tr>
+<td>判断节点</td>
+<td><code>A&#123;&quot;条件&quot;&#125;</code></td>
+</tr>
+<tr>
+<td>普通箭头</td>
+<td><code>A --&gt; B</code></td>
+</tr>
+<tr>
+<td>虚线箭头</td>
+<td><code>A -.-&gt; B</code></td>
+</tr>
+<tr>
+<td>带文字的箭头</td>
+<td>&#96;A –&gt;</td>
+</tr>
+<tr>
+<td>创建分组</td>
+<td><code>subgraph G[&quot;分组&quot;]</code> … <code>end</code></td>
+</tr>
+<tr>
+<td>定义样式</td>
+<td><code>classDef key fill:#FFFFFF,stroke:#333333;</code></td>
+</tr>
+<tr>
+<td>应用样式</td>
+<td><code>class A,B key;</code></td>
+</tr>
+<tr>
+<td>注释</td>
+<td><code>%% 注释内容</code></td>
+</tr>
+</tbody></table>
+<h3 id="14-3-三道练习题"><a href="#14-3-三道练习题" class="headerlink" title="14.3 三道练习题"></a>14.3 三道练习题</h3><p><strong>练习 1：算法流程图</strong><br>绘制“读取图片 → 预处理 → 图像编码 → 信道传输 → 图像重建 → 计算 PSNR”的流程。添加“PSNR 是否达标”的判断分支。</p>
+<p><strong>练习 2：通信协议时序图</strong><br>绘制发送端和接收端的“同步 → 数据传输 → ACK&#x2F;NACK → 可选重传”的交互过程，使用 <code>alt</code> 和 <code>loop</code>。</p>
+<p><strong>练习 3：论文技术路线图</strong><br>用 <code>subgraph</code> 把研究内容划分为“理论建模、算法设计、原型验证”三个区域，并使用简洁的黑白&#x2F;浅蓝配色。</p>
+<h3 id="14-4-建议的学习顺序"><a href="#14-4-建议的学习顺序" class="headerlink" title="14.4 建议的学习顺序"></a>14.4 建议的学习顺序</h3><ul>
+<li><strong>第 1 天</strong>：学会流程图方向、节点、箭头、分支，能绘制算法图。</li>
+<li><strong>第 2 天</strong>：学习 <code>subgraph</code>、<code>classDef</code>，能绘制结构清晰的技术路线图。</li>
+<li><strong>第 3 天</strong>：学习时序图、状态图，能描述协议和软件交互。</li>
+<li><strong>后续按需</strong>：学习类图、ER 图、甘特图与导出工具。</li>
+</ul>
+<h3 id="14-5-官方资料"><a href="#14-5-官方资料" class="headerlink" title="14.5 官方资料"></a>14.5 官方资料</h3><p>以下链接可直接查看具体语法和示例：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mermaid.js.org/">Mermaid 官方网站</a></li>
+<li><a target="_blank" rel="noopener" href="https://mermaid.live/">Mermaid Live Editor（在线练习）</a></li>
+<li><a target="_blank" rel="noopener" href="https://mermaid.js.org/syntax/flowchart.html">流程图官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://mermaid.js.org/syntax/sequenceDiagram.html">时序图官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://mermaid.js.org/syntax/stateDiagram.html">状态图官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://mermaid.js.org/syntax/classDiagram.html">类图官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://mermaid.js.org/syntax/entityRelationshipDiagram.html">ER 图官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://mermaid.js.org/syntax/gantt.html">甘特图官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mermaid-js/mermaid-cli">Mermaid CLI 官方仓库</a></li>
+</ul>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>学 Mermaid 最重要的是掌握两条思路：</p>
+<ol>
+<li><strong>先用简单的节点与连接表达结构，再考虑布局和配色。</strong> 对于算法和科研技术路线，<code>flowchart</code> 是最值得优先熟练掌握的类型。</li>
+<li><strong>区分“Mermaid 源代码”和“渲染后的图片”。</strong> Markdown 能否看到图、PDF 能否保留图，取决于所使用的渲染与导出工具，而不只是文件本身。</li>
+</ol>
+<p>如果只记住一个最小模板，记住下面这段即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    A[&quot;输入&quot;] --&gt; B[&quot;处理&quot;]</span><br><span class="line">    B --&gt; C&#123;&quot;是否成功？&quot;&#125;</span><br><span class="line">    C --&gt;|&quot;是&quot;| D[&quot;输出&quot;]</span><br><span class="line">    C --&gt;|&quot;否&quot;| B</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>完成本教程后，建议自己从空白文档写一张真实的系统流程图，再尝试导出 SVG 和 PDF。实际绘制比记忆全部语法更有效。</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://JrunDing.github.io">JrunDing</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jrunding.github.io/2026/11/12/Mermaid/">http://jrunding.github.io/2026/11/12/Mermaid/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://JrunDing.github.io" target="_blank">null</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://z1.ax1x.com/2023/11/13/piJMDnH.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Mermaid-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">2.</span> <span class="toc-text">1. Mermaid 是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mermaid-%E9%80%82%E5%90%88%E5%93%AA%E4%BA%9B%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">Mermaid 适合哪些场景？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%EF%BC%9A%E7%AC%AC%E4%B8%80%E5%BC%A0%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">2. 快速上手：第一张流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%B5%81%E7%A8%8B%E5%9B%BE%E5%9F%BA%E7%A1%80%EF%BC%9A%E6%96%B9%E5%90%91%E3%80%81%E8%8A%82%E7%82%B9%E4%B8%8E%E8%BF%9E%E7%BA%BF"><span class="toc-number">4.</span> <span class="toc-text">3. 流程图基础：方向、节点与连线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%9B%BE%E7%9A%84%E6%96%B9%E5%90%91"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 图的方向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%B8%B8%E7%94%A8%E8%8A%82%E7%82%B9%E5%BD%A2%E7%8A%B6"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 常用节点形状</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%B8%B8%E7%94%A8%E8%BF%9E%E7%BA%BF"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 常用连线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%A4%9A%E5%88%86%E6%94%AF%E4%B8%8E%E5%A4%9A%E5%85%A5%E5%8F%A3"><span class="toc-number">4.4.</span> <span class="toc-text">3.4 多分支与多入口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E6%98%BE%E7%A4%BA%E6%96%87%E6%9C%AC%E5%8C%85%E5%90%AB%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="toc-number">4.5.</span> <span class="toc-text">3.5 显示文本包含特殊字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E6%B3%A8%E9%87%8A"><span class="toc-number">4.6.</span> <span class="toc-text">3.6 注释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%B5%81%E7%A8%8B%E5%9B%BE%E8%BF%9B%E9%98%B6%EF%BC%9A%E5%88%86%E7%BB%84%E3%80%81%E5%B8%83%E5%B1%80%E4%B8%8E%E9%85%8D%E8%89%B2"><span class="toc-number">5.</span> <span class="toc-text">4. 流程图进阶：分组、布局与配色</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E4%BD%BF%E7%94%A8-subgraph-%E7%BB%99%E6%A8%A1%E5%9D%97%E5%88%86%E7%BB%84"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 使用 subgraph 给模块分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E4%B8%80%E5%A5%97%E7%AE%80%E6%B4%81%E7%9A%84%E5%B7%A5%E7%A8%8B%E8%AE%BA%E6%96%87%E9%A3%8E%E6%A0%BC"><span class="toc-number">5.2.</span> <span class="toc-text">4.2 一套简洁的工程论文风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%8D%95%E7%8B%AC%E8%B0%83%E6%95%B4%E6%9F%90%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="toc-number">5.3.</span> <span class="toc-text">4.3 单独调整某个节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E4%B8%BA%E5%8D%95%E5%BC%A0%E5%9B%BE%E8%AE%BE%E7%BD%AE%E4%B8%BB%E9%A2%98"><span class="toc-number">5.4.</span> <span class="toc-text">4.4 为单张图设置主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E6%8E%92%E7%89%88%E7%BB%8F%E9%AA%8C"><span class="toc-number">5.5.</span> <span class="toc-text">4.5 排版经验</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%97%B6%E5%BA%8F%E5%9B%BE%EF%BC%9A%E8%A1%A8%E8%BE%BE%E6%B6%88%E6%81%AF%E4%BA%A4%E4%BA%92"><span class="toc-number">6.</span> <span class="toc-text">5. 时序图：表达消息交互</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-number">6.1.</span> <span class="toc-text">5.1 基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%B8%B8%E7%94%A8%E6%B6%88%E6%81%AF%E7%AC%A6%E5%8F%B7"><span class="toc-number">6.2.</span> <span class="toc-text">5.2 常用消息符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E5%88%A4%E6%96%AD%E3%80%81%E5%BE%AA%E7%8E%AF%E5%92%8C%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7"><span class="toc-number">6.3.</span> <span class="toc-text">5.3 判断、循环和自动编号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E6%98%BE%E7%A4%BA%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">6.4.</span> <span class="toc-text">5.4 显示执行过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%8A%B6%E6%80%81%E5%9B%BE%EF%BC%9A%E8%A1%A8%E8%BE%BE%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2"><span class="toc-number">7.</span> <span class="toc-text">6. 状态图：表达状态转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E5%90%AB%E7%BB%88%E6%AD%A2%E7%8A%B6%E6%80%81%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">7.1.</span> <span class="toc-text">包含终止状态的例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E7%B1%BB%E5%9B%BE%EF%BC%9A%E8%A1%A8%E8%BE%BE%E8%BD%AF%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">8.</span> <span class="toc-text">7. 类图：表达软件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-ER-%E5%9B%BE%EF%BC%9A%E8%A1%A8%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%B3%E7%B3%BB"><span class="toc-number">9.</span> <span class="toc-text">8. ER 图：表达数据库关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E7%94%98%E7%89%B9%E5%9B%BE%EF%BC%9A%E8%A1%A8%E8%BE%BE%E9%A1%B9%E7%9B%AE%E8%BF%9B%E5%BA%A6"><span class="toc-number">10.</span> <span class="toc-text">9. 甘特图：表达项目进度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%9B%BE%EF%BC%9A%E9%A5%BC%E5%9B%BE%E3%80%81%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E5%92%8C%E6%97%B6%E9%97%B4%E7%BA%BF"><span class="toc-number">11.</span> <span class="toc-text">10. 其他常用图：饼图、思维导图和时间线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-%E9%A5%BC%E5%9B%BE-pie"><span class="toc-number">11.1.</span> <span class="toc-text">10.1 饼图 pie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE-mindmap"><span class="toc-number">11.2.</span> <span class="toc-text">10.2 思维导图 mindmap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-%E6%97%B6%E9%97%B4%E7%BA%BF-timeline"><span class="toc-number">11.3.</span> <span class="toc-text">10.3 时间线 timeline</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E5%AE%8C%E6%95%B4%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E5%A4%84%E7%90%86%E9%93%BE"><span class="toc-number">12.</span> <span class="toc-text">11. 完整案例：无线通信系统处理链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%9C%A8-Markdown-%E4%B8%AD%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%AF%BC%E5%87%BA%E5%9B%BE%E8%A1%A8"><span class="toc-number">13.</span> <span class="toc-text">12. 在 Markdown 中显示与导出图表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-1-%E5%9C%A8%E7%BA%BF%E7%9B%B4%E6%8E%A5%E7%BB%83%E4%B9%A0%EF%BC%9AMermaid-Live-Editor"><span class="toc-number">13.1.</span> <span class="toc-text">12.1 在线直接练习：Mermaid Live Editor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-2-%E5%9C%A8-GitHub-%E6%9F%A5%E7%9C%8B"><span class="toc-number">13.2.</span> <span class="toc-text">12.2 在 GitHub 查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-3-%E5%9C%A8-VS-Code-%E4%B8%AD%E6%9F%A5%E7%9C%8B"><span class="toc-number">13.3.</span> <span class="toc-text">12.3 在 VS Code 中查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-4-%E4%BD%BF%E7%94%A8-Mermaid-CLI-%E5%AF%BC%E5%87%BA-SVG-x2F-PNG-x2F-PDF"><span class="toc-number">13.4.</span> <span class="toc-text">12.4 使用 Mermaid CLI 导出 SVG &#x2F; PNG &#x2F; PDF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-5-%E5%B0%86%E6%95%B4%E4%BB%BD-Markdown-%E7%9A%84-Mermaid-%E5%9B%BE%E8%BD%AC%E6%8D%A2%E6%88%90-SVG-%E5%BC%95%E7%94%A8"><span class="toc-number">13.5.</span> <span class="toc-text">12.5 将整份 Markdown 的 Mermaid 图转换成 SVG 引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-6-%E5%8F%A6%E4%B8%80%E6%9D%A1%E5%8F%AF%E9%9D%A0%E8%B7%AF%E7%BA%BF%EF%BC%9A%E5%9B%BE%E5%85%88%E7%94%9F%E6%88%90%EF%BC%8C%E5%86%8D%E5%BC%95%E7%94%A8"><span class="toc-number">13.6.</span> <span class="toc-text">12.6 另一条可靠路线：图先生成，再引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-7-%E4%B8%BA%E4%BB%80%E4%B9%88-Mermaid-%E5%9C%A8-Markdown-%E9%87%8C%E6%AD%A3%E5%B8%B8%E3%80%81%E5%AF%BC%E5%87%BA-PDF-%E5%90%8E%E5%8D%B4%E6%B6%88%E5%A4%B1%EF%BC%9F"><span class="toc-number">13.7.</span> <span class="toc-text">12.7 为什么 Mermaid 在 Markdown 里正常、导出 PDF 后却消失？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%8F%8A%E6%8E%92%E6%9F%A5"><span class="toc-number">14.</span> <span class="toc-text">13. 常见错误及排查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E7%9A%84%E6%8E%92%E9%94%99%E9%A1%BA%E5%BA%8F"><span class="toc-number">14.1.</span> <span class="toc-text">推荐的排错顺序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E9%80%9F%E6%9F%A5%E8%A1%A8%E3%80%81%E7%BB%83%E4%B9%A0%E4%B8%8E%E5%AE%98%E6%96%B9%E8%B5%84%E6%96%99"><span class="toc-number">15.</span> <span class="toc-text">14. 速查表、练习与官方资料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-1-%E5%9B%BE%E8%A1%A8%E7%B1%BB%E5%9E%8B%E9%80%9F%E6%9F%A5"><span class="toc-number">15.1.</span> <span class="toc-text">14.1 图表类型速查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-%E6%B5%81%E7%A8%8B%E5%9B%BE%E8%AF%AD%E6%B3%95%E9%80%9F%E6%9F%A5"><span class="toc-number">15.2.</span> <span class="toc-text">14.2 流程图语法速查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-3-%E4%B8%89%E9%81%93%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">15.3.</span> <span class="toc-text">14.3 三道练习题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-4-%E5%BB%BA%E8%AE%AE%E7%9A%84%E5%AD%A6%E4%B9%A0%E9%A1%BA%E5%BA%8F"><span class="toc-number">15.4.</span> <span class="toc-text">14.4 建议的学习顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-5-%E5%AE%98%E6%96%B9%E8%B5%84%E6%96%99"><span class="toc-number">15.5.</span> <span class="toc-text">14.5 官方资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">16.</span> <span class="toc-text">总结</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By JrunDing</div><div class="footer_custom_text">Thanks.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://jrunding.github.io/2026/11/12/Mermaid/'
+    this.page.identifier = '/2026/11/12/Mermaid/'
+    this.page.title = 'Mermaid'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jrunding.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script><script>if (window.DISQUSWIDGETS === undefined) {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jrunding.disqus.com/count.js';
+  s.id = 'dsq-count-scr';
+  (d.head || d.body).appendChild(s);
+} else {
+  DISQUSWIDGETS.getCount({reset: true});
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
